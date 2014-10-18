@@ -24,10 +24,10 @@ namespace DocToMarkdown
         /// Initializes a new instance of the <see cref="AbstractMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name="parser">The parser.</param>
-        /// <param name="environment">The dependency to environment.</param>
-        internal AbstractMarkdownNodeParser(ParseXmlToMarkdown parser, IEnvironment environment)
+        /// <param name="dependencies">The dependency injected parts.</param>
+        internal AbstractMarkdownNodeParser(ParseXmlToMarkdown parser, IDependencies dependencies)
         {
-            this.Environment = environment;
+            this.Environment = dependencies.Environment;
             this.Parser = parser;
         }
 

@@ -34,9 +34,9 @@ namespace DocToMarkdown
         /// Initializes a new instance of the <see cref="MemberMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name="parser">The parser.</param>
-        /// <param name="environment">The environment.</param>
-        internal MemberMarkdownNodeParser(ParseXmlToMarkdown parser, IEnvironment environment)
-            : base(parser, environment)
+        /// <param name="dependencies">The dependency injected parts.</param>
+        internal MemberMarkdownNodeParser(ParseXmlToMarkdown parser, IDependencies dependencies)
+            : base(parser, dependencies)
         {
             this.InitTemplateDictionary();
         }

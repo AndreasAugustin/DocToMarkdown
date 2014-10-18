@@ -16,11 +16,12 @@ namespace DocToMarkdown
     /// <summary>
     /// Parses <see cref="XNode"/> node to Markdown String.
     /// </summary>
-    internal sealed class ExceptionMarkdownNodeParser : AbstractMarkdownNodeParser, IMarkdownNodeParser
+    internal sealed class ExceptionMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
         private static String template;
+        private ParseXmlToMarkdown _parser;
 
         #endregion
 
@@ -32,9 +33,9 @@ namespace DocToMarkdown
         /// <param name="parser">The parser.</param>
         /// <param name="dependencies">The dependency injected parts.</param>
         public ExceptionMarkdownNodeParser(ParseXmlToMarkdown parser, IDependencies dependencies)
-            : base(parser, dependencies)
         {
-            this.InitTemplate();
+            this._parser = parser;
+            this.InitTemplate(dependencies.Environment);
         }
 
         #endregion
@@ -46,7 +47,7 @@ namespace DocToMarkdown
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
-        public override String ParseToMarkdown(XElement element)
+        public String ParseToMarkdown(XElement element)
         {
             if (element.Name != "exception")
             {
@@ -61,7 +62,7 @@ namespace DocToMarkdown
 
             foreach (var el in elements)
             {
-                stringBuilder.Append(this.Parser.Parse(el));
+                stringBuilder.Append(this._parser.Parse(el));
             }
 
             return String.Format(
@@ -75,14 +76,14 @@ namespace DocToMarkdown
 
         #region helper methods
 
-        private void InitTemplate()
+        private void InitTemplate(IEnvironment environment)
         {
             if (!String.IsNullOrEmpty(template))
             {
                 return;
             }
 
-            template = String.Format("[[{0}|{0}]]: {1}{2}{2}", "{0}", "{1}", this.Environment.NewLine);
+            template = String.Format("[[{0}|{0}]]: {1}{2}{2}", "{0}", "{1}", environment.NewLine);
         }
 
         #endregion

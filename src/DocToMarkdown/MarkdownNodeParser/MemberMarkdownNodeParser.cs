@@ -19,12 +19,13 @@ namespace DocToMarkdown
     /// <summary>
     /// Member markdown node parser.
     /// </summary>
-    internal class MemberMarkdownNodeParser : AbstractMarkdownNodeParser, IMarkdownNodeParser
+    internal class MemberMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
-        private static readonly Dictionary<String, String> TemplateDictionary = new Dictionary<String, String>();
+        private readonly Dictionary<String, String> _templateDictionary = new Dictionary<String, String>();
         private readonly Regex memperTypeRegex = new Regex(@"^.*?(?=:)");
+        private readonly ParseXmlToMarkdown _parser;
 
         #endregion
 
@@ -36,9 +37,9 @@ namespace DocToMarkdown
         /// <param name="parser">The parser.</param>
         /// <param name="dependencies">The dependency injected parts.</param>
         internal MemberMarkdownNodeParser(ParseXmlToMarkdown parser, IDependencies dependencies)
-            : base(parser, dependencies)
         {
-            this.InitTemplateDictionary();
+            this._parser = parser;
+            this.InitTemplateDictionary(dependencies.Environment);
         }
 
         #endregion
@@ -50,7 +51,7 @@ namespace DocToMarkdown
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
-        public override String ParseToMarkdown(XElement element)
+        public String ParseToMarkdown(XElement element)
         {
             if (element.Name != "member")
             {
@@ -73,19 +74,19 @@ namespace DocToMarkdown
 
             var memberType = match.ToString();
 
-            if (!TemplateDictionary.ContainsKey(memberType))
+            if (!this._templateDictionary.ContainsKey(memberType))
             {
                 return null;
             }
 
-            var template = TemplateDictionary[memberType];
+            var template = this._templateDictionary[memberType];
 
             var elements = element.Elements();
             var stringBuilder = new StringBuilder();
 
             foreach (var el in elements)
             {
-                stringBuilder.Append(this.Parser.Parse(el));
+                stringBuilder.Append(this._parser.Parse(el));
             }
                 
             var val = String.Format("<a name=\"{1}\"></a>{0}", name.Value, name.Value.ToLower());
@@ -100,22 +101,22 @@ namespace DocToMarkdown
 
         #region helper methods
 
-        private void InitTemplateDictionary()
+        private void InitTemplateDictionary(IEnvironment environment)
         {
-            if (TemplateDictionary.Any())
+            if (this._templateDictionary.Any())
             {
                 return;
             }
 
             // Member is a type
-            TemplateDictionary.Add(
+            this._templateDictionary.Add(
                 "T",
-                String.Format("---{2}#### {0}{2}{2}{1}{2}{2}", "{0}", "{1}", this.Environment.NewLine)); 
+                String.Format("---{2}#### {0}{2}{2}{1}{2}{2}", "{0}", "{1}", environment.NewLine)); 
 
             // Member is a method
-            TemplateDictionary.Add(
+            this._templateDictionary.Add(
                 "M",
-                String.Format("#### {0}{2}{2}{2}{1}{2}", "{0}", "{1}", this.Environment.NewLine));
+                String.Format("#### {0}{2}{2}{2}{1}{2}", "{0}", "{1}", environment.NewLine));
         }
 
         #endregion

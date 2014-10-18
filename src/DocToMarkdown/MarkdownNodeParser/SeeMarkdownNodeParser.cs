@@ -17,11 +17,11 @@ namespace DocToMarkdown
     /// <summary>
     /// Parser for the see tag.
     /// </summary>
-    internal class SeeMarkdownNodeParser : AbstractMarkdownNodeParser, IMarkdownNodeParser
+    internal class SeeMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
-        private static readonly Dictionary<String, String> TemplateDictionary = new Dictionary<String, String>();
+        private readonly Dictionary<String, String> _templateDictionary = new Dictionary<String, String>();
 
         #endregion
 
@@ -30,10 +30,7 @@ namespace DocToMarkdown
         /// <summary>
         /// Initializes a new instance of the <see cref="SeeMarkdownNodeParser"/> class.
         /// </summary>
-        /// <param name="parser">The parser.</param>
-        /// <param name="dependencies">The dependency injected parts.</param>
-        internal SeeMarkdownNodeParser(ParseXmlToMarkdown parser, IDependencies dependencies)
-            : base(parser, dependencies)
+        internal SeeMarkdownNodeParser()
         {
             this.InitTemplate();
         }
@@ -47,7 +44,7 @@ namespace DocToMarkdown
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
-        public override String ParseToMarkdown(XElement element)
+        public String ParseToMarkdown(XElement element)
         {
             if (element.Name != "see")
             {
@@ -64,7 +61,7 @@ namespace DocToMarkdown
                 return null;
             }
 
-            var template = TemplateDictionary[key];
+            var template = this._templateDictionary[key];
 
             var val = anchorAttr.Value;
 
@@ -80,13 +77,13 @@ namespace DocToMarkdown
 
         private void InitTemplate()
         {
-            if (TemplateDictionary.Any())
+            if (this._templateDictionary.Any())
             {
                 return;
             }
 
-            TemplateDictionary.Add("href", "[[{0}|{1}]]");
-            TemplateDictionary.Add("cref", "[{0}](#{1})");
+            this._templateDictionary.Add("href", "[[{0}|{1}]]");
+            this._templateDictionary.Add("cref", "[{0}](#{1})");
         }
 
         #endregion

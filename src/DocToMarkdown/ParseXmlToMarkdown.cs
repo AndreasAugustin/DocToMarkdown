@@ -31,10 +31,10 @@ namespace DocToMarkdown
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseXmlToMarkdown"/> class.
         /// </summary>
-        /// <param name="environment">The environment.</param>
-        internal ParseXmlToMarkdown(IEnvironment environment)
+        /// <param name="dependencies">The dependency injected classes.</param>
+        internal ParseXmlToMarkdown(IDependencies dependencies)
         {
-            this.InitDictionary(environment);
+            this.InitDictionary(dependencies);
         }
 
         #endregion
@@ -69,14 +69,15 @@ namespace DocToMarkdown
 
         #region helper methods
 
-        private void InitDictionary(IEnvironment environment)
+        private void InitDictionary(IDependencies dependencies)
         {
             this._parserList = new List<IMarkdownNodeParser>();
-            this._parserList.Add(new DocMarkdownNodeParser(this, environment));
-            this._parserList.Add(new MemberMarkdownNodeParser(this, environment));
-            this._parserList.Add(new SummaryMarkdownNodeParser(this, environment));
-            this._parserList.Add(new SeeMarkdownNodeParser(this, environment));
-            this._parserList.Add(new ExceptionMarkdownNodeParser(this, environment));
+            this._parserList.Add(new DocMarkdownNodeParser(this, dependencies));
+            this._parserList.Add(new MemberMarkdownNodeParser(this, dependencies));
+            this._parserList.Add(new ParamMarkdownNodeParser(this, dependencies));
+            this._parserList.Add(new SummaryMarkdownNodeParser(this, dependencies));
+            this._parserList.Add(new SeeMarkdownNodeParser());
+            this._parserList.Add(new ExceptionMarkdownNodeParser(this, dependencies));
         }
 
         #endregion

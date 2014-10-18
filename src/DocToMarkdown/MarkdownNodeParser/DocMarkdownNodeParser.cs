@@ -17,11 +17,12 @@ namespace DocToMarkdown
     /// <summary>
     /// Document markdown node parser.
     /// </summary>
-    internal sealed class DocMarkdownNodeParser : AbstractMarkdownNodeParser, IMarkdownNodeParser
+    internal sealed class DocMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
-        private static String template;
+        private static String _template;
+        private ParseXmlToMarkdown _parser;
 
         #endregion
 
@@ -33,9 +34,9 @@ namespace DocToMarkdown
         /// <param name="parser">The parser.</param>
         /// <param name="dependencies">The dependency injected parts.</param>
         public DocMarkdownNodeParser(ParseXmlToMarkdown parser, IDependencies dependencies)
-            : base(parser, dependencies)
         {
-            this.InitTemplate();
+            this._parser = parser;
+            this.InitTemplate(dependencies.Environment);
         }
 
         #endregion
@@ -47,7 +48,7 @@ namespace DocToMarkdown
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
-        public override String ParseToMarkdown(XElement element)
+        public String ParseToMarkdown(XElement element)
         {
             if (element.Name != "doc")
             {
@@ -61,11 +62,11 @@ namespace DocToMarkdown
 
             foreach (var member in members)
             {
-                stringBuilder.Append(this.Parser.Parse(member));
+                stringBuilder.Append(this._parser.Parse(member));
             }
 
             return String.Format(
-                template,               
+                _template,               
                 assemblyName,
                 stringBuilder.ToString());
         }
@@ -74,18 +75,18 @@ namespace DocToMarkdown
 
         #region helper methods
 
-        private void InitTemplate()
+        private void InitTemplate(IEnvironment environment)
         {
-            if (!String.IsNullOrEmpty(template))
+            if (!String.IsNullOrEmpty(_template))
             {
                 return;
             }
 
-            template = String.Format(
+            _template = String.Format(
                 "## {0} ##{2}{2}{1}{2}{2}",
                 "{0}",
                 "{1}",
-                this.Environment.NewLine);
+                environment.NewLine);
         }
 
         #endregion

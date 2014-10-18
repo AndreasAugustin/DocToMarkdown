@@ -38,7 +38,7 @@ namespace DocToMarkdown
         {
             Console.WriteLine("Hello World!");
 
-            _parser = new ParseXmlToMarkdown(Dependencies.Environment);
+            _parser = new ParseXmlToMarkdown(Dependencies);
 
             var xmlSourcePath = Configuration["xmlSource.absolute.path"];
             var markdownTargetPath = Configuration["markupTarget.absolute.path"];

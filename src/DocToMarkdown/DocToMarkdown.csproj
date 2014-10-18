@@ -46,7 +46,6 @@
     <Compile Include="ParseXmlToMarkdown.cs" />
     <Compile Include="MarkdownNodeParser\ExceptionMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\DocMarkdownNodeParser.cs" />
-    <Compile Include="MarkdownNodeParser\AbstractMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\MemberMarkdownNodeParser.cs" />
     <Compile Include="Contracts\IEnvironment.cs" />
     <Compile Include="Adapter\EnvironmentAdapter.cs" />
@@ -54,6 +53,7 @@
     <Compile Include="Adapter\Dependencies.cs" />
     <Compile Include="MarkdownNodeParser\SummaryMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\SeeMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\ParamMarkdownNodeParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

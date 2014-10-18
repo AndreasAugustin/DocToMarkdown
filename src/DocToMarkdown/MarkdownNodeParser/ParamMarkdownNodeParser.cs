@@ -10,9 +10,10 @@
 namespace DocToMarkdown
 {
     using System;
-    using System.Linq;
     using System.Text;
     using System.Xml.Linq;
+
+    using DocToMarkdown.Common;
 
     internal class ParamMarkdownNodeParser : IMarkdownNodeParser
     {

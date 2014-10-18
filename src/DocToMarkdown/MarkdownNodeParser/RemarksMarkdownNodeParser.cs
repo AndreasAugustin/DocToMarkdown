@@ -11,6 +11,8 @@ namespace DocToMarkdown
 {
     using System;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Remarks markdown node parser.
     /// </summary>

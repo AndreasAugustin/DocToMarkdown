@@ -13,6 +13,8 @@ namespace DocToMarkdown
     using System.Text;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Parses <see cref="XNode"/> node to Markdown String.
     /// </summary>

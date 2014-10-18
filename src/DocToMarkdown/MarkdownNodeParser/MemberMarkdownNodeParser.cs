@@ -16,6 +16,8 @@ namespace DocToMarkdown
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Member markdown node parser.
     /// </summary>

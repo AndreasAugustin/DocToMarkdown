@@ -13,6 +13,8 @@ namespace DocToMarkdown
     using System.Text;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Parser for the summary tag.
     /// </summary>

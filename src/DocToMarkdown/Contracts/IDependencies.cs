@@ -9,6 +9,8 @@
 
 namespace DocToMarkdown
 {
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Interface for the dependencies for the application.
     /// </summary>

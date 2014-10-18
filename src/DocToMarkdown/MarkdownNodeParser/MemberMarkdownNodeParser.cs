@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
 // <copyright file="MemberMarkdownNodeParser.cs" company="None">
-//     Copyright (c) 2014 andy. 
+//     Copyright (c) 2014 andy. All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -25,7 +25,7 @@ namespace DocToMarkdown
 
         private readonly Dictionary<String, String> _templateDictionary = new Dictionary<String, String>();
         private readonly Regex memperTypeRegex = new Regex(@"^.*?(?=:)");
-        private readonly ParseXmlToMarkdown _parser;
+        private readonly IParserPool _parserPool;
 
         #endregion
 
@@ -34,11 +34,11 @@ namespace DocToMarkdown
         /// <summary>
         /// Initializes a new instance of the <see cref="MemberMarkdownNodeParser"/> class.
         /// </summary>
-        /// <param name="parser">The parser.</param>
+        /// <param name="parserPool">The parser pool.</param>
         /// <param name="dependencies">The dependency injected parts.</param>
-        internal MemberMarkdownNodeParser(ParseXmlToMarkdown parser, IDependencies dependencies)
+        internal MemberMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
         {
-            this._parser = parser;
+            this._parserPool = parserPool;
             this.InitTemplateDictionary(dependencies.Environment);
         }
 
@@ -86,7 +86,7 @@ namespace DocToMarkdown
 
             foreach (var el in elements)
             {
-                stringBuilder.Append(this._parser.Parse(el));
+                stringBuilder.Append(this._parserPool.Parse(el));
             }
                 
             var val = String.Format("<a name=\"{1}\"></a>{0}", name.Value, name.Value.ToLower());

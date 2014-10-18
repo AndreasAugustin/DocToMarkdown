@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
 // <copyright file="SummaryMarkdownNodeParser.cs" company="None">
-//     Copyright (c) 2014 andy. 
+//     Copyright (c) 2014 andy. All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -21,7 +21,7 @@ namespace DocToMarkdown
         #region fields
 
         private static String template;
-        private ParseXmlToMarkdown _parser;
+        private IParserPool _parser;
 
         #endregion
 
@@ -32,7 +32,7 @@ namespace DocToMarkdown
         /// </summary>
         /// <param name="parser">The parser.</param>
         /// <param name="dependencies">The dependency injected parts.</param>
-        internal SummaryMarkdownNodeParser(ParseXmlToMarkdown parser, IDependencies dependencies)
+        internal SummaryMarkdownNodeParser(IParserPool parser, IDependencies dependencies)
         {
             this._parser = parser;
             this.InitTemplate(dependencies.Environment);

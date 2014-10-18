@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
 // <copyright file="ParamMarkdownNodeParser.cs" company="None">
-//     Copyright (c) 2014 andy. 
+//     Copyright (c) 2014 andy. All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -19,7 +19,7 @@ namespace DocToMarkdown
         #region fields
 
         private String _template;
-        private ParseXmlToMarkdown _parser;
+        private IParserPool _parserPool;
 
         #endregion
 
@@ -28,11 +28,11 @@ namespace DocToMarkdown
         /// <summary>
         /// Initializes a new instance of the <see cref="ParamMarkdownNodeParser"/> class.
         /// </summary>
-        /// <param name="parser">The parser.</param>
+        /// <param name="parserPool">The parser pool.</param>
         /// <param name="dependencies">The dependency injected parts.</param>
-        internal ParamMarkdownNodeParser(ParseXmlToMarkdown parser, IDependencies dependencies)
+        internal ParamMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
         {
-            this._parser = parser;
+            this._parserPool = parserPool;
             this.InitTemplate(dependencies.Environment);
         }
 
@@ -60,7 +60,7 @@ namespace DocToMarkdown
 
             foreach (var el in elements)
             {
-                stringBuilder.Append(this._parser.Parse(el));
+                stringBuilder.Append(this._parserPool.Parse(el));
             }
 
             var name = element.Attribute("name").Value;

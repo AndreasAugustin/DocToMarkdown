@@ -12,7 +12,7 @@ namespace DocToMarkdown
     /// <summary>
     /// Interface for the dependencies for the application.
     /// </summary>
-    internal interface IDependencies
+    public interface IDependencies
     {
         /// <summary>
         /// Gets the configuration.

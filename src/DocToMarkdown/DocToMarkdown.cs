@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
 // <copyright file="DocToMarkdown.cs" company="None">
-//     Copyright (c) 2014 andy. 
+//     Copyright (c) 2014 andy. All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -21,7 +21,7 @@ namespace DocToMarkdown
     /// Converts a xml document to markdown.
     /// <see href="https://gist.github.com/lontivero/593fc51f1208555112e0"/>
     /// </summary>
-    internal static class DocToMarkdown
+    internal static class DocToMarkdown3
     {
         #region methods
 

@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
-// <copyright file="IConfiguration.cs" company="None">
-//     Copyright (c) 2014 andy.
+// <copyright file="IParserPool.cs" company="None">
+//     Copyright (c) 2014 andy. 
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -10,20 +10,21 @@
 namespace DocToMarkdown
 {
     using System;
+    using System.Xml.Linq;
 
     /// <summary>
-    /// Interface for the configuration.
+    /// Interface for parser pools.
     /// </summary>
-    internal interface IConfiguration
+    public interface IParserPool
     {
-        #region indexers
+        #region methods
 
         /// <summary>
-        /// Gets the <see cref="IConfiguration"/> with the specified key.
+        /// Parse the specified node.
         /// </summary>
-        /// <param name="key">The key.</param>
-        /// <returns>The configuration entry.</returns>
-        String this[String key] { get; }
+        /// <param name="node">The xml node to parse.</param>
+        /// <returns>The parsed node.</returns>
+        String Parse(XNode node);
 
         #endregion
     }

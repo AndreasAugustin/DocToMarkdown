@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
 // <copyright file="Dependencies.cs" company="None">
-//     Copyright (c) 2014 andy.
+//     Copyright (c) 2014 andy. All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -11,10 +11,12 @@ namespace DocToMarkdown
 {
     using System;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Contains the dependencies for the application.
     /// </summary>
-    internal class Dependencies : IDependencies
+    public class Dependencies : IDependencies
     {
         #region fields
 

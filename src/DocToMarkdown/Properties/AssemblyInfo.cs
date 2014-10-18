@@ -1,12 +1,12 @@
 ﻿//  *************************************************************
-// <copyright file="AssemblyInfo.cs" company="SuperDevelop">
+// <copyright file="AssemblyInfo.cs" company="None">
 //     Copyright (c) 2014 andy. All rights reserved.
 // </copyright>
+// <license>MIT Licence</license>
 // <author>andy</author>
-// <email>andreas.augustinba@gmx.de</email>
+// <email>andy.augustin@t-online.de</email>
 // *************************************************************
-//   1.0.0  13 / 10 / 2014 Created the Class
-// *************************************************************
+
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -15,7 +15,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("DocToMarkdown")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SuperDevelop")]
+[assembly: AssemblyCompany("None")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("andy")]
 [assembly: AssemblyTrademark("")]
@@ -25,3 +25,6 @@ using System.Runtime.CompilerServices;
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,
 // and "{Major}.{Minor}.{Build}.*" will update just the revision.
 [assembly: AssemblyVersion("1.0.*")]
+
+// Make internals visible to test project
+[assembly: InternalsVisibleTo("DocToMarkdown.Tests")]

@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
 // <copyright file="Program.cs" company="None">
-//     Copyright (c) 2014 andy. 
+//     Copyright (c) 2014 andy. All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -14,6 +14,8 @@ namespace DocToMarkdown
     using System.IO;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Main class.
     /// </summary>
@@ -24,7 +26,7 @@ namespace DocToMarkdown
         private static readonly IConfiguration Configuration = new ConfigurationAdapter();
         private static readonly IDependencies Dependencies = new Dependencies();
 
-        private static ParseXmlToMarkdown _parser;
+        private static IParserPool _parser;
 
         #endregion
 

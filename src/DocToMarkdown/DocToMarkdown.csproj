@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{CDB2AB44-0AA1-4A8A-8BBB-A7625C355C6B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DocToMarkdown</RootNamespace>
+    <AssemblyName>DocToMarkdown</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG; TRACE;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DocToMarkdown.cs" />
+    <Compile Include="Adapter\ConfigurationAdapter.cs" />
+    <Compile Include="Contracts\IConfiguration.cs" />
+    <Compile Include="Contracts\IFile.cs" />
+    <Compile Include="Contracts\IMarkdownNodeParser.cs" />
+    <Compile Include="ParseXmlToMarkdown.cs" />
+    <Compile Include="MarkdownNodeParser\ExceptionMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\DocMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\AbstractMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\MemberMarkdownNodeParser.cs" />
+    <Compile Include="Contracts\IEnvironment.cs" />
+    <Compile Include="Adapter\EnvironmentAdapter.cs" />
+    <Compile Include="Contracts\IDependencies.cs" />
+    <Compile Include="Adapter\Dependencies.cs" />
+    <Compile Include="MarkdownNodeParser\SummaryMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\SeeMarkdownNodeParser.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="Adapter\" />
+    <Folder Include="MarkdownNodeParser\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+</Project>

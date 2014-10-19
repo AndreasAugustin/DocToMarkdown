@@ -32,9 +32,31 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\..\packages\NSubstitute.1.7.2.0\lib\NET45\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MarkdownNodeParser\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MarkdownNodeParser\SummaryMarkdownNodeParserTest.cs" />
+    <Compile Include="XElementCorrectionTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DocToMarkdown\DocToMarkdown.csproj">
+      <Project>{CDB2AB44-0AA1-4A8A-8BBB-A7625C355C6B}</Project>
+      <Name>DocToMarkdown</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DocToMarkdown.Common\DocToMarkdown.Common.csproj">
+      <Project>{77ED4C40-4888-4D82-80FF-5C2E604D8E6E}</Project>
+      <Name>DocToMarkdown.Common</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

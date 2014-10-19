@@ -25,7 +25,7 @@ namespace DocToMarkdown
 
         private static readonly IConfiguration Configuration = new ConfigurationAdapter();
         private static readonly IDependencies Dependencies = new Dependencies();
-
+        private static XElementCorrection _correction = new XElementCorrection();
         private static IParserPool _parser;
 
         #endregion
@@ -43,7 +43,7 @@ namespace DocToMarkdown
             _parser = new ParseXmlToMarkdown(Dependencies);
 
             var xmlSourcePath = Configuration["xmlSource.absolute.path"];
-            var markdownTargetPath = Configuration["markupTarget.absolute.path"];
+            var markdownTargetPath = Configuration["markupTarget.folder.path"];
 
             String xml = null;
 
@@ -70,13 +70,20 @@ namespace DocToMarkdown
 
             var node = doc.Root;
 
-            var markdown = _parser.Parse(node);
-
-            using (var str = new StreamWriter(markdownTargetPath))
+            var correctedDocDictionary = _correction.CorrectionAndNamespaceOrderXElement(node);
+                    
+            foreach (var nameSpace in correctedDocDictionary.Keys)
             {
-                str.Write(markdown);
-            }
+                var absoluteTargetPath = Path.Combine(markdownTargetPath, Path.ChangeExtension(nameSpace, "markdown"));
 
+                var markdownString = _parser.Parse(correctedDocDictionary[nameSpace]);
+
+                using (var streamWriter = new StreamWriter(absoluteTargetPath))
+                {
+                    streamWriter.Write(markdownString);
+                }
+            }
+                
             Console.ReadLine();
         }
 

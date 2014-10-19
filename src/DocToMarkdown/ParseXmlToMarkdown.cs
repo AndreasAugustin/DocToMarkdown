@@ -76,7 +76,7 @@ namespace DocToMarkdown
             this._parserList.Add(new MemberMarkdownNodeParser(this, dependencies));
             this._parserList.Add(new ParamMarkdownNodeParser(this, dependencies));
             this._parserList.Add(new SummaryMarkdownNodeParser(this, dependencies));
-            this._parserList.Add(new SeeMarkdownNodeParser());
+            this._parserList.Add(new SeeMarkdownNodeParser(dependencies.Environment));
             this._parserList.Add(new ExceptionMarkdownNodeParser(this, dependencies));
             this._parserList.Add(new CodeMarkdownNodeParser(this, dependencies.Environment));
             this._parserList.Add(new ExampleMarkdownNodeParser(this, dependencies.Environment));

@@ -40,7 +40,7 @@ namespace DocToMarkdown
 
             foreach (var member in members)
             {
-                this.Correction(member);
+                this.MemberCorrection(member);
             }
 
             var assemblyElement = element.Element("assembly");
@@ -65,7 +65,7 @@ namespace DocToMarkdown
 
         #region helper methods
 
-        private void Correction(XElement element)
+        private void MemberCorrection(XElement element)
         {
             var completeName = element.Attribute("name").Value;
 
@@ -82,7 +82,7 @@ namespace DocToMarkdown
             var splitMatch = Regex.Split(valueWithoutParenthesis, "\\.").ToList();
             var name = splitMatch.Last();
             splitMatch.Remove(name);
-
+             
             String nameSpace = null;
 
             if (memberType == "T")
@@ -97,6 +97,19 @@ namespace DocToMarkdown
                 
             // Check for type parameter
             var typeParameterSplit = Regex.Split(name, @"`");
+
+            var fullNameSpaceAddition = typeParameterSplit.FirstOrDefault();
+
+            if (memberType == "T")
+            {
+                element.SetAttributeValue(
+                    "namespace",
+                    String.Format(
+                        "{0}:{1}.{2}",
+                        memberType,
+                        nameSpace,
+                        fullNameSpaceAddition));
+            }
 
             if (typeParameterSplit.Count() > 1)
             {
@@ -126,14 +139,32 @@ namespace DocToMarkdown
             }
 
             element.SetAttributeValue("name", name);
-            element.SetAttributeValue("namespace", nameSpace);
 
             if (!this._namespaceDictionary.ContainsKey(nameSpace))
             {
                 this._namespaceDictionary.Add(nameSpace, new List<XElement>());
             }
 
+            var seeElements = element.Descendants("see").ToList();
+
+            for (var i = 0; i < seeElements.Count(); i++)
+            {
+                var seeElement = seeElements[i];
+                SeeCorrection(ref seeElement);
+            }
+
             this._namespaceDictionary[nameSpace].Add(element);
+        }
+
+        private void SeeCorrection(ref XElement seeElement)
+        {
+            var cRef = seeElement.Attribute("cref");
+            if (cRef == null)
+            {
+                return;
+            }
+
+            seeElement.SetAttributeValue("cref", Regex.Split(cRef.Value, @"`").FirstOrDefault());
         }
 
         #endregion

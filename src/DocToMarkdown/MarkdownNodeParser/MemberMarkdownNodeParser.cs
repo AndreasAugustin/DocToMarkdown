@@ -82,13 +82,13 @@ namespace DocToMarkdown
                 stringBuilder.Append(this._parserPool.Parse(el));
             }
               
-            var nameSpace = element.Attribute("namespace").Value;
+            var nameSpace = element.Attribute("namespace");
 
-            var val = String.Format(
+            var val = nameSpace == null ? name : String.Format(
                           "<a name=\"{0}\"></a>{1}",
                           String.Format(
                               "{0}.{1}",
-                              nameSpace.ToLower(),
+                              nameSpace.Value.ToLower(),
                               name.ToLower()),
                           name);
 

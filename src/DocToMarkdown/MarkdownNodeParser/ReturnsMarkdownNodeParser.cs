@@ -71,7 +71,7 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            this._template = String.Format("Returns: {0}{1}{1}", "{0}", environment.NewLine);
+            this._template = String.Format("\tReturns: {0}{1}{1}", "{0}", environment.NewLine);
         }
 
         #endregion

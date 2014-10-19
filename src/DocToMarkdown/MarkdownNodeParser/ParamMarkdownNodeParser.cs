@@ -87,7 +87,7 @@ namespace DocToMarkdown
             }
                 
             this._template = String.Format(
-                "\t{0}: {1} {2}",
+                "\tParameter {0}: {1} {2}",
                 "{0}",
                 "{1}",
                 environment.NewLine);

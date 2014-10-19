@@ -81,7 +81,10 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            this._template = String.Format("_C# code_{1}{1}```c#{1}{0}{1}```{1}{1}", "{0}", environment.NewLine);
+            this._template = String.Format(
+                "\tExample: _C# code_{1}{1}```c#{1}{0}{1}```{1}{1}",
+                "{0}",
+                environment.NewLine);
         }
 
         #endregion

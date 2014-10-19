@@ -10,7 +10,6 @@
 namespace DocToMarkdown
 {
     using System;
-    using System.Text;
     using System.Xml.Linq;
 
     using DocToMarkdown.Common;
@@ -60,18 +59,11 @@ namespace DocToMarkdown
             var reference = element.Attribute("cref");
 
             var elements = element.Elements();
-            var stringBuilder = new StringBuilder();
-
-            foreach (var el in elements)
-            {
-                stringBuilder.Append(this._parserPool.Parse(el));
-            }
-
+                       
             return String.Format(
                 template,
-                element.Value,
                 reference.Value,
-                stringBuilder.ToString());
+                element.Value);
         }
 
         #endregion
@@ -85,7 +77,7 @@ namespace DocToMarkdown
                 return;
             }
 
-            template = String.Format("[[{0}|{0}]]: {1}{2}{2}", "{0}", "{1}", environment.NewLine);
+            template = String.Format("Exception [{0}](#{0}): {1}{2}{2}", "{0}", "{1}", environment.NewLine);
         }
 
         #endregion

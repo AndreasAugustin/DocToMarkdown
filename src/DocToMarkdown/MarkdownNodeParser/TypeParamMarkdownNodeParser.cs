@@ -82,7 +82,7 @@ namespace DocToMarkdown
         private void InitTemplate(IEnvironment environment)
         {
             this._template = String.Format(
-                "\t{0}: {1} {2}",
+                "\tType parameter {0}: {1} {2}",
                 "{0}",
                 "{1}",
                 environment.NewLine);

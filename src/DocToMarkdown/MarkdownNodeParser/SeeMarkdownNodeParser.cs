@@ -14,6 +14,8 @@ namespace DocToMarkdown
     using System.Linq;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Parser for the see tag.
     /// </summary>
@@ -30,9 +32,10 @@ namespace DocToMarkdown
         /// <summary>
         /// Initializes a new instance of the <see cref="SeeMarkdownNodeParser"/> class.
         /// </summary>
-        internal SeeMarkdownNodeParser()
+        /// <param name="environment">The environment.</param>
+        internal SeeMarkdownNodeParser(IEnvironment environment)
         {
-            this.InitTemplate();
+            this.InitTemplate(environment);
         }
 
         #endregion
@@ -75,15 +78,27 @@ namespace DocToMarkdown
 
         #region helper methods
 
-        private void InitTemplate()
+        private void InitTemplate(IEnvironment environment)
         {
             if (this._templateDictionary.Any())
             {
                 return;
             }
 
-            this._templateDictionary.Add("href", "[[{0}|{1}]]");
-            this._templateDictionary.Add("cref", "[{0}](#{1})");
+            this._templateDictionary.Add(
+                "href",
+                String.Format(
+                    "See href: [[{0}|{1}]]{2}",
+                    "{0}",
+                    "{1}",
+                    environment.NewLine));
+            this._templateDictionary.Add(
+                "cref",
+                String.Format(
+                    "See cref: [{0}](#{1}){2}",
+                    "{0}",
+                    "{1}",
+                    environment.NewLine));
         }
 
         #endregion

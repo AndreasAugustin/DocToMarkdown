@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
-// <copyright file="RemarksMarkdownNodeParser.cs" company="None">
-//     Copyright (c) 2014 andy. All rights reserved. 
+// <copyright file="ExampleMarkdownNodeParser.cs" company="None">
+//     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -16,9 +16,9 @@ namespace DocToMarkdown
     using DocToMarkdown.Common;
 
     /// <summary>
-    /// Remarks markdown node parser.
+    /// Example markdown node parser.
     /// </summary>
-    internal class RemarksMarkdownNodeParser : IMarkdownNodeParser
+    public class ExampleMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
@@ -30,13 +30,13 @@ namespace DocToMarkdown
         #region ctors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RemarksMarkdownNodeParser"/> class.
+        /// Initializes a new instance of the <see cref="DocToMarkdown.ExampleMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name="parserPool">The parser pool.</param>
-        /// <param name="dependencies">The dependency injected classes.</param>
-        public RemarksMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
+        /// <param name="environment">The environment.</param>
+        public ExampleMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
-            this.InitTemplate(dependencies.Environment);
+            this.InitTemplate(environment);
             this._parserPool = parserPool;
         }
 
@@ -44,24 +44,34 @@ namespace DocToMarkdown
 
         #region methods
 
-        public String ParseToMarkdown(System.Xml.Linq.XElement element)
+        /// <summary>
+        /// Parses to markdown.
+        /// </summary>
+        /// <returns>The parsed markdown.</returns>
+        /// <param name="element">The element.</param>
+        public String ParseToMarkdown(XElement element)
         {
-            if (element.Name != "remarks")
+            if (element.Name != "example")
             {
-                return String.Empty;
+                return null;
             }
 
             var elements = element.Elements();
             var stringBuilder = new StringBuilder();
+
+            var description = element.Value;
+            stringBuilder.Append(description);
 
             foreach (var el in elements)
             {
                 stringBuilder.Append(this._parserPool.Parse(el));
             }
 
+            var name = element.Attribute("name").Value;
+
             return String.Format(
-                _template,
-                element.Value,
+                this._template,
+                name,
                 stringBuilder.ToString());
         }
 
@@ -71,9 +81,10 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            this._template = String.Format("{1}{1}>{0}{1}{1}", "{0}", environment.NewLine);
+            this._template = String.Format("_C# code_{1}{1}```c#{1}{0}{1}```{1}{1}", "{0}", environment.NewLine);
         }
 
         #endregion
     }
 }
+

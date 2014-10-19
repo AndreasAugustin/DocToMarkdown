@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
-// <copyright file="RemarksMarkdownNodeParser.cs" company="None">
-//     Copyright (c) 2014 andy. All rights reserved. 
+// <copyright file="ReturnsMarkdownNodeParser.cs" company="None">
+//     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -16,27 +16,22 @@ namespace DocToMarkdown
     using DocToMarkdown.Common;
 
     /// <summary>
-    /// Remarks markdown node parser.
+    /// Returns markdown node parser.
     /// </summary>
-    internal class RemarksMarkdownNodeParser : IMarkdownNodeParser
+    public class ReturnsMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
         private String _template;
-        private readonly IParserPool _parserPool;
+        private IParserPool _parserPool;
 
         #endregion
 
         #region ctors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RemarksMarkdownNodeParser"/> class.
-        /// </summary>
-        /// <param name="parserPool">The parser pool.</param>
-        /// <param name="dependencies">The dependency injected classes.</param>
-        public RemarksMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
+        public ReturnsMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
-            this.InitTemplate(dependencies.Environment);
+            this.InitTemplate(environment);
             this._parserPool = parserPool;
         }
 
@@ -44,9 +39,14 @@ namespace DocToMarkdown
 
         #region methods
 
-        public String ParseToMarkdown(System.Xml.Linq.XElement element)
+        /// <summary>
+        /// Parses to markdown.
+        /// </summary>
+        /// <returns>The parsed markdown.</returns>
+        /// <param name="element">The element.</param>
+        public String ParseToMarkdown(XElement element)
         {
-            if (element.Name != "remarks")
+            if (element.Name != "returns")
             {
                 return String.Empty;
             }
@@ -71,7 +71,7 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            this._template = String.Format("{1}{1}>{0}{1}{1}", "{0}", environment.NewLine);
+            this._template = String.Format("Returns: {0}{1}{1}", "{0}", environment.NewLine);
         }
 
         #endregion

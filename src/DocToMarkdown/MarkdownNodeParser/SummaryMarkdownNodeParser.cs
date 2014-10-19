@@ -22,8 +22,8 @@ namespace DocToMarkdown
     {
         #region fields
 
-        private static String template;
-        private IParserPool _parser;
+        private static String _template;
+        private IParserPool _parserPool;
 
         #endregion
 
@@ -32,11 +32,11 @@ namespace DocToMarkdown
         /// <summary>
         /// Initializes a new instance of the <see cref="SummaryMarkdownNodeParser"/> class.
         /// </summary>
-        /// <param name="parser">The parser.</param>
+        /// <param name="parserPool">The parser pool.</param>
         /// <param name="dependencies">The dependency injected parts.</param>
-        internal SummaryMarkdownNodeParser(IParserPool parser, IDependencies dependencies)
+        internal SummaryMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
         {
-            this._parser = parser;
+            this._parserPool = parserPool;
             this.InitTemplate(dependencies.Environment);
         }
 
@@ -61,11 +61,11 @@ namespace DocToMarkdown
 
             foreach (var el in elements)
             {
-                stringBuilder.Append(this._parser.Parse(el));
+                stringBuilder.Append(this._parserPool.Parse(el));
             }
 
             return String.Format(
-                template,
+                _template,
                 element.Value,
                 stringBuilder.ToString());
         }
@@ -76,12 +76,12 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            if (!String.IsNullOrEmpty(template))
+            if (!String.IsNullOrEmpty(_template))
             {
                 return;
             }
 
-            template = String.Format("{0}{2}{1}{2}", "{0}", "{1}", environment.NewLine);
+            _template = String.Format("{0}{2}{1}{2}", "{0}", "{1}", environment.NewLine);
         }
 
         #endregion

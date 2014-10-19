@@ -50,6 +50,10 @@
     <Compile Include="MarkdownNodeParser\RemarksMarkdownNodeParser.cs" />
     <Compile Include="Contracts\IParserPool.cs" />
     <Compile Include="Dependencies.cs" />
+    <Compile Include="MarkdownNodeParser\CodeMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\ExampleMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\TypeParamMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\ReturnsMarkdownNodeParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -60,15 +60,15 @@ namespace DocToMarkdown
                 { "event", "##### {0}\n\n{1}\n\n---\n" },
                 // { "summary", "{0}\n\n" },
                 { "remarks", "\n\n>{0}\n\n" },
-                { "example", "_C# code_\n\n```c#\n{0}\n```\n\n" },
+                //{ "example", "_C# code_\n\n```c#\n{0}\n```\n\n" },
                 { "seePage", "[[{1}|{0}]]" },
                 { "seeAnchor", "[{1}]({0})" },
                 //{ "param", "|Name | Description |\n|-----|------|\n|{0}: |{1}|\n" },
                 //{ "exception", "[[{0}|{0}]]: {1}\n\n" },
                 { "returns", "Returns: {0}\n\n" },
                 { "none", String.Empty },
-                { "c", "{0}\n\n" }, // TODO change (<c>)
-                { "typeparam", "|Name | Description |\n|-----|------|\n|{0}: |{1}|\n" }, // TODO change (<typeparam>)
+                //{ "c", "{0}\n\n" }, // TODO change (<c>)
+                //{ "typeparam", "|Name | Description |\n|-----|------|\n|{0}: |{1}|\n" }, // TODO change (<typeparam>)
                 { "value", "{0}\n\n" }, // TODO change (<value>)
             };
 

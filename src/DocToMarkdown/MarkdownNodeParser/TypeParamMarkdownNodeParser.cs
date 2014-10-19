@@ -1,6 +1,6 @@
 ﻿//  *************************************************************
-// <copyright file="ParamMarkdownNodeParser.cs" company="None">
-//     Copyright (c) 2014 andy. All rights reserved.
+// <copyright file="TypeParamMarkdownNodeParser.cs" company="None">
+//     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
 // <author>andy</author>
@@ -16,28 +16,28 @@ namespace DocToMarkdown
     using DocToMarkdown.Common;
 
     /// <summary>
-    /// Parameter markdown node parser.
+    /// Type parameter markdown node parser.
     /// </summary>
-    internal class ParamMarkdownNodeParser : IMarkdownNodeParser
+    public class TypeParamMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
         private String _template;
-        private IParserPool _parserPool;
+        private readonly IParserPool _parserPool;
 
         #endregion
 
         #region ctors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ParamMarkdownNodeParser"/> class.
+        /// Initializes a new instance of the <see cref="DocToMarkdown.TypeParamMarkdownNodeParser"/> class.
         /// </summary>
-        /// <param name="parserPool">The parser pool.</param>
-        /// <param name="dependencies">The dependency injected parts.</param>
-        internal ParamMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
+        /// <param name = "parserPool">The parser pool.</param>
+        /// <param name="environment">The environment.</param>
+        public TypeParamMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
+            this.InitTemplate(environment);
             this._parserPool = parserPool;
-            this.InitTemplate(dependencies.Environment);
         }
 
         #endregion
@@ -51,11 +51,11 @@ namespace DocToMarkdown
         /// <param name="element">The element.</param>
         public String ParseToMarkdown(XElement element)
         {
-            if (element.Name != "param")
+            if (element.Name != "typeparam")
             {
                 return null;
             }
-                
+
             var elements = element.Elements();
             var stringBuilder = new StringBuilder();
 
@@ -81,11 +81,6 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            if (!String.IsNullOrEmpty(this._template))
-            {
-                return;
-            }
-                
             this._template = String.Format(
                 "\t{0}: {1} {2}",
                 "{0}",

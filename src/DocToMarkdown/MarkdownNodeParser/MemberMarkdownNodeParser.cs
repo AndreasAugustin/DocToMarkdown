@@ -26,7 +26,7 @@ namespace DocToMarkdown
         #region fields
 
         private readonly Dictionary<String, String> _templateDictionary = new Dictionary<String, String>();
-        private readonly Regex memperTypeRegex = new Regex(@"^.*?(?=:)");
+        private readonly Regex _memberTypeRegex = new Regex(@"^.*?(?=:)");
         private readonly IParserPool _parserPool;
 
         #endregion
@@ -60,14 +60,14 @@ namespace DocToMarkdown
                 return null;
             }
                 
-            var name = element.Attribute("name");
-            if (name == null)
+            var completeName = element.Attribute("name");
+            if (completeName == null)
             {
                 return null;
             }
 
             // Check if element is for method, class, ...
-            var match = this.memperTypeRegex.Match(name.Value);
+            var match = this._memberTypeRegex.Match(completeName.Value);
 
             if (match == null)
             {
@@ -83,6 +83,42 @@ namespace DocToMarkdown
 
             var template = this._templateDictionary[memberType];
 
+            // Get the name
+            var valueWithoutParenthesis = Regex.Replace(completeName.Value, "\\([^\\(]*\\)", String.Empty);
+
+            var splitMatch = Regex.Split(valueWithoutParenthesis, "\\.");
+            var name = splitMatch.Last();
+
+            // Check for type parameter
+            var typeParameterSplit = Regex.Split(name, @"`");
+
+            if (typeParameterSplit.Count() > 1)
+            {
+                name = String.Format("{0}|{1}|", typeParameterSplit.First(), "{0}");
+
+                var typeParameters = element.Elements("typeparam").Attributes("name").Select(tp => tp.Value).ToList();
+
+                if (!typeParameters.Any())
+                {
+                    name = String.Format(name, @"?");
+                }
+
+                var count = 1;
+                foreach (var typeParameter in typeParameters)
+                {
+                    if (count != typeParameters.Count)
+                    {
+                        name = String.Format(name, String.Format("{0}, {1}", typeParameter, "{0}"));
+                    }
+                    else
+                    {
+                        name = String.Format(name, typeParameter);
+                    }
+
+                    count++;
+                }
+            }
+
             var elements = element.Elements();
             var stringBuilder = new StringBuilder();
 
@@ -91,7 +127,7 @@ namespace DocToMarkdown
                 stringBuilder.Append(this._parserPool.Parse(el));
             }
                 
-            var val = String.Format("<a name=\"{1}\"></a>{0}", name.Value, name.Value.ToLower());
+            var val = String.Format("<a name=\"{0}\"></a>{1}", name.ToLower(), name);
 
             return String.Format(
                 template,
@@ -113,12 +149,27 @@ namespace DocToMarkdown
             // Member is a type
             this._templateDictionary.Add(
                 "T",
-                String.Format("---{2}#### {0}{2}{2}{1}{2}{2}", "{0}", "{1}", environment.NewLine)); 
+                String.Format("---{2}#### Type: {0}{2}{2}{1}{2}{2}", "{0}", "{1}", environment.NewLine)); 
 
             // Member is a method
             this._templateDictionary.Add(
                 "M",
-                String.Format("#### {0}{2}{2}{2}{1}{2}", "{0}", "{1}", environment.NewLine));
+                String.Format("#### Method: {0}{2}{2}{2}{1}{2}", "{0}", "{1}", environment.NewLine));
+
+            // Member is a property
+            this._templateDictionary.Add(
+                "P",
+                String.Format("#### Property: {0}{2}{2}{2}{1}{2}", "{0}", "{1}", environment.NewLine));
+
+            // Member is a field
+            this._templateDictionary.Add(
+                "F",
+                String.Format("#### Field: {0}{2}{2}{2}{1}{2}", "{0}", "{1}", environment.NewLine));
+
+            // Member is a event
+            this._templateDictionary.Add(
+                "E",
+                String.Format("#### Event: {0}{2}{2}{2}{1}{2}", "{0}", "{1}", environment.NewLine));
         }
 
         #endregion

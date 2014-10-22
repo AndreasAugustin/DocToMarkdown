@@ -18,7 +18,7 @@ namespace DocToMarkdown
     /// <summary>
     /// Returns markdown node parser.
     /// </summary>
-    public class ReturnsMarkdownNodeParser : IMarkdownNodeParser
+    internal class ReturnsMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 

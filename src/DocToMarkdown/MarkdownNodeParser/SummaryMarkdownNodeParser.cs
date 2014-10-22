@@ -33,11 +33,11 @@ namespace DocToMarkdown
         /// Initializes a new instance of the <see cref="SummaryMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name="parserPool">The parser pool.</param>
-        /// <param name="dependencies">The dependency injected parts.</param>
-        internal SummaryMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
+        /// <param name="environment">The environment.</param>
+        internal SummaryMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
             this._parserPool = parserPool;
-            this.InitTemplate(dependencies.Environment);
+            this.InitTemplate(environment);
         }
 
         #endregion
@@ -56,18 +56,17 @@ namespace DocToMarkdown
                 return String.Empty;
             }
                 
-            var elements = element.Elements();
-            var stringBuilder = new StringBuilder();
-
-            foreach (var el in elements)
+            var seeElement = element.Element("see");
+            if (seeElement != null)
             {
-                stringBuilder.Append(this._parserPool.Parse(el));
+                var parsedSee = this._parserPool.Parse<SeeMarkdownNodeParser>(seeElement);
+
+                seeElement.SetValue(parsedSee);
             }
 
             return String.Format(
                 _template,
-                element.Value,
-                stringBuilder.ToString());
+                element.Value.Trim());
         }
 
         #endregion
@@ -81,7 +80,7 @@ namespace DocToMarkdown
                 return;
             }
 
-            _template = String.Format("{0}{2}{1}{2}", "{0}", "{1}", environment.NewLine);
+            _template = String.Format("Summary: {1}> {0}{1}", "{0}", environment.NewLine);
         }
 
         #endregion

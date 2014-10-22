@@ -88,14 +88,14 @@ namespace DocToMarkdown
             this._templateDictionary.Add(
                 "href",
                 String.Format(
-                    "See href: [[{0}|{1}]]{2}",
+                    "[[{0}|{1}]]{2}",
                     "{0}",
                     "{1}",
                     environment.NewLine));
             this._templateDictionary.Add(
                 "cref",
                 String.Format(
-                    "See cref: [{0}](#{1}){2}",
+                    "[{0}](#{1}){2}",
                     "{0}",
                     "{1}",
                     environment.NewLine));

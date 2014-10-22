@@ -33,11 +33,11 @@ namespace DocToMarkdown
         /// Initializes a new instance of the <see cref="ParamMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name="parserPool">The parser pool.</param>
-        /// <param name="dependencies">The dependency injected parts.</param>
-        internal ParamMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
+        /// <param name="environment">The environment.</param>
+        internal ParamMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
             this._parserPool = parserPool;
-            this.InitTemplate(dependencies.Environment);
+            this.InitTemplate(environment);
         }
 
         #endregion

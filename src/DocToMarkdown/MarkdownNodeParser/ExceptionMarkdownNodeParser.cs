@@ -32,11 +32,11 @@ namespace DocToMarkdown
         /// Initializes a new instance of the <see cref="ExceptionMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name="parserPool">The parser pool.</param>
-        /// <param name="dependencies">The dependency injected parts.</param>
-        public ExceptionMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
+        /// <param name="environment">The environment.</param>
+        public ExceptionMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
             this._parserPool = parserPool;
-            this.InitTemplate(dependencies.Environment);
+            this.InitTemplate(environment);
         }
 
         #endregion
@@ -77,7 +77,7 @@ namespace DocToMarkdown
                 return;
             }
 
-            template = String.Format("Exception [{0}](#{0}): {1}{2}{2}", "{0}", "{1}", environment.NewLine);
+            template = String.Format("Exception: [{0}](#{0}):{2}> {1}{2}{2}", "{0}", "{1}", environment.NewLine);
         }
 
         #endregion

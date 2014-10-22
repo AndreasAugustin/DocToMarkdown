@@ -10,13 +10,12 @@
 namespace DocToMarkdown
 {
     using System;
-    using System.Collections.Generic;
     using System.Xml.Linq;
 
     /// <summary>
     /// Interface for parser pools.
     /// </summary>
-    public interface IParserPool
+    internal interface IParserPool
     {
         #region methods
 
@@ -26,6 +25,16 @@ namespace DocToMarkdown
         /// <param name="node">The xml node to parse.</param>
         /// <returns>The parsed node.</returns>
         String Parse(XNode node);
+
+        /// <summary>
+        /// Parse the specified element.
+        /// </summary>
+        /// <param name="element">The xml element to parse.</param>
+        /// <returns>The parsed node.</returns>
+        /// <param name="element">Element.</param>
+        /// <typeparam name="TParser">The parser.</typeparam>
+        String Parse<TParser>(XElement element)
+            where TParser : IMarkdownNodeParser;
 
         #endregion
     }

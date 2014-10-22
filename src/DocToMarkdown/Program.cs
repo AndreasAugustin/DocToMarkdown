@@ -17,15 +17,17 @@ namespace DocToMarkdown
     using DocToMarkdown.Common;
 
     /// <summary>
-    /// Main class.
+    /// Starts the console application.
+    /// Idea of this project came from
+    /// <see href="https://gist.github.com/lontivero/593fc51f1208555112e0"/>
     /// </summary>
     internal class Program
     {
         #region fields
 
         private static readonly IConfiguration Configuration = new ConfigurationAdapter();
-        private static readonly IDependencies Dependencies = new Dependencies();
-        private static XElementCorrection _correction = new XElementCorrection();
+        private static readonly XElementCorrection _correction = new XElementCorrection();
+        private static readonly IEnvironment _environment = new EnvironmentAdapter();
         private static IParserPool _parser;
 
         #endregion
@@ -38,9 +40,9 @@ namespace DocToMarkdown
         /// <param name="args">The command-line arguments.</param>
         public static void Main(String[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Starting to parse");
 
-            _parser = new ParseXmlToMarkdown(Dependencies);
+            _parser = new ParseXmlToMarkdown(_environment);
 
             var xmlSourcePath = Configuration["xmlSource.absolute.path"];
             var markdownTargetPath = Configuration["markupTarget.folder.path"];
@@ -84,6 +86,7 @@ namespace DocToMarkdown
                 }
             }
                 
+            Console.WriteLine("Parsing was sucessfull");
             Console.ReadLine();
         }
 

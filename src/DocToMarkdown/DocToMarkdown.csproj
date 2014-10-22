@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -43,18 +44,20 @@
     <Compile Include="MarkdownNodeParser\ExceptionMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\DocMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\MemberMarkdownNodeParser.cs" />
-    <Compile Include="Contracts\IDependencies.cs" />
     <Compile Include="MarkdownNodeParser\SummaryMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\SeeMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ParamMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\RemarksMarkdownNodeParser.cs" />
     <Compile Include="Contracts\IParserPool.cs" />
-    <Compile Include="Dependencies.cs" />
     <Compile Include="MarkdownNodeParser\CodeMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ExampleMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\TypeParamMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ReturnsMarkdownNodeParser.cs" />
     <Compile Include="XElementCorrection.cs" />
+    <Compile Include="Adapter\ConfigurationAdapter.cs" />
+    <Compile Include="Adapter\EnvironmentAdapter.cs" />
+    <Compile Include="Contracts\IConfiguration.cs" />
+    <Compile Include="Contracts\IEnvironment.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -63,11 +66,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DocToMarkdown.Common\DocToMarkdown.Common.csproj">
-      <Project>{77ED4C40-4888-4D82-80FF-5C2E604D8E6E}</Project>
-      <Name>DocToMarkdown.Common</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

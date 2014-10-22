@@ -33,10 +33,10 @@ namespace DocToMarkdown
         /// Initializes a new instance of the <see cref="RemarksMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name="parserPool">The parser pool.</param>
-        /// <param name="dependencies">The dependency injected classes.</param>
-        public RemarksMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
+        /// <param name="environment">The environment.</param>
+        public RemarksMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
-            this.InitTemplate(dependencies.Environment);
+            this.InitTemplate(environment);
             this._parserPool = parserPool;
         }
 

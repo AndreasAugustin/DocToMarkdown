@@ -13,7 +13,6 @@ namespace DocToMarkdown
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Text.RegularExpressions;
     using System.Xml.Linq;
 
     using DocToMarkdown.Common;
@@ -36,11 +35,11 @@ namespace DocToMarkdown
         /// Initializes a new instance of the <see cref="MemberMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name="parserPool">The parser pool.</param>
-        /// <param name="dependencies">The dependency injected parts.</param>
-        internal MemberMarkdownNodeParser(IParserPool parserPool, IDependencies dependencies)
+        /// <param name="environment">The environment.</param>
+        internal MemberMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
             this._parserPool = parserPool;
-            this.InitTemplateDictionary(dependencies.Environment);
+            this.InitTemplateDictionary(environment);
         }
 
         #endregion
@@ -81,7 +80,7 @@ namespace DocToMarkdown
             {
                 stringBuilder.Append(this._parserPool.Parse(el));
             }
-              
+
             var nameSpace = element.Attribute("namespace");
 
             var val = nameSpace == null ? name : String.Format(
@@ -112,7 +111,7 @@ namespace DocToMarkdown
             // Member is a type
             this._templateDictionary.Add(
                 "T",
-                String.Format("---{2}#### Type: {0}{2}{2}{1}{2}{2}", "{0}", "{1}", environment.NewLine)); 
+                String.Format("---{2}### Type: {0}{2}{2}{1}{2}{2}", "{0}", "{1}", environment.NewLine)); 
 
             // Member is a method
             this._templateDictionary.Add(

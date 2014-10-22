@@ -11,18 +11,17 @@ namespace DocToMarkdown
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
     using System.Xml.Linq;
 
     /// <summary>
     /// Parse xml to markdown.
     /// </summary>
-    public sealed class ParseXmlToMarkdown : IParserPool
+    internal sealed class ParseXmlToMarkdown : IParserPool
     {
         #region fields
 
-        private List<IMarkdownNodeParser> _parserList;
+        private Dictionary<Type, IMarkdownNodeParser> _parserDictionary;
 
         #endregion
 
@@ -31,10 +30,10 @@ namespace DocToMarkdown
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseXmlToMarkdown"/> class.
         /// </summary>
-        /// <param name="dependencies">The dependency injected classes.</param>
-        internal ParseXmlToMarkdown(IDependencies dependencies)
+        /// <param name="environment">The environment.</param>
+        internal ParseXmlToMarkdown(IEnvironment environment)
         {
-            this.InitDictionary(dependencies);
+            this.InitDictionary(environment);
         }
 
         #endregion
@@ -57,7 +56,7 @@ namespace DocToMarkdown
 
             var strBuilder = new StringBuilder();
 
-            foreach (var parser in this._parserList)
+            foreach (var parser in this._parserDictionary.Values)
             {
                 strBuilder.Append(parser.ParseToMarkdown(element));
             }
@@ -65,24 +64,84 @@ namespace DocToMarkdown
             return strBuilder.ToString();
         }
 
+        /// <summary>
+        /// Parse the specified element.
+        /// </summary>
+        /// <param name="element">The xml element to parse.</param>
+        /// <returns>The parsed node.</returns>
+        /// <param name="element">Element.</param>
+        /// <typeparam name="TParser">The parser.</typeparam>
+        public String Parse<TParser>(XElement element)
+            where TParser : IMarkdownNodeParser
+        {
+            if (!this._parserDictionary.ContainsKey(typeof(TParser)))
+            {
+                throw new KeyNotFoundException("Parser not found");
+            }
+
+            return this._parserDictionary[typeof(TParser)].ParseToMarkdown(element);
+        }
+
         #endregion
 
         #region helper methods
 
-        private void InitDictionary(IDependencies dependencies)
+        private void InitDictionary(IEnvironment environment)
         {
-            this._parserList = new List<IMarkdownNodeParser>();
-            this._parserList.Add(new DocMarkdownNodeParser(this, dependencies));
-            this._parserList.Add(new MemberMarkdownNodeParser(this, dependencies));
-            this._parserList.Add(new ParamMarkdownNodeParser(this, dependencies));
-            this._parserList.Add(new SummaryMarkdownNodeParser(this, dependencies));
-            this._parserList.Add(new SeeMarkdownNodeParser(dependencies.Environment));
-            this._parserList.Add(new ExceptionMarkdownNodeParser(this, dependencies));
-            this._parserList.Add(new CodeMarkdownNodeParser(this, dependencies.Environment));
-            this._parserList.Add(new ExampleMarkdownNodeParser(this, dependencies.Environment));
-            this._parserList.Add(new RemarksMarkdownNodeParser(this, dependencies));
-            this._parserList.Add(new TypeParamMarkdownNodeParser(this, dependencies.Environment));
-            this._parserList.Add(new ReturnsMarkdownNodeParser(this, dependencies.Environment));
+            this._parserDictionary = new Dictionary<Type, IMarkdownNodeParser>();
+            this._parserDictionary.Add(typeof(DocMarkdownNodeParser), new DocMarkdownNodeParser(this, environment));
+            this._parserDictionary.Add(
+                typeof(MemberMarkdownNodeParser),
+                new MemberMarkdownNodeParser(
+                    this,
+                    environment));
+            this._parserDictionary.Add(
+                typeof(ParamMarkdownNodeParser),
+                new ParamMarkdownNodeParser(this, environment));
+            this._parserDictionary.Add(
+                typeof(SummaryMarkdownNodeParser),
+                new SummaryMarkdownNodeParser(
+                    this,
+                    environment));
+            this._parserDictionary.Add(
+                typeof(SeeMarkdownNodeParser),
+                new SeeMarkdownNodeParser(environment));
+
+            this._parserDictionary.Add(
+                typeof(ExceptionMarkdownNodeParser),
+                new ExceptionMarkdownNodeParser(
+                    this,
+                    environment));
+           
+            this._parserDictionary.Add(
+                typeof(CodeMarkdownNodeParser),
+                new CodeMarkdownNodeParser(
+                    this,
+                    environment));
+
+            this._parserDictionary.Add(
+                typeof(ExampleMarkdownNodeParser),
+                new ExampleMarkdownNodeParser(
+                    this,
+                    environment));
+
+            this._parserDictionary.Add(
+                typeof(RemarksMarkdownNodeParser),
+                new RemarksMarkdownNodeParser(
+                    this,
+                    environment));
+
+            this._parserDictionary.Add(
+                typeof(TypeParamMarkdownNodeParser),
+                new TypeParamMarkdownNodeParser(
+                    this,
+                    environment));
+
+            this._parserDictionary.Add(
+                typeof(ReturnsMarkdownNodeParser),
+                new ReturnsMarkdownNodeParser(
+                    this,
+                    environment));
         }
 
         #endregion

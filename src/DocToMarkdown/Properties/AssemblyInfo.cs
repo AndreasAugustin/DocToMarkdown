@@ -28,3 +28,4 @@ using System.Runtime.CompilerServices;
 
 // Make internals visible to test project
 [assembly: InternalsVisibleTo("DocToMarkdown.Tests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]

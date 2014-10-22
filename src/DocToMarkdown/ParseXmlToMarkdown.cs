@@ -89,23 +89,40 @@ namespace DocToMarkdown
         private void InitDictionary(IEnvironment environment)
         {
             this._parserDictionary = new Dictionary<Type, IMarkdownNodeParser>();
+
             this._parserDictionary.Add(typeof(DocMarkdownNodeParser), new DocMarkdownNodeParser(this, environment));
+
             this._parserDictionary.Add(
                 typeof(MemberMarkdownNodeParser),
                 new MemberMarkdownNodeParser(
                     this,
                     environment));
-            this._parserDictionary.Add(
-                typeof(ParamMarkdownNodeParser),
-                new ParamMarkdownNodeParser(this, environment));
+
             this._parserDictionary.Add(
                 typeof(SummaryMarkdownNodeParser),
                 new SummaryMarkdownNodeParser(
                     this,
                     environment));
+
+            this._parserDictionary.Add(
+                typeof(ReturnsMarkdownNodeParser),
+                new ReturnsMarkdownNodeParser(
+                    this,
+                    environment));
+
             this._parserDictionary.Add(
                 typeof(SeeMarkdownNodeParser),
                 new SeeMarkdownNodeParser(environment));
+
+            this._parserDictionary.Add(
+                typeof(TypeParamMarkdownNodeParser),
+                new TypeParamMarkdownNodeParser(
+                    this,
+                    environment));
+
+            this._parserDictionary.Add(
+                typeof(ParamMarkdownNodeParser),
+                new ParamMarkdownNodeParser(this, environment));
 
             this._parserDictionary.Add(
                 typeof(ExceptionMarkdownNodeParser),
@@ -129,19 +146,7 @@ namespace DocToMarkdown
                 typeof(RemarksMarkdownNodeParser),
                 new RemarksMarkdownNodeParser(
                     this,
-                    environment));
-
-            this._parserDictionary.Add(
-                typeof(TypeParamMarkdownNodeParser),
-                new TypeParamMarkdownNodeParser(
-                    this,
-                    environment));
-
-            this._parserDictionary.Add(
-                typeof(ReturnsMarkdownNodeParser),
-                new ReturnsMarkdownNodeParser(
-                    this,
-                    environment));
+                    environment));           
         }
 
         #endregion

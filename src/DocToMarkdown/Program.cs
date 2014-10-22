@@ -14,8 +14,6 @@ namespace DocToMarkdown
     using System.IO;
     using System.Xml.Linq;
 
-    using DocToMarkdown.Common;
-
     /// <summary>
     /// Starts the console application.
     /// Idea of this project came from

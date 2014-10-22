@@ -15,8 +15,6 @@ namespace DocToMarkdown
     using System.Text;
     using System.Xml.Linq;
 
-    using DocToMarkdown.Common;
-
     /// <summary>
     /// Member markdown node parser.
     /// </summary>

@@ -14,8 +14,6 @@ namespace DocToMarkdown
     using System.Linq;
     using System.Xml.Linq;
 
-    using DocToMarkdown.Common;
-
     /// <summary>
     /// Parser for the see tag.
     /// </summary>

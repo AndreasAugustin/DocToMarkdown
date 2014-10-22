@@ -12,8 +12,6 @@ namespace DocToMarkdown
     using System;
     using System.Xml.Linq;
 
-    using DocToMarkdown.Common;
-
     /// <summary>
     /// Parses <see cref="XNode"/> node to Markdown String.
     /// </summary>
@@ -77,7 +75,7 @@ namespace DocToMarkdown
                 return;
             }
 
-            template = String.Format("Exception: [{0}](#{0}):{2}> {1}{2}{2}", "{0}", "{1}", environment.NewLine);
+            template = String.Format("> **Exception:** [{0}](#{0}):{2}> {1}{2}{2}", "{0}", "{1}", environment.NewLine);
         }
 
         #endregion

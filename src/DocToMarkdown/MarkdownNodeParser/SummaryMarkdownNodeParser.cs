@@ -10,10 +10,7 @@
 namespace DocToMarkdown
 {
     using System;
-    using System.Text;
     using System.Xml.Linq;
-
-    using DocToMarkdown.Common;
 
     /// <summary>
     /// Parser for the summary tag.
@@ -56,8 +53,9 @@ namespace DocToMarkdown
                 return String.Empty;
             }
                 
-            var seeElement = element.Element("see");
-            if (seeElement != null)
+            var seeElements = element.Elements("see");
+
+            foreach (var seeElement in seeElements)
             {
                 var parsedSee = this._parserPool.Parse<SeeMarkdownNodeParser>(seeElement);
 
@@ -80,7 +78,7 @@ namespace DocToMarkdown
                 return;
             }
 
-            _template = String.Format("Summary: {1}> {0}{1}", "{0}", environment.NewLine);
+            _template = String.Format("> {0}{1}", "{0}", environment.NewLine);
         }
 
         #endregion

@@ -10,10 +10,7 @@
 namespace DocToMarkdown
 {
     using System;
-    using System.Text;
     using System.Xml.Linq;
-
-    using DocToMarkdown.Common;
 
     /// <summary>
     /// Type parameter markdown node parser.
@@ -57,22 +54,21 @@ namespace DocToMarkdown
             }
 
             var elements = element.Elements();
-            var stringBuilder = new StringBuilder();
 
-            var description = element.Value;
-            stringBuilder.Append(description);
+            var seeElements = element.Elements("see");
 
-            foreach (var el in elements)
+            foreach (var seeElement in seeElements)
             {
-                stringBuilder.Append(this._parserPool.Parse(el));
-            }
+                var parsedSee = this._parserPool.Parse<SeeMarkdownNodeParser>(seeElement);
 
+                seeElement.SetValue(parsedSee);
+            }
             var name = element.Attribute("name").Value;
 
             return String.Format(
                 this._template,
                 name,
-                stringBuilder.ToString());
+                element.Value);
         }
 
         #endregion
@@ -82,7 +78,7 @@ namespace DocToMarkdown
         private void InitTemplate(IEnvironment environment)
         {
             this._template = String.Format(
-                "\tType parameter {0}: {1} {2}",
+                "> **Type parameter** {0}: {1} {2}",
                 "{0}",
                 "{1}",
                 environment.NewLine);

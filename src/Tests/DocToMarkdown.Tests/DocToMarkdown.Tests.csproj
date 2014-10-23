@@ -54,9 +54,5 @@
       <Project>{CDB2AB44-0AA1-4A8A-8BBB-A7625C355C6B}</Project>
       <Name>DocToMarkdown</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DocToMarkdown.Common\DocToMarkdown.Common.csproj">
-      <Project>{77ED4C40-4888-4D82-80FF-5C2E604D8E6E}</Project>
-      <Name>DocToMarkdown.Common</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

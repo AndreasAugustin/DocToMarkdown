@@ -74,7 +74,7 @@ namespace DocToMarkdown
                     
             foreach (var nameSpace in correctedDocDictionary.Keys)
             {
-                var absoluteTargetPath = Path.Combine(markdownTargetPath, Path.ChangeExtension(nameSpace, "markdown"));
+                var absoluteTargetPath = Path.Combine(markdownTargetPath, Path.ChangeExtension(nameSpace, "md"));
 
                 var markdownString = _parser.Parse(correctedDocDictionary[nameSpace]);
 

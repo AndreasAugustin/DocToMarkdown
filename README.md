@@ -1,9 +1,7 @@
 DocToMarkdown
 =============
-
-Parses the xml documentation of an application to markdown
-
-The idea came from [DocToMarkdown](https://gist.github.com/lontivero/593fc51f1208555112e0)
+I was searching for something to parse my c# documentation to markdown. 
+Because the only thing I found here [DocToMarkdown](https://gist.github.com/lontivero/593fc51f1208555112e0) was not fully supporting my needs I wrote this little console application.
 
 ## Some legal stuff ##
 

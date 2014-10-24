@@ -3,8 +3,6 @@ DocToMarkdown
 I was searching for something to parse my c# documentation to markdown. 
 Because the only thing I found here [DocToMarkdown](https://gist.github.com/lontivero/593fc51f1208555112e0) was not fully supporting my needs I wrote this little console application.
 
-The idea came from 
-
 ## Some legal stuff ##
 
 Copyright (c) 2014, Andreas Augustin. All rights reserved.

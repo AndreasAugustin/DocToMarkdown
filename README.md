@@ -3,6 +3,8 @@ DocToMarkdown
 I was searching for something to parse my c# documentation to markdown. 
 Because the only thing I found here [DocToMarkdown](https://gist.github.com/lontivero/593fc51f1208555112e0) was not fully supporting my needs I wrote this little console application.
 
+You can find examples for parsed xml files in the [DocToMarkdown wiki pages](https://github.com/AndreasAugustin/DocToMarkdown/wiki).
+
 ## Some legal stuff ##
 
 Copyright (c) 2014, Andreas Augustin. All rights reserved.

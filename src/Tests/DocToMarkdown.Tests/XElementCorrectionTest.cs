@@ -52,7 +52,7 @@ namespace DocToMarkdown.Tests
                                             <typeparam name=""TRing"">The underlying structure.</typeparam>
                                         </member>";
 
-                const string stringElement4 = @"<member name=""T:GenericMath.LinearAlgebra.Polynomial`2"">
+                const string stringElement4 = @"<member name=""T:Generic.LinearAlgebra.Polynomial`2"">
                                         <summary>
                                         Polynomial from set.
                                         </summary>
@@ -89,7 +89,7 @@ namespace DocToMarkdown.Tests
 
             var result = xElementCorrection.CorrectionAndNamespaceOrderXElement(mockElement);
 
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(2, result.Count);
         }
 
         #endregion

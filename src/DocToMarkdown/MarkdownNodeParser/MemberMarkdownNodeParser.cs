@@ -83,10 +83,7 @@ namespace DocToMarkdown
 
             var val = nameSpace == null ? name : String.Format(
                           "<a name=\"{0}\"></a>{1}",
-                          String.Format(
-                              "{0}.{1}",
-                              nameSpace.Value.ToLower(),
-                              name.ToLower()),
+                          nameSpace.Value.ToLower(),
                           name);
 
             return String.Format(

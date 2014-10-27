@@ -42,49 +42,59 @@ namespace DocToMarkdown
 
             _parser = new ParseXmlToMarkdown(_environment);
 
-            var xmlSourcePath = Configuration["xmlSource.absolute.path"];
+            var xmlSourcePath = Configuration["xmlSource.folder.path"];
             var markdownTargetPath = Configuration["markupTarget.folder.path"];
 
             String xml = null;
 
-            try
+            foreach (var xmlFileAbsolutePath in Directory.GetFiles(xmlSourcePath))
             {
-                xml = File.ReadAllText(xmlSourcePath);
-            }
-            catch (IOException e)
-            {
-                Trace.TraceError(e.ToString());
-                Console.WriteLine(e.ToString());
-            }
-                
-            XDocument doc = null;
-            try
-            {
-                doc = XDocument.Parse(xml);
-            }
-            catch (System.Xml.XmlException e)
-            {
-                Trace.TraceError(e.ToString());
-                Console.WriteLine(e.ToString());
-            }
-
-            var node = doc.Root;
-
-            var correctedDocDictionary = _correction.CorrectionAndNamespaceOrderXElement(node);
-                    
-            foreach (var nameSpace in correctedDocDictionary.Keys)
-            {
-                var absoluteTargetPath = Path.Combine(markdownTargetPath, Path.ChangeExtension(nameSpace, "md"));
-
-                var markdownString = _parser.Parse(correctedDocDictionary[nameSpace]);
-
-                using (var streamWriter = new StreamWriter(absoluteTargetPath))
+                if (Path.GetExtension(xmlFileAbsolutePath) != ".xml")
                 {
-                    streamWriter.Write(markdownString);
+                    continue;
+                }
+
+                try
+                {
+                    xml = File.ReadAllText(xmlFileAbsolutePath);
+                }
+                catch (IOException e)
+                {
+                    Trace.TraceError(e.ToString());
+                    Console.WriteLine(e.ToString());
+                }
+                
+                XDocument doc = null;
+                try
+                {
+                    doc = XDocument.Parse(xml);
+                    Console.WriteLine(String.Format("Parsed {0}", xmlFileAbsolutePath));
+                }
+                catch (System.Xml.XmlException e)
+                {
+                    Trace.TraceError(e.ToString());
+                    Console.WriteLine(e.ToString());
+                }
+
+                var node = doc.Root;
+
+                var correctedDocDictionary = _correction.CorrectionAndNamespaceOrderXElement(node);
+                    
+                foreach (var nameSpace in correctedDocDictionary.Keys)
+                {
+                    var absoluteTargetPath = Path.Combine(markdownTargetPath, String.Format("{0}.md", nameSpace));
+
+                    var markdownString = _parser.Parse(correctedDocDictionary[nameSpace]);
+
+                    using (var streamWriter = new StreamWriter(absoluteTargetPath))
+                    {
+                        streamWriter.Write(markdownString);
+                        Console.WriteLine(String.Format("Writen: {0}", absoluteTargetPath));
+                    }
                 }
             }
                 
-            Console.WriteLine("Parsing was sucessfull");
+            Console.WriteLine("End");
             Console.ReadLine();
         }
 

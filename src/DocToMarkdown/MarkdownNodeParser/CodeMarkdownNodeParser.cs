@@ -20,8 +20,8 @@ namespace DocToMarkdown
     {
         #region fields
 
-        private String _template;
         private readonly IParserPool _parserPool;
+        private String _template;
 
         #endregion
 
@@ -30,7 +30,7 @@ namespace DocToMarkdown
         /// <summary>
         /// Initializes a new instance of the <see cref="DocToMarkdown.CodeMarkdownNodeParser"/> class.
         /// </summary>
-        /// <param name = "parserPool"></param>
+        /// <param name = "parserPool">The parser pool.</param>
         /// <param name="environment">The environment.</param>
         internal CodeMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
@@ -63,7 +63,7 @@ namespace DocToMarkdown
             }
 
             return String.Format(
-                _template,
+                this._template,
                 element.Value,
                 stringBuilder.ToString());
         }

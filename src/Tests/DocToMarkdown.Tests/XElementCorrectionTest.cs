@@ -10,13 +10,15 @@
 namespace DocToMarkdown.Tests
 {
     using System;
-    using System.Linq;
     using System.Text;
     using System.Xml.Linq;
 
     using DocToMarkdown;
     using NUnit.Framework;
 
+    /// <summary>
+    /// Test for the <see cref="XElementCorrection"/> class. 
+    /// </summary>
     [TestFixture]
     public class XElementCorrectionTest
     {
@@ -26,13 +28,13 @@ namespace DocToMarkdown.Tests
         {
             get
             {
-                const string stringElement1 = @"<member name=""T:GenericMath.LinearAlgebra.SpecialPolynomials"">
+                const String StringElement1 = @"<member name=""T:GenericMath.LinearAlgebra.SpecialPolynomials"">
                                         <summary>
                                                     Special polynomials.
                                                     </summary>
                                                     </member>";
 
-                const string stringElement2 = @"<member name=""M:GenericMath.LinearAlgebra.SpecialPolynomials.ZeroPolynomial``2(System.UInt32)"">
+                const String StringElement2 = @"<member name=""M:GenericMath.LinearAlgebra.SpecialPolynomials.ZeroPolynomial``2(System.UInt32)"">
                                                     <summary>
                                                     Creates the zeros polynomial for dimension.
                                                     </summary>
@@ -42,7 +44,7 @@ namespace DocToMarkdown.Tests
                                                     <typeparam name=""TGroup"">The underlying structure.</typeparam>
                                                 </member>";
 
-                const string stringElement3 = @"<member name=""M:GenericMath.LinearAlgebra.SpecialPolynomials.OnePolynomial``2(System.UInt32)"">
+                const String StringElement3 = @"<member name=""M:GenericMath.LinearAlgebra.SpecialPolynomials.OnePolynomial``2(System.UInt32)"">
                                             <summary>
                                             Creates the one polynomial for dimension.
                                             </summary>
@@ -52,7 +54,7 @@ namespace DocToMarkdown.Tests
                                             <typeparam name=""TRing"">The underlying structure.</typeparam>
                                         </member>";
 
-                const string stringElement4 = @"<member name=""T:Generic.LinearAlgebra.Polynomial`2"">
+                const String StringElement4 = @"<member name=""T:Generic.LinearAlgebra.Polynomial`2"">
                                         <summary>
                                         Polynomial from set.
                                         </summary>
@@ -61,10 +63,10 @@ namespace DocToMarkdown.Tests
                                     </member>";
 
                 var stringBuilder = new StringBuilder();
-                stringBuilder.Append(stringElement1);
-                stringBuilder.Append(stringElement2);
-                stringBuilder.Append(stringElement3);
-                stringBuilder.Append(stringElement4);
+                stringBuilder.Append(StringElement1);
+                stringBuilder.Append(StringElement2);
+                stringBuilder.Append(StringElement3);
+                stringBuilder.Append(StringElement4);
 
                 var elementString = String.Format(@"<members>{0}</members>", stringBuilder.ToString());
 
@@ -85,9 +87,9 @@ namespace DocToMarkdown.Tests
         {
             var mockElement = this.MockElement;
 
-            var xElementCorrection = new XElementCorrection();
+            var xmlElementCorrection = new XElementCorrection();
 
-            var result = xElementCorrection.CorrectionAndNamespaceOrderXElement(mockElement);
+            var result = xmlElementCorrection.CorrectionAndNamespaceOrderXElement(mockElement);
 
             Assert.AreEqual(2, result.Count);
         }

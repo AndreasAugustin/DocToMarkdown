@@ -20,8 +20,8 @@ namespace DocToMarkdown
     {
         #region fields
 
-        private String _template;
         private readonly IParserPool _parserPool;
+        private String _template;
 
         #endregion
 
@@ -88,4 +88,3 @@ namespace DocToMarkdown
         #endregion
     }
 }
-

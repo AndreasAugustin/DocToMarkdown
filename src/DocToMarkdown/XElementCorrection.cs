@@ -102,13 +102,13 @@ namespace DocToMarkdown
 
             if (memberType == "T")
             {
-                element.SetAttributeValue(
-                    "namespace",
-                    String.Format(
-                        "{0}:{1}.{2}",
-                        memberType,
-                        nameSpace,
-                        fullNameSpaceAddition));
+                var temp = String.Format(
+                               "{0}:{1}.{2}",
+                               memberType,
+                               nameSpace,
+                               fullNameSpaceAddition);
+
+                element.SetAttributeValue("namespace", temp);
             }
 
             if (typeParameterSplit.Count() > 1)
@@ -150,7 +150,7 @@ namespace DocToMarkdown
             for (var i = 0; i < seeElements.Count(); i++)
             {
                 var seeElement = seeElements[i];
-                SeeCorrection(ref seeElement);
+                this.SeeCorrection(ref seeElement);
             }
 
             this._namespaceDictionary[nameSpace].Add(element);
@@ -158,13 +158,13 @@ namespace DocToMarkdown
 
         private void SeeCorrection(ref XElement seeElement)
         {
-            var cRef = seeElement.Attribute("cref");
-            if (cRef == null)
+            var classRef = seeElement.Attribute("cref");
+            if (classRef == null)
             {
                 return;
             }
 
-            seeElement.SetAttributeValue("cref", Regex.Split(cRef.Value, @"`").FirstOrDefault());
+            seeElement.SetAttributeValue("cref", Regex.Split(classRef.Value, @"`").FirstOrDefault());
         }
 
         #endregion

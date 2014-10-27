@@ -19,8 +19,8 @@ namespace DocToMarkdown
     {
         #region fields
 
-        private String _template;
         private readonly IParserPool _parserPool;
+        private String _template;
 
         #endregion
 
@@ -63,6 +63,7 @@ namespace DocToMarkdown
 
                 seeElement.SetValue(parsedSee);
             }
+
             var name = element.Attribute("name").Value;
 
             return String.Format(

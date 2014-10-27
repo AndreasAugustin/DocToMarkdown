@@ -29,11 +29,11 @@ namespace DocToMarkdown.Tests
         {
             get
             {
-                const String element = @"<summary>
+                const String Element = @"<summary>
                                 Initializes a new instance of the <see cref=""T:GenericMath.LinearAlgebra.Polynomial[T, TStruct]""/> class.
                                 </summary>";
 
-                return XElement.Parse(element);
+                return XElement.Parse(Element);
             }
         }
 
@@ -41,7 +41,7 @@ namespace DocToMarkdown.Tests
 
         /// <summary>
         /// Test for the SummaryMarkdownNodeParser.
-        /// Instanciates and checks for null.
+        /// Tries to create a new object and checks for null.
         /// </summary>
         [Category("Parser test")]
         [Test]
@@ -57,7 +57,7 @@ namespace DocToMarkdown.Tests
         }
 
         /// <summary>
-        /// Parses the parse xelement ignoring the see tag and checks if it equals the expected.
+        /// Parses the parse xml element ignoring the see tag and checks if it equals the expected.
         /// </summary>
         [Category("Parser test")]
         [Test]
@@ -71,7 +71,7 @@ namespace DocToMarkdown.Tests
 
             var summaryMardownNodeParser = new SummaryMarkdownNodeParser(xmlParserStub, environmentStub);
 
-            var element = MockElement;
+            var element = this.MockElement;
 
             var result = summaryMardownNodeParser.ParseToMarkdown(element);
 
@@ -82,13 +82,13 @@ namespace DocToMarkdown.Tests
         }
 
         /// <summary>
-        /// Parses the parse xelement and checks if it equals the expected.
+        /// Parses the parse xml element and checks if it equals the expected.
         /// </summary>
         [Category("Parser test")]
         [Test]
         public void Parse_ParseXelement_EqualsExpected()
         {
-            var element = MockElement;
+            var element = this.MockElement;
 
             var environmentStub = Substitute.For<IEnvironment>();
             environmentStub.NewLine.Returns(Environment.NewLine);

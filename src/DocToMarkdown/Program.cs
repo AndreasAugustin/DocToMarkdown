@@ -24,8 +24,8 @@ namespace DocToMarkdown
         #region fields
 
         private static readonly IConfiguration Configuration = new ConfigurationAdapter();
-        private static readonly XElementCorrection _correction = new XElementCorrection();
-        private static readonly IEnvironment _environment = new EnvironmentAdapter();
+        private static readonly XElementCorrection Correction = new XElementCorrection();
+        private static readonly IEnvironment Environment = new EnvironmentAdapter();
         private static IParserPool _parser;
 
         #endregion
@@ -40,7 +40,7 @@ namespace DocToMarkdown
         {
             Console.WriteLine("Starting to parse");
 
-            _parser = new ParseXmlToMarkdown(_environment);
+            _parser = new ParseXmlToMarkdown(Environment);
 
             var xmlSourcePath = Configuration["xmlSource.folder.path"];
             var markdownTargetPath = Configuration["markupTarget.folder.path"];
@@ -78,7 +78,7 @@ namespace DocToMarkdown
 
                 var node = doc.Root;
 
-                var correctedDocDictionary = _correction.CorrectionAndNamespaceOrderXElement(node);
+                var correctedDocDictionary = Correction.CorrectionAndNamespaceOrderXElement(node);
                     
                 foreach (var nameSpace in correctedDocDictionary.Keys)
                 {

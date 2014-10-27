@@ -58,7 +58,7 @@ namespace DocToMarkdown
             }
 
             return String.Format(
-                _template,
+                this._template,
                 element.Value,
                 stringBuilder.ToString());
         }

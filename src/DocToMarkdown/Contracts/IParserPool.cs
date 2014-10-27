@@ -31,7 +31,6 @@ namespace DocToMarkdown
         /// </summary>
         /// <param name="element">The xml element to parse.</param>
         /// <returns>The parsed node.</returns>
-        /// <param name="element">Element.</param>
         /// <typeparam name="TParser">The parser.</typeparam>
         String Parse<TParser>(XElement element)
             where TParser : IMarkdownNodeParser;

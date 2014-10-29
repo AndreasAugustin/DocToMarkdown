@@ -24,7 +24,6 @@ namespace DocToMarkdown
         #region fields
 
         private static readonly IConfiguration Configuration = new ConfigurationAdapter();
-        private static readonly XElementCorrection Correction = new XElementCorrection();
         private static readonly IEnvironment Environment = new EnvironmentAdapter();
         private static IParserPool _parser;
 
@@ -78,7 +77,7 @@ namespace DocToMarkdown
 
                 var node = doc.Root;
 
-                var correctedDocDictionary = Correction.CorrectionAndNamespaceOrderXElement(node);
+                var correctedDocDictionary = new XElementCorrection().CorrectionAndNamespaceOrderXElement(node);
                     
                 foreach (var nameSpace in correctedDocDictionary.Keys)
                 {
@@ -88,6 +87,7 @@ namespace DocToMarkdown
 
                     using (var streamWriter = new StreamWriter(absoluteTargetPath))
                     {
+                        streamWriter.WriteLine(String.Format("### Namespace: {0} ###", nameSpace));
                         streamWriter.Write(markdownString);
                         Console.WriteLine(String.Format("Writen: {0}", absoluteTargetPath));
                     }

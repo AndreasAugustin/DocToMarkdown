@@ -21,7 +21,7 @@ namespace DocToMarkdown
     {
         #region fields
 
-        private static String _template;
+        private String _template;
         private IParserPool _parserPool;
 
         #endregion
@@ -77,13 +77,8 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            if (!String.IsNullOrEmpty(_template))
-            {
-                return;
-            }
-
-            _template = String.Format(
-                "## {0} ##{2}{2}{1}{2}{2}",
+            this._template = String.Format(
+                "{2}--- {2}## Assembly: {0} ##{2}{2}{1}{2}{2}",
                 "{0}",
                 "{1}",
                 environment.NewLine);

@@ -51,13 +51,22 @@
     <Compile Include="Contracts\IParserPool.cs" />
     <Compile Include="MarkdownNodeParser\CodeMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ExampleMarkdownNodeParser.cs" />
-    <Compile Include="MarkdownNodeParser\TypeParamMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ReturnsMarkdownNodeParser.cs" />
     <Compile Include="XElementCorrection.cs" />
     <Compile Include="Adapter\ConfigurationAdapter.cs" />
     <Compile Include="Adapter\EnvironmentAdapter.cs" />
     <Compile Include="Contracts\IConfiguration.cs" />
     <Compile Include="Contracts\IEnvironment.cs" />
+    <Compile Include="MarkdownNodeParser\CMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\IncludeMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\ListMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\ParaMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\ParamRefMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\PermissionMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\SeealsoMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\TypeparamMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\TypeparamrefMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownNodeParser\ValueMarkdownNodeParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -16,6 +16,10 @@ namespace DocToMarkdown
     /// <summary>
     /// Example markdown node parser.
     /// </summary>
+    /// <example>
+    /// For using the <c>example</c> tag are found at
+    /// <see href="http://msdn.microsoft.com/en-us/library/9w4cf933.aspx"/>
+    /// </example>
     internal class ExampleMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields

@@ -1,5 +1,5 @@
 ﻿//  *************************************************************
-// <copyright file="CodeMarkdownNodeParser.cs" company="None">
+// <copyright file="TypeparamMarkdownNodeParser.cs" company="None">
 //     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
@@ -10,17 +10,16 @@
 namespace DocToMarkdown
 {
     using System;
-    using System.Text;
     using System.Xml.Linq;
 
     /// <summary>
-    /// Parser for the code tags.
+    /// Type parameter markdown node parser.
     /// </summary>
     /// <example>
-    /// For using the <c>code</c> tag are found at
-    /// <see href="http://msdn.microsoft.com/en-us/library/f8hahtxf.aspx"/>
+    /// For using the <c>seealso</c> tag are found at
+    /// <see href="http://msdn.microsoft.com/en-us/library/ms173191.aspx"/>
     /// </example>
-    internal class CodeMarkdownNodeParser : IMarkdownNodeParser
+    internal class TypeparamMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
@@ -32,11 +31,11 @@ namespace DocToMarkdown
         #region ctors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DocToMarkdown.CodeMarkdownNodeParser"/> class.
+        /// Initializes a new instance of the <see cref="TypeparamMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name = "parserPool">The parser pool.</param>
         /// <param name="environment">The environment.</param>
-        internal CodeMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
+        internal TypeparamMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
             this.InitTemplate(environment);
             this._parserPool = parserPool;
@@ -51,25 +50,30 @@ namespace DocToMarkdown
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
-        public string ParseToMarkdown(XElement element)
+        public String ParseToMarkdown(XElement element)
         {
-            if (element.Name != "code")
+            if (element.Name != "typeparam")
             {
-                return String.Empty;
+                return null;
             }
 
             var elements = element.Elements();
-            var stringBuilder = new StringBuilder();
 
-            foreach (var el in elements)
+            var seeElements = element.Elements("see");
+
+            foreach (var seeElement in seeElements)
             {
-                stringBuilder.Append(this._parserPool.Parse(el));
+                var parsedSee = this._parserPool.Parse<SeeMarkdownNodeParser>(seeElement);
+
+                seeElement.SetValue(parsedSee);
             }
+
+            var name = element.Attribute("name").Value;
 
             return String.Format(
                 this._template,
-                element.Value,
-                stringBuilder.ToString());
+                name,
+                element.Value);
         }
 
         #endregion
@@ -78,7 +82,11 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            this._template = String.Format("\tCode: {0}{1}{1}", "{0}", environment.NewLine);
+            this._template = String.Format(
+                "> **Type parameter** {0}: {1} {2}",
+                "{0}",
+                "{1}",
+                environment.NewLine);
         }
 
         #endregion

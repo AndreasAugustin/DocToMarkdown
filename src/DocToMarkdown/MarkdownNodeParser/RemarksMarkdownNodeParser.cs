@@ -16,6 +16,10 @@ namespace DocToMarkdown
     /// <summary>
     /// Remarks markdown node parser.
     /// </summary>
+    /// <example>
+    /// For using the <c>permission</c> tag are found at
+    /// <see href="http://msdn.microsoft.com/en-us/library/3zw4z1ys.aspx"/>
+    /// </example>
     internal class RemarksMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields

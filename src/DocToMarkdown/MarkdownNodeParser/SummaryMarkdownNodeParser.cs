@@ -15,6 +15,10 @@ namespace DocToMarkdown
     /// <summary>
     /// Parser for the summary tag.
     /// </summary>
+    /// <example>
+    /// For using the <c>seealso</c> tag are found at
+    /// <see href="http://msdn.microsoft.com/en-us/library/2d6dt3kf.aspx"/>
+    /// </example>
     internal class SummaryMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields

@@ -15,6 +15,10 @@ namespace DocToMarkdown
     /// <summary>
     /// Parameter markdown node parser.
     /// </summary>
+    /// <example>
+    /// For using the <c>param</c> tag are found at
+    /// <see href="http://msdn.microsoft.com/en-us/library/8cw818w8.aspx"/>
+    /// </example>
     internal class ParamMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields

@@ -1,5 +1,5 @@
 ﻿//  *************************************************************
-// <copyright file="CodeMarkdownNodeParser.cs" company="None">
+// <copyright file="CMarkdownNodeParser.cs" company="None">
 //     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
@@ -14,13 +14,13 @@ namespace DocToMarkdown
     using System.Xml.Linq;
 
     /// <summary>
-    /// Parser for the code tags.
+    /// C markdown node parser.
     /// </summary>
     /// <example>
-    /// For using the <c>code</c> tag are found at
-    /// <see href="http://msdn.microsoft.com/en-us/library/f8hahtxf.aspx"/>
+    /// For how to use the <c>c</c> tag are found at
+    /// <see href="http://msdn.microsoft.com/en-us/library/te6h7cxs.aspx"/>
     /// </example>
-    internal class CodeMarkdownNodeParser : IMarkdownNodeParser
+    internal class CMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
@@ -32,14 +32,14 @@ namespace DocToMarkdown
         #region ctors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DocToMarkdown.CodeMarkdownNodeParser"/> class.
+        /// Initializes a new instance of the <see cref="DocToMarkdown.CMarkdownNodeParser"/> class.
         /// </summary>
-        /// <param name = "parserPool">The parser pool.</param>
+        /// <param name="parserPool">The parser pool.</param>
         /// <param name="environment">The environment.</param>
-        internal CodeMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
+        internal CMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
-            this.InitTemplate(environment);
             this._parserPool = parserPool;
+            this.InitTemplate(environment);
         }
 
         #endregion
@@ -51,9 +51,9 @@ namespace DocToMarkdown
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
-        public string ParseToMarkdown(XElement element)
+        public String ParseToMarkdown(XElement element)
         {
-            if (element.Name != "code")
+            if (element.Name != "c")
             {
                 return String.Empty;
             }

@@ -1,0 +1,4 @@
+/src/DocToMarkdown/bin
+/src/DocToMarkdown/obj
+/src/packages
+/src/*.userprefs

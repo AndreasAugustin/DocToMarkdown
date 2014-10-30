@@ -16,7 +16,7 @@ namespace DocToMarkdown
 
     /// <summary>
     /// Starts the console application.
-    /// Idea of this project came from
+    /// Some input for this project came from
     /// <see href="https://gist.github.com/lontivero/593fc51f1208555112e0"/>
     /// </summary>
     internal class Program
@@ -39,7 +39,7 @@ namespace DocToMarkdown
         {
             Console.WriteLine("Starting to parse");
 
-            _parser = new ParseXmlToMarkdown(Environment);
+            _parser = new ParseXmlToMarkdown(Environment, MarkdownType.GithubFlavoredMarkdown);
 
             var xmlSourcePath = Configuration["xmlSource.folder.path"];
             var markdownTargetPath = Configuration["markupTarget.folder.path"];

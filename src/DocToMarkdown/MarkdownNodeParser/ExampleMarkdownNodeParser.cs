@@ -61,20 +61,20 @@ namespace DocToMarkdown
             var elements = element.Elements();
             var stringBuilder = new StringBuilder();
 
-            var description = element.Value;
-            stringBuilder.Append(description);
+            var seeElements = element.Elements("see");
 
-            foreach (var el in elements)
+            foreach (var seeElement in seeElements)
             {
-                stringBuilder.Append(this._parserPool.Parse(el));
+                var parsedSee = this._parserPool.Parse<SeeMarkdownNodeParser>(seeElement);
+
+                seeElement.SetValue(parsedSee);
             }
 
-            var name = element.Attribute("name").Value;
+            var name = element.Value;
 
             return String.Format(
                 this._template,
-                name,
-                stringBuilder.ToString());
+                name.Trim());
         }
 
         #endregion
@@ -84,7 +84,7 @@ namespace DocToMarkdown
         private void InitTemplate(IEnvironment environment)
         {
             this._template = String.Format(
-                "\tExample: _C# code_{1}{1}```c#{1}{0}{1}```{1}{1}",
+                "{1}**Example:**<big><pre>{0}{1}</pre></big>{1}",
                 "{0}",
                 environment.NewLine);
         }

@@ -67,6 +67,7 @@
     <Compile Include="MarkdownNodeParser\TypeparamMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\TypeparamrefMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ValueMarkdownNodeParser.cs" />
+    <Compile Include="MarkdownType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

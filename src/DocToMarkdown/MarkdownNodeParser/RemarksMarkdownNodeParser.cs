@@ -10,6 +10,7 @@
 namespace DocToMarkdown
 {
     using System;
+    using System.Linq;
     using System.Text;
     using System.Xml.Linq;
 
@@ -48,7 +49,13 @@ namespace DocToMarkdown
 
         #region methods
 
-        public String ParseToMarkdown(System.Xml.Linq.XElement element)
+        /// <summary>
+        /// Parses to markdown.
+        /// The <paramref name="element"/> is the element to parse.
+        /// </summary>
+        /// <returns>The parsed markdown.</returns>
+        /// <param name="element">The element.</param>
+        public String ParseToMarkdown(XElement element)
         {
             if (element.Name != "remarks")
             {
@@ -58,9 +65,20 @@ namespace DocToMarkdown
             var elements = element.Elements();
             var stringBuilder = new StringBuilder();
 
-            foreach (var el in elements)
+            foreach (var el in elements.Where(e => e.Name != "paramref"))
             {
                 stringBuilder.Append(this._parserPool.Parse(el));
+            }
+
+            var paramRefElements = element.Elements("paramref");
+
+            foreach (var paramRefElement in paramRefElements)
+            {
+                var parsedParamRef = this._parserPool.Parse<ParamRefMarkdownNodeParser>(paramRefElement);
+                if (parsedParamRef != null)
+                {
+                    paramRefElement.SetValue(parsedParamRef);
+                }
             }
 
             return String.Format(
@@ -75,7 +93,7 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            this._template = String.Format("\t{1}{1}>{0}{1}{1}", "{0}", environment.NewLine);
+            this._template = String.Format("{1}**Remarks:**{1}>{0}{1}", "{0}", environment.NewLine);
         }
 
         #endregion

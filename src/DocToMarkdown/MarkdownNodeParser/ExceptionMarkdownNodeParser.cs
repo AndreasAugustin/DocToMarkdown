@@ -49,6 +49,7 @@ namespace DocToMarkdown
 
         /// <summary>
         /// Parses to markdown.
+        /// The <paramref name="element"/> is the element to parse.
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
@@ -56,7 +57,7 @@ namespace DocToMarkdown
         {
             if (element.Name != "exception")
             {
-                return String.Empty;
+                return null;
             }
 
             // TODO add anchors

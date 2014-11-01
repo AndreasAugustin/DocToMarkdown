@@ -19,6 +19,7 @@ namespace DocToMarkdown
     {
         /// <summary>
         /// Parses to markdown.
+        /// The <paramref name="element"/> is the element to parse.
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>

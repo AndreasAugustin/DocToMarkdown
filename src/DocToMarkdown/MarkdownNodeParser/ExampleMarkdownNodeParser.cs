@@ -50,6 +50,7 @@ namespace DocToMarkdown
 
         /// <summary>
         /// Parses to markdown.
+        /// The <paramref name="element"/> is the element to parse.
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
@@ -59,8 +60,7 @@ namespace DocToMarkdown
             {
                 return null;
             }
-
-            var elements = element.Elements();
+                
             var stringBuilder = new StringBuilder();
 
             var seeElements = element.Elements("see");
@@ -72,6 +72,14 @@ namespace DocToMarkdown
                 seeElement.SetValue(parsedSee);
             }
 
+            var listElements = element.Elements("list");
+            foreach (var listElement in listElements)
+            {
+                var parsedList = this._parserPool.Parse<ListMarkdownNodeParser>(listElement);
+
+                listElement.SetValue(parsedList);
+            }
+                
             var name = element.Value;
 
             return String.Format(

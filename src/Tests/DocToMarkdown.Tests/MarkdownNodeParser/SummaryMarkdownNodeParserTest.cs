@@ -100,10 +100,10 @@ namespace DocToMarkdown.Tests
                                 "T:GenericMath.LinearAlgebra.Polynomial[T, TStruct]".ToLower(),
                                 Environment.NewLine);
 
-            var xmlParserStub = Substitute.For<IParserPool>();
-            xmlParserStub.Parse<SeeMarkdownNodeParser>(Arg.Any<XElement>()).Returns(seeResult);
+            var parserPoolMock = Substitute.For<IParserPool>();
+            parserPoolMock.Parse<SeeMarkdownNodeParser>(Arg.Any<XElement>()).Returns(seeResult);
 
-            var summaryMardownNodeParser = new SummaryMarkdownNodeParser(xmlParserStub, environmentStub);
+            var summaryMardownNodeParser = new SummaryMarkdownNodeParser(parserPoolMock, environmentStub);
 
             var result = summaryMardownNodeParser.ParseToMarkdown(element);
                        

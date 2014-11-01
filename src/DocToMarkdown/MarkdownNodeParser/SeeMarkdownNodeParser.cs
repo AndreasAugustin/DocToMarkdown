@@ -49,6 +49,7 @@ namespace DocToMarkdown
 
         /// <summary>
         /// Parses to markdown.
+        /// The <paramref name="element"/> is the element to parse.
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
@@ -56,7 +57,7 @@ namespace DocToMarkdown
         {
             if (element.Name != "see")
             {
-                return String.Empty;
+                return null;
             }
                 
             var anchorAttr = element.Attribute("cref");
@@ -105,9 +106,8 @@ namespace DocToMarkdown
 
             var classRefTemp = markdownType == MarkdownType.GithubFlavoredMarkdown ? 
                 String.Format(
-                                   "[{0}][#{1}]{2}",
+                                   "**{0}**{1}",
                                    "{0}",
-                                   "{1}",
                                    environment.NewLine)
                 : String.Format(
                                    "[{0}](#{1}){2}",

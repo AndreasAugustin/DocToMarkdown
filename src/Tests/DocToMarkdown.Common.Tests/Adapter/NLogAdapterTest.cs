@@ -48,6 +48,10 @@ namespace DocToMarkdown.Tests
 
         #region methods
 
+        /// <summary>
+        /// Integration test for logging a message.
+        /// For clean up the created file and folder are deleted.
+        /// </summary>
         [Test]
         [Category("Integration test: Logger")]
         public void Info_LogMessage_LoggedMessageEqualsExpected()

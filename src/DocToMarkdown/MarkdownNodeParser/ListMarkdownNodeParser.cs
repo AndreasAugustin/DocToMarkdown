@@ -116,7 +116,7 @@ namespace DocToMarkdown
 
             if (this._listLevel == 0)
             {
-                resultStringBuilder.AppendLine("**List:**");
+                resultStringBuilder.Append("**List:**");
             }
 
             var itemElements = element.Elements("item");

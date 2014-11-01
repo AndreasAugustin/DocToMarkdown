@@ -78,7 +78,7 @@ namespace DocToMarkdown.Tests
 
             var result = parser.ParseToMarkdown(input);
 
-            var expected = String.Format("{0}- Item 1.{0}- Item 2.", environentStub.NewLine);
+            var expected = String.Format("**List:**{0}- Item 1.{0}- Item 2.", environentStub.NewLine);
 
             Assert.AreEqual(expected, result);
         }

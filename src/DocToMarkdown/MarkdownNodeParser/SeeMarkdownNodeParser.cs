@@ -14,6 +14,8 @@ namespace DocToMarkdown
     using System.Linq;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Parser for the see tag.
     /// </summary>
@@ -89,7 +91,8 @@ namespace DocToMarkdown
             }
 
             var hyperRefTemp = markdownType == MarkdownType.GithubFlavoredMarkdown ?
-                String.Format("{0}{1}",
+                String.Format(
+                                   "{0}{1}",
                                    "{0}",
                                    environment.NewLine) :
                                 String.Format(
@@ -101,7 +104,8 @@ namespace DocToMarkdown
             this._templateDictionary.Add("href", hyperRefTemp);
 
             var classRefTemp = markdownType == MarkdownType.GithubFlavoredMarkdown ? 
-                String.Format("[{0}][#{1}]{2}",
+                String.Format(
+                                   "[{0}][#{1}]{2}",
                                    "{0}",
                                    "{1}",
                                    environment.NewLine)

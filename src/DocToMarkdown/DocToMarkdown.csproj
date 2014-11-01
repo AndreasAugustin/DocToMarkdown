@@ -34,7 +34,6 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Configuration" />
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -43,7 +42,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\IMarkdownNodeParser.cs" />
-    <Compile Include="ParseXmlToMarkdown.cs" />
     <Compile Include="MarkdownNodeParser\ExceptionMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\DocMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\MemberMarkdownNodeParser.cs" />
@@ -55,11 +53,6 @@
     <Compile Include="MarkdownNodeParser\CodeMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ExampleMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ReturnsMarkdownNodeParser.cs" />
-    <Compile Include="XElementCorrection.cs" />
-    <Compile Include="Adapter\ConfigurationAdapter.cs" />
-    <Compile Include="Adapter\EnvironmentAdapter.cs" />
-    <Compile Include="Contracts\IConfiguration.cs" />
-    <Compile Include="Contracts\IEnvironment.cs" />
     <Compile Include="MarkdownNodeParser\CMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\IncludeMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ListMarkdownNodeParser.cs" />
@@ -70,17 +63,28 @@
     <Compile Include="MarkdownNodeParser\TypeparamMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\TypeparamrefMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ValueMarkdownNodeParser.cs" />
-    <Compile Include="MarkdownType.cs" />
+    <Compile Include="Code\ParseXmlToMarkdown.cs" />
+    <Compile Include="Code\XElementCorrection.cs" />
+    <Compile Include="Code\MarkdownType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Contracts\" />
     <Folder Include="MarkdownNodeParser\" />
+    <Folder Include="Code\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="NLog.xsd" />
-    <None Include="NLog.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DocToMarkdown.Common\DocToMarkdown.Common.csproj">
+      <Project>{2E2B0383-18DA-4C0B-A3FF-F8D5E7FAB39D}</Project>
+      <Name>DocToMarkdown.Common</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

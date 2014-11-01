@@ -13,6 +13,7 @@ namespace DocToMarkdown.Tests
     using System.Xml.Linq;
 
     using DocToMarkdown;
+    using DocToMarkdown.Common;
 
     using NSubstitute;
     using NUnit.Framework;
@@ -43,7 +44,7 @@ namespace DocToMarkdown.Tests
         /// Test for the SummaryMarkdownNodeParser.
         /// Tries to create a new object and checks for null.
         /// </summary>
-        [Category("Parser test")]
+        [Category("Unit test: parser")]
         [Test]
         public void SummaryMarkdownNodeParser_Instanciating_IsNotNull()
         {
@@ -59,7 +60,7 @@ namespace DocToMarkdown.Tests
         /// <summary>
         /// Parses the parse xml element ignoring the see tag and checks if it equals the expected.
         /// </summary>
-        [Category("Parser test")]
+        [Category("Unit test: parser")]
         [Test]
         public void Parse_ParseXelement_IgnoreSee_EqualsExpected()
         {
@@ -84,7 +85,7 @@ namespace DocToMarkdown.Tests
         /// <summary>
         /// Parses the parse xml element and checks if it equals the expected.
         /// </summary>
-        [Category("Parser test")]
+        [Category("Unit test: parser")]
         [Test]
         public void Parse_ParseXelement_EqualsExpected()
         {

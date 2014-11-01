@@ -14,6 +14,8 @@ namespace DocToMarkdown
     using System.Text;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Parse xml to markdown.
     /// </summary>
@@ -22,6 +24,7 @@ namespace DocToMarkdown
         #region fields
 
         private Dictionary<Type, IMarkdownNodeParser> _parserDictionary;
+        private ILogger _logger;
 
         #endregion
 
@@ -32,9 +35,11 @@ namespace DocToMarkdown
         /// </summary>
         /// <param name="environment">The environment.</param>
         /// <param name = "markdownType">The markdown type.</param>
-        internal ParseXmlToMarkdown(IEnvironment environment, MarkdownType markdownType)
+        /// <param name = "loggerManager">The logger manager.</param>
+        internal ParseXmlToMarkdown(IEnvironment environment, MarkdownType markdownType, ILoggerManager loggerManager)
         {
             this.InitDictionary(environment, markdownType);
+            this._logger = loggerManager.GetLogger("Parser");
         }
 
         #endregion

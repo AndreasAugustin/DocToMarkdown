@@ -14,6 +14,9 @@ namespace DocToMarkdown.Tests
     using System.Xml.Linq;
 
     using DocToMarkdown;
+    using DocToMarkdown.Common;
+
+    using NSubstitute;
     using NUnit.Framework;
 
     /// <summary>
@@ -86,8 +89,9 @@ namespace DocToMarkdown.Tests
         public void CorrectionAndNamespaceOrderXElement_Run_ResultCountEqualsExpected()
         {
             var mockElement = this.MockElement;
+            var loggerManagerStub = Substitute.For<ILoggerManager>();
 
-            var xmlElementCorrection = new XElementCorrection();
+            var xmlElementCorrection = new XElementCorrection(loggerManagerStub);
 
             var result = xmlElementCorrection.CorrectionAndNamespaceOrderXElement(mockElement);
 

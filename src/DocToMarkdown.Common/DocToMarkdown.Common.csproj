@@ -18,6 +18,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DocumentationFile>bin\Debug\DocToMarkdown.Common.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -32,6 +33,7 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -39,6 +41,10 @@
     <Compile Include="Contracts\ILogger.cs" />
     <Compile Include="Contracts\ILoggerManager.cs" />
     <Compile Include="Adapter\NLogManagerAdapter.cs" />
+    <Compile Include="Contracts\IConfiguration.cs" />
+    <Compile Include="Contracts\IEnvironment.cs" />
+    <Compile Include="Adapter\ConfigurationAdapter.cs" />
+    <Compile Include="Adapter\EnvironmentAdapter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

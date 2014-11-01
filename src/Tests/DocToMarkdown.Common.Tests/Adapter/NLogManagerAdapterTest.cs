@@ -7,8 +7,7 @@
 // <email>andy.augustin@t-online.de</email>
 // *************************************************************
 
-
-namespace DocToMarkdown.Tests
+namespace DocToMarkdown.Common.Tests
 {
     using System;
     using DocToMarkdown.Common;
@@ -46,8 +45,8 @@ namespace DocToMarkdown.Tests
 
             Assert.IsNotNull(result);
 
-            const String expectedName = "Test";
-            Assert.AreEqual(expectedName, result.Name);
+            const String ExpectedName = "Test";
+            Assert.AreEqual(ExpectedName, result.Name);
         }
     }
 }

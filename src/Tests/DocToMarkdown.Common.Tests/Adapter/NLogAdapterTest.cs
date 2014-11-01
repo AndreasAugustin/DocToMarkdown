@@ -32,6 +32,7 @@ namespace DocToMarkdown.Tests
         #region properties
 
         /// <summary>
+        /// Gets the logger manager mock.
         /// Because the constructor in the Logger class of NLog is internal and the 
         /// constructor of <see cref="NLogAdapter"/> class needs an instance of Logger,
         /// I am not able to mock it the natural way.
@@ -47,15 +48,19 @@ namespace DocToMarkdown.Tests
 
         #region methods
 
+        /// <summary>
+        /// Integration test for logging a message.
+        /// For clean up the created file and folder are deleted.
+        /// </summary>
         [Test]
         [Category("Integration test: Logger")]
         public void Info_LogMessage_LoggedMessageEqualsExpected()
         {
-            var logger = GetLogger();
+            var logger = this.GetLogger();
 
-            const String logMessage = "Information";
+            const String LogMessage = "Information";
 
-            logger.Info(logMessage);
+            logger.Info(LogMessage);
 
             var environmentPath = Environment.CurrentDirectory;
             var logDirectoryPath = Path.Combine(environmentPath, "logs");
@@ -67,7 +72,7 @@ namespace DocToMarkdown.Tests
                 Assert.IsNotNull(lines);
                 Assert.IsTrue(lines.Length > 0);
 
-                var expected = String.Format("INFO {0}", logMessage);
+                var expected = String.Format("INFO {0}", LogMessage);
                 Assert.AreEqual(expected, lines[0]);
             }
             finally
@@ -82,7 +87,7 @@ namespace DocToMarkdown.Tests
 
         private NLogAdapter GetLogger()
         {
-            var logger = LoggerManagerMock.GetLogger("Test") as NLogAdapter;
+            var logger = this.LoggerManagerMock.GetLogger("Test") as NLogAdapter;
 
             Assert.IsNotNull(logger);
 

@@ -10,7 +10,6 @@
 namespace DocToMarkdown
 {
     using System;
-
     using System.Xml.Linq;
 
     /// <summary>

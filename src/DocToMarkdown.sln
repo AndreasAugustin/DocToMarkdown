@@ -5,12 +5,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown", "DocToMarkd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown.Tests", "Tests\DocToMarkdown.Tests\DocToMarkdown.Tests.csproj", "{C2C188B2-81B0-4727-97F5-DAAF23F2FE8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown.Common", "DocToMarkdown.Common\DocToMarkdown.Common.csproj", "{2E2B0383-18DA-4C0B-A3FF-F8D5E7FAB39D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown.Common.Tests", "Tests\DocToMarkdown.Common.Tests\DocToMarkdown.Common.Tests.csproj", "{0E98C973-1BF4-4B56-9E36-FCBABDCC74CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E98C973-1BF4-4B56-9E36-FCBABDCC74CD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0E98C973-1BF4-4B56-9E36-FCBABDCC74CD}.Debug|x86.Build.0 = Debug|Any CPU
+		{0E98C973-1BF4-4B56-9E36-FCBABDCC74CD}.Release|x86.ActiveCfg = Release|Any CPU
+		{0E98C973-1BF4-4B56-9E36-FCBABDCC74CD}.Release|x86.Build.0 = Release|Any CPU
+		{2E2B0383-18DA-4C0B-A3FF-F8D5E7FAB39D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2E2B0383-18DA-4C0B-A3FF-F8D5E7FAB39D}.Debug|x86.Build.0 = Debug|Any CPU
+		{2E2B0383-18DA-4C0B-A3FF-F8D5E7FAB39D}.Release|x86.ActiveCfg = Release|Any CPU
+		{2E2B0383-18DA-4C0B-A3FF-F8D5E7FAB39D}.Release|x86.Build.0 = Release|Any CPU
 		{C2C188B2-81B0-4727-97F5-DAAF23F2FE8C}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{C2C188B2-81B0-4727-97F5-DAAF23F2FE8C}.Debug|x86.Build.0 = Debug|Any CPU
 		{C2C188B2-81B0-4727-97F5-DAAF23F2FE8C}.Release|x86.ActiveCfg = Release|Any CPU

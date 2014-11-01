@@ -31,7 +31,7 @@ namespace DocToMarkdown
         #region ctors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ParseXmlToMarkdown"/> class.
+        /// Initializes a new instance of the <see cref="MarkdownNodeParserPool"/> class.
         /// </summary>
         /// <param name="environment">The environment.</param>
         /// <param name = "markdownType">The markdown type.</param>

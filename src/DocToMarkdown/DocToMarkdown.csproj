@@ -54,7 +54,6 @@
     <Compile Include="MarkdownNodeParser\ExampleMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ReturnsMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\CMarkdownNodeParser.cs" />
-    <Compile Include="MarkdownNodeParser\IncludeMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ListMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ParaMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ParamRefMarkdownNodeParser.cs" />

@@ -68,7 +68,7 @@ namespace DocToMarkdown.Tests
         [Test]
         public void ParseToMarkdown_ParseListElement_StringEqualsExpected()
         {
-            var input = XmlElementInput;
+            var input = this.XmlElementInput;
 
             var environentStub = Substitute.For<IEnvironment>();
             environentStub.NewLine.Returns(Environment.NewLine);

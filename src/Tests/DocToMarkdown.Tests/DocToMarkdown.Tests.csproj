@@ -50,6 +50,7 @@
     <Compile Include="MarkdownNodeParser\SummaryMarkdownNodeParserTest.cs" />
     <Compile Include="XElementCorrectionTest.cs" />
     <Compile Include="MarkdownNodeParser\ListMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ParaMarkdownParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DocToMarkdown\DocToMarkdown.csproj">

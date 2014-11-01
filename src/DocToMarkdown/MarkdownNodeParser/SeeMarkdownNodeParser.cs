@@ -56,7 +56,7 @@ namespace DocToMarkdown
         {
             if (element.Name != "see")
             {
-                return String.Empty;
+                return null;
             }
                 
             var anchorAttr = element.Attribute("cref");

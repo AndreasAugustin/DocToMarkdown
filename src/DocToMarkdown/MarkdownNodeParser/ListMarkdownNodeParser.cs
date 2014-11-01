@@ -22,6 +22,7 @@ namespace DocToMarkdown
     /// For using the <c>list</c> tag are found at
     /// <see href="http://msdn.microsoft.com/en-us/library/y3ww3c7e.aspx"/>
     /// </example>
+    /// <example> For a list
     /// <list type="bullet">
     /// <item>
     /// <description>Item 1.</description> 
@@ -29,7 +30,8 @@ namespace DocToMarkdown
     /// <item> 
     /// <description>Item 2.</description> 
     /// </item> 
-    /// </list> 
+    /// </list>
+    /// </example> 
     internal class ListMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
@@ -52,6 +54,7 @@ namespace DocToMarkdown
         /// E.q. it is possible to have a list in the list. In this case the level is 1.
         /// If the list is at the master node, the level is 0.
         /// </param>
+        /// <exception cref="ArgumentException">Thrown when the listLevel is less then zero.</exception>
         internal ListMarkdownNodeParser(IEnvironment environment, IParserPool parserPool, Int32 listLevel = 0)
         {
             if (listLevel < 0)
@@ -110,10 +113,12 @@ namespace DocToMarkdown
             }
 
             var resultStringBuilder = new StringBuilder();
+
             if (this._listLevel == 0)
             {
-                resultStringBuilder.AppendLine("** List: **");
+                resultStringBuilder.AppendLine("**List:**");
             }
+
             var itemElements = element.Elements("item");
 
             foreach (var description in itemElements.Elements("description"))
@@ -133,9 +138,7 @@ namespace DocToMarkdown
             this._template = String.Format(
                 "{0}{1}- {2}",
                 environment.NewLine,
-                new StringBuilder().Append(
-                    ' ',
-                    listLevel),
+                new StringBuilder().Append(' ', listLevel),
                 "{0}");
         }
 

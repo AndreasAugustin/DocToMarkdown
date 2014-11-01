@@ -66,7 +66,7 @@ namespace DocToMarkdown
             }
 
             return String.Format(
-                _template,               
+                this._template,               
                 assemblyName,
                 stringBuilder.ToString());
         }

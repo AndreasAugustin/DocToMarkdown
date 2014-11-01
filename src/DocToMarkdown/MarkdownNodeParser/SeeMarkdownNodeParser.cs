@@ -17,6 +17,10 @@ namespace DocToMarkdown
     /// <summary>
     /// Parser for the see tag.
     /// </summary>
+    /// <example>
+    /// For using the <c>seealso</c> tag are found at
+    /// <see href="http://msdn.microsoft.com/en-us/library/acd0tfbe.aspx"/>
+    /// </example>
     internal class SeeMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
@@ -31,9 +35,10 @@ namespace DocToMarkdown
         /// Initializes a new instance of the <see cref="SeeMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name="environment">The environment.</param>
-        internal SeeMarkdownNodeParser(IEnvironment environment)
+        /// <param name = "markdownType">The markdown type.</param>
+        internal SeeMarkdownNodeParser(IEnvironment environment, MarkdownType markdownType)
         {
-            this.InitTemplate(environment);
+            this.InitTemplate(environment, markdownType);
         }
 
         #endregion
@@ -76,22 +81,31 @@ namespace DocToMarkdown
 
         #region helper methods
 
-        private void InitTemplate(IEnvironment environment)
+        private void InitTemplate(IEnvironment environment, MarkdownType markdownType)
         {
             if (this._templateDictionary.Any())
             {
                 return;
             }
 
-            var hyperRefTemp = String.Format(
-                                   "[[{0}|{1}]]{2}",
+            var hyperRefTemp = markdownType == MarkdownType.GithubFlavoredMarkdown ?
+                String.Format("{0}{1}",
+                                   "{0}",
+                                   environment.NewLine) :
+                                String.Format(
+                                   "[{0}](#{1}){2}",
                                    "{0}",
                                    "{1}",
                                    environment.NewLine);
 
             this._templateDictionary.Add("href", hyperRefTemp);
 
-            var classRefTemp = String.Format(
+            var classRefTemp = markdownType == MarkdownType.GithubFlavoredMarkdown ? 
+                String.Format("[{0}][#{1}]{2}",
+                                   "{0}",
+                                   "{1}",
+                                   environment.NewLine)
+                : String.Format(
                                    "[{0}](#{1}){2}",
                                    "{0}",
                                    "{1}",

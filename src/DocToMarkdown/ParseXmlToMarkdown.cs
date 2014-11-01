@@ -31,9 +31,10 @@ namespace DocToMarkdown
         /// Initializes a new instance of the <see cref="ParseXmlToMarkdown"/> class.
         /// </summary>
         /// <param name="environment">The environment.</param>
-        internal ParseXmlToMarkdown(IEnvironment environment)
+        /// <param name = "markdownType">The markdown type.</param>
+        internal ParseXmlToMarkdown(IEnvironment environment, MarkdownType markdownType)
         {
-            this.InitDictionary(environment);
+            this.InitDictionary(environment, markdownType);
         }
 
         #endregion
@@ -85,7 +86,7 @@ namespace DocToMarkdown
 
         #region helper methods
 
-        private void InitDictionary(IEnvironment environment)
+        private void InitDictionary(IEnvironment environment, MarkdownType markdownType)
         {
             this._parserDictionary = new Dictionary<Type, IMarkdownNodeParser>();
 
@@ -111,11 +112,11 @@ namespace DocToMarkdown
 
             this._parserDictionary.Add(
                 typeof(SeeMarkdownNodeParser),
-                new SeeMarkdownNodeParser(environment));
+                new SeeMarkdownNodeParser(environment, markdownType));
 
             this._parserDictionary.Add(
-                typeof(TypeParamMarkdownNodeParser),
-                new TypeParamMarkdownNodeParser(
+                typeof(TypeparamMarkdownNodeParser),
+                new TypeparamMarkdownNodeParser(
                     this,
                     environment));
 

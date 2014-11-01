@@ -15,6 +15,10 @@ namespace DocToMarkdown
     /// <summary>
     /// Parses <see cref="XNode"/> node to Markdown String.
     /// </summary>
+    /// <example>
+    /// For using the <c>exception</c> tag are found at
+    /// <see href="http://msdn.microsoft.com/en-us/library/9w4cf933.aspx"/>
+    /// </example>
     internal sealed class ExceptionMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields

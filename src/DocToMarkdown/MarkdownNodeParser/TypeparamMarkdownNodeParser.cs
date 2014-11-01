@@ -1,5 +1,5 @@
 ﻿//  *************************************************************
-// <copyright file="TypeParamMarkdownNodeParser.cs" company="None">
+// <copyright file="TypeparamMarkdownNodeParser.cs" company="None">
 //     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
@@ -15,7 +15,11 @@ namespace DocToMarkdown
     /// <summary>
     /// Type parameter markdown node parser.
     /// </summary>
-    internal class TypeParamMarkdownNodeParser : IMarkdownNodeParser
+    /// <example>
+    /// For using the <c>seealso</c> tag are found at
+    /// <see href="http://msdn.microsoft.com/en-us/library/ms173191.aspx"/>
+    /// </example>
+    internal class TypeparamMarkdownNodeParser : IMarkdownNodeParser
     {
         #region fields
 
@@ -27,11 +31,11 @@ namespace DocToMarkdown
         #region ctors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DocToMarkdown.TypeParamMarkdownNodeParser"/> class.
+        /// Initializes a new instance of the <see cref="TypeparamMarkdownNodeParser"/> class.
         /// </summary>
         /// <param name = "parserPool">The parser pool.</param>
         /// <param name="environment">The environment.</param>
-        public TypeParamMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
+        internal TypeparamMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
         {
             this.InitTemplate(environment);
             this._parserPool = parserPool;

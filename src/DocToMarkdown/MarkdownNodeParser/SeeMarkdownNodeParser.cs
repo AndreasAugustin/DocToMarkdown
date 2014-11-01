@@ -105,9 +105,8 @@ namespace DocToMarkdown
 
             var classRefTemp = markdownType == MarkdownType.GithubFlavoredMarkdown ? 
                 String.Format(
-                                   "[{0}][#{1}]{2}",
+                                   "**{0}**{1}",
                                    "{0}",
-                                   "{1}",
                                    environment.NewLine)
                 : String.Format(
                                    "[{0}](#{1}){2}",

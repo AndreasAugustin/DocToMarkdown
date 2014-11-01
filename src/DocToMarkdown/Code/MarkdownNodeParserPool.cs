@@ -1,5 +1,5 @@
 ﻿//  *************************************************************
-// <copyright file="ParseXmlToMarkdown.cs" company="None">
+// <copyright file="MarkdownNodeParserPool.cs" company="None">
 //     Copyright (c) 2014 andy. All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
@@ -19,7 +19,7 @@ namespace DocToMarkdown
     /// <summary>
     /// Parse xml to markdown.
     /// </summary>
-    internal sealed class ParseXmlToMarkdown : IParserPool
+    internal sealed class MarkdownNodeParserPool : IParserPool
     {
         #region fields
 
@@ -31,12 +31,15 @@ namespace DocToMarkdown
         #region ctors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ParseXmlToMarkdown"/> class.
+        /// Initializes a new instance of the <see cref="MarkdownNodeParserPool"/> class.
         /// </summary>
         /// <param name="environment">The environment.</param>
         /// <param name = "markdownType">The markdown type.</param>
         /// <param name = "loggerManager">The logger manager.</param>
-        internal ParseXmlToMarkdown(IEnvironment environment, MarkdownType markdownType, ILoggerManager loggerManager)
+        internal MarkdownNodeParserPool(
+            IEnvironment environment,
+            MarkdownType markdownType,
+            ILoggerManager loggerManager)
         {
             this.InitDictionary(environment, markdownType);
             this._logger = loggerManager.GetLogger("Parser");
@@ -119,6 +122,11 @@ namespace DocToMarkdown
             this._parserDictionary.Add(
                 typeof(SeeMarkdownNodeParser),
                 new SeeMarkdownNodeParser(environment, markdownType));
+
+            this._parserDictionary.Add(
+                typeof(SeealsoMarkdownNodeParser),
+                new SeealsoMarkdownNodeParser(environment, markdownType));
+
             this._parserDictionary.Add(typeof(ParaMarkdownNodeParser), new ParaMarkdownNodeParser(this));
 
             this._parserDictionary.Add(
@@ -131,11 +139,13 @@ namespace DocToMarkdown
                     this,
                     environment));
 
+            this._parserDictionary.Add(typeof(TypeparamrefMarkdownNodeParser), new TypeparamrefMarkdownNodeParser());
+
             this._parserDictionary.Add(
                 typeof(ParamMarkdownNodeParser),
                 new ParamMarkdownNodeParser(this, environment));
 
-            this._parserDictionary.Add(typeof(ParamRefMarkdownNodeParser), new ParamRefMarkdownNodeParser());
+            this._parserDictionary.Add(typeof(ParamrefMarkdownNodeParser), new ParamrefMarkdownNodeParser());
 
             this._parserDictionary.Add(
                 typeof(ExceptionMarkdownNodeParser),

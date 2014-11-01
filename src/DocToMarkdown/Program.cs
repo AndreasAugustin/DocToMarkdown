@@ -121,7 +121,7 @@ namespace DocToMarkdown
             }
 
             _markdownType = (MarkdownType)markdownType;
-            _parser = new ParseXmlToMarkdown(Environment, _markdownType, _loggerManager);
+            _parser = new MarkdownNodeParserPool(Environment, _markdownType, _loggerManager);
         }
 
         #endregion

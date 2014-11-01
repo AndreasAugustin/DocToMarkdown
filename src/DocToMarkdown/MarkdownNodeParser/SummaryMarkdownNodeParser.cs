@@ -75,7 +75,7 @@ namespace DocToMarkdown
 
             foreach (var paramRefElement in paramRefElements)
             {
-                var parsedParamRef = this._parserPool.Parse<ParamRefMarkdownNodeParser>(paramRefElement);
+                var parsedParamRef = this._parserPool.Parse<ParamrefMarkdownNodeParser>(paramRefElement);
                 if (parsedParamRef != null)
                 {
                     paramRefElement.SetValue(parsedParamRef);

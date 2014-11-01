@@ -1,5 +1,5 @@
 ﻿//  *************************************************************
-// <copyright file="ParamRefMarkdownNodeParser.cs" company="None">
+// <copyright file="ParamrefMarkdownNodeParser.cs" company="None">
 //     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
@@ -19,14 +19,14 @@ namespace DocToMarkdown
     /// For using the <c>paramref</c> tag are found at
     /// <see href="http://msdn.microsoft.com/en-us/library/wb7x2fhw.aspx"/>
     /// </example>
-    internal class ParamRefMarkdownNodeParser : IMarkdownNodeParser
+    internal class ParamrefMarkdownNodeParser : IMarkdownNodeParser
     {
         #region ctors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DocToMarkdown.ParamRefMarkdownNodeParser"/> class.
+        /// Initializes a new instance of the <see cref="ParamrefMarkdownNodeParser"/> class.
         /// </summary>
-        internal ParamRefMarkdownNodeParser()
+        internal ParamrefMarkdownNodeParser()
         {
             // Nothing to do
         }

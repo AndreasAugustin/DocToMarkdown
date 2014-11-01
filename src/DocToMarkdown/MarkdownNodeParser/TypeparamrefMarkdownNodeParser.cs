@@ -44,7 +44,14 @@ namespace DocToMarkdown
         /// <param name="element">The element.</param>
         public String ParseToMarkdown(XElement element)
         {
-            throw new NotImplementedException();
+            if (element.Name != "typeparamref")
+            {
+                return null;
+            }
+
+            var name = element.Attribute("name").Value;
+
+            return String.Format("*{0}*", name);
         }
 
         #endregion

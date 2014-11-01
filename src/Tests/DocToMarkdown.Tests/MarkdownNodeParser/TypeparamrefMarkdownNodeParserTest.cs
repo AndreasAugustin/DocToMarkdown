@@ -1,5 +1,5 @@
 ﻿//  *************************************************************
-// <copyright file="ParamRefMarkdownNodeParserTest.cs" company="None">
+// <copyright file="TypeparamrefMarkdownNodeParserTest.cs" company="None">
 //     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
@@ -12,17 +12,18 @@ namespace DocToMarkdown.Tests
     using System;
     using System.Xml.Linq;
 
+    using NSubstitute;
     using NUnit.Framework;
 
     /// <summary>
-    /// Test for the <see cref="ParamRefMarkdownNodeParser"/> class.
+    /// Test for the <see cref="TypeparamrefMarkdownNodeParser"/>
     /// </summary>
     [TestFixture]
-    public class ParamRefMarkdownNodeParserTest
+    public class TypeparamrefMarkdownNodeParserTest
     {
         #region fields
 
-        private const String InputString = @"<paramref name=""Int1""/>";
+        private const String InputString = @"<typeparamref name=""T""/>";
 
         #endregion
 
@@ -47,7 +48,7 @@ namespace DocToMarkdown.Tests
         [Category("Unit test: parser")]
         public void Init_CreateInstance_IsNotNull()
         {
-            var obj = new ParamRefMarkdownNodeParser();
+            var obj = new TypeparamrefMarkdownNodeParser();
 
             Assert.IsNotNull(obj);
         }
@@ -61,13 +62,13 @@ namespace DocToMarkdown.Tests
         {
             var input = this.XmlInput;
 
-            var parser = new ParamRefMarkdownNodeParser();
+            var parser = new TypeparamrefMarkdownNodeParser();
 
             var result = parser.ParseToMarkdown(input);
 
-            const String expected = "*Int1*";
+            const String Expected = "*T*";
 
-            StringAssert.AreEqualIgnoringCase(expected, result);
+            StringAssert.AreEqualIgnoringCase(Expected, result);
         }
 
         #endregion

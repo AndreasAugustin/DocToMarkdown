@@ -28,7 +28,16 @@ namespace DocToMarkdown
         {
             get
             {
-                return ConfigurationManager.AppSettings[key];
+                var value = ConfigurationManager.AppSettings[key];
+
+                if (String.IsNullOrEmpty(value))
+                {
+                    throw new ConfigurationErrorsException(String.Format(
+                            "The value for {0} in the configuration is not set.",
+                            key));
+                }
+
+                return value;
             }
         }
 

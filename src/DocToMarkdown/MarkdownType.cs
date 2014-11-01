@@ -20,24 +20,24 @@ namespace DocToMarkdown
         /// The github flavored markdown.
         /// </summary>
         [Description("Github flavored markdown")]
-        GithubFlavoredMarkdown,
+        GithubFlavoredMarkdown = 0,
               
         /// <summary>
         /// The markdown.
         /// </summary>
         [Description("Standard markdown")]
-        Markdown,
+        Markdown = 1,
 
         /// <summary>
         /// The markdown classic.
         /// </summary>
         [Description("Classic markdown")]
-        MarkdownClassic,
+        MarkdownClassic = 2,
 
         /// <summary>
         /// The markdown extra.
         /// </summary>
         [Description("Extra markdown")]
-        MarkdownExtra
+        MarkdownExtra = 3
     }
 }

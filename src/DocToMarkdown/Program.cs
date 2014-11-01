@@ -27,6 +27,10 @@ namespace DocToMarkdown
         private static readonly IEnvironment Environment = new EnvironmentAdapter();
         private static IParserPool _parser;
 
+        private static String _xmlSourcePath;
+        private static String _markdownTargetPath;
+        private static MarkdownType _markdownType;
+
         #endregion
 
         #region methods
@@ -39,14 +43,11 @@ namespace DocToMarkdown
         {
             Console.WriteLine("Starting to parse");
 
-            _parser = new ParseXmlToMarkdown(Environment, MarkdownType.GithubFlavoredMarkdown);
-
-            var xmlSourcePath = Configuration["xmlSource.folder.path"];
-            var markdownTargetPath = Configuration["markupTarget.folder.path"];
+            Init();
 
             String xml = null;
 
-            foreach (var xmlFileAbsolutePath in Directory.GetFiles(xmlSourcePath))
+            foreach (var xmlFileAbsolutePath in Directory.GetFiles(_xmlSourcePath))
             {
                 if (Path.GetExtension(xmlFileAbsolutePath) != ".xml")
                 {
@@ -81,7 +82,7 @@ namespace DocToMarkdown
                     
                 foreach (var nameSpace in correctedDocDictionary.Keys)
                 {
-                    var absoluteTargetPath = Path.Combine(markdownTargetPath, String.Format("{0}.md", nameSpace));
+                    var absoluteTargetPath = Path.Combine(_markdownTargetPath, String.Format("{0}.md", nameSpace));
 
                     var markdownString = _parser.Parse(correctedDocDictionary[nameSpace]);
 
@@ -96,6 +97,29 @@ namespace DocToMarkdown
                 
             Console.WriteLine("End");
             Console.ReadLine();
+        }
+
+        #endregion
+
+        #region helper methods
+
+        private static void Init()
+        {
+            _parser = new ParseXmlToMarkdown(Environment, MarkdownType.GithubFlavoredMarkdown);
+
+            _xmlSourcePath = Configuration["xmlSource.folder.path"];
+            _markdownTargetPath = Configuration["markupTarget.folder.path"];
+
+            var markdownTypeString = Configuration["markdownType"];
+           
+            Int32 markdownType;
+
+            if (!Int32.TryParse(markdownTypeString, out markdownType))
+            {
+                throw new InvalidCastException("The cast for the markdown type did not work");
+            }
+
+            _markdownType = (MarkdownType)markdownType;
         }
 
         #endregion

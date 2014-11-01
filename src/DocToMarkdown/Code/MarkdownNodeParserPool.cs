@@ -122,6 +122,11 @@ namespace DocToMarkdown
             this._parserDictionary.Add(
                 typeof(SeeMarkdownNodeParser),
                 new SeeMarkdownNodeParser(environment, markdownType));
+
+            this._parserDictionary.Add(
+                typeof(SeealsoMarkdownNodeParser),
+                new SeealsoMarkdownNodeParser(environment, markdownType));
+
             this._parserDictionary.Add(typeof(ParaMarkdownNodeParser), new ParaMarkdownNodeParser(this));
 
             this._parserDictionary.Add(

@@ -7,7 +7,7 @@
 // <email>andy.augustin@t-online.de</email>
 // *************************************************************
 
-namespace DocToMarkdown
+namespace DocToMarkdown.Common
 {
     using System;
 

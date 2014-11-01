@@ -7,7 +7,7 @@
 // <email>andy.augustin@t-online.de</email>
 // *************************************************************
 
-namespace DocToMarkdown
+namespace DocToMarkdown.Common
 {
     using System;
     using System.Configuration;
@@ -17,6 +17,25 @@ namespace DocToMarkdown
     /// </summary>
     public class ConfigurationAdapter : IConfiguration
     {
+        #region fields
+
+        private ILogger _logger;
+
+        #endregion
+
+        #region ctors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DocToMarkdown.Common.ConfigurationAdapter"/> class.
+        /// </summary>
+        /// <param name="loggerManager">Logger manager.</param>
+        public ConfigurationAdapter(ILoggerManager loggerManager)
+        {
+            this._logger = loggerManager.GetLogger("Configuration");
+        }
+
+        #endregion
+
         #region indexers
 
         /// <summary>
@@ -32,10 +51,16 @@ namespace DocToMarkdown
 
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new ConfigurationErrorsException(String.Format(
-                            "The value for {0} in the configuration is not set.",
-                            key));
+                    var errorMessage = String.Format(
+                                           "The value for {0} in the configuration is not set.",
+                                           key);
+
+                    this._logger.Error(String.Format(errorMessage));
+
+                    throw new ConfigurationErrorsException(errorMessage);
                 }
+
+                this._logger.Info(String.Format("Configuration for key: {0} valid with value: {1}", key, value));
 
                 return value;
             }

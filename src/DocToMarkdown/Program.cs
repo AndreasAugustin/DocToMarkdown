@@ -14,6 +14,8 @@ namespace DocToMarkdown
     using System.IO;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Starts the console application.
     /// Some input for this project came from
@@ -23,10 +25,8 @@ namespace DocToMarkdown
     {
         #region fields
 
-        private static readonly IConfiguration Configuration = new ConfigurationAdapter();
         private static readonly IEnvironment Environment = new EnvironmentAdapter();
         private static IParserPool _parser;
-
         private static String _xmlSourcePath;
         private static String _markdownTargetPath;
         private static MarkdownType _markdownType;
@@ -105,12 +105,12 @@ namespace DocToMarkdown
 
         private static void Init()
         {
-            _parser = new ParseXmlToMarkdown(Environment, MarkdownType.GithubFlavoredMarkdown);
+            var parserManager = new NLogManagerAdapter();
+            var configuration = new ConfigurationAdapter(parserManager);
+            _xmlSourcePath = configuration["xmlSource.folder.path"];
+            _markdownTargetPath = configuration["markupTarget.folder.path"];
 
-            _xmlSourcePath = Configuration["xmlSource.folder.path"];
-            _markdownTargetPath = Configuration["markupTarget.folder.path"];
-
-            var markdownTypeString = Configuration["markdownType"];
+            var markdownTypeString = configuration["markdownType"];
            
             Int32 markdownType;
 
@@ -120,6 +120,7 @@ namespace DocToMarkdown
             }
 
             _markdownType = (MarkdownType)markdownType;
+            _parser = new ParseXmlToMarkdown(Environment, _markdownType, parserManager);
         }
 
         #endregion

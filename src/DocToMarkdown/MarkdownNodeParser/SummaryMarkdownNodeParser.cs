@@ -64,8 +64,10 @@ namespace DocToMarkdown
             foreach (var seeElement in seeElements)
             {
                 var parsedSee = this._parserPool.Parse<SeeMarkdownNodeParser>(seeElement);
-
-                seeElement.SetValue(parsedSee);
+                if (parsedSee != null)
+                {
+                    seeElement.SetValue(parsedSee);
+                }
             }
 
             return String.Format(

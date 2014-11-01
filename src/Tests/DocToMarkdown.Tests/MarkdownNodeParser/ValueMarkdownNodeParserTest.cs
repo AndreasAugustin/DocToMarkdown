@@ -35,7 +35,10 @@ namespace DocToMarkdown.Tests
 
         private XElement InputXmlElement
         {
-            get{ return XElement.Parse(InputString); }
+            get
+            {
+                return XElement.Parse(InputString);
+            }
         }
 
         #endregion

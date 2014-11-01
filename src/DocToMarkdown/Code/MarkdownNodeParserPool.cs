@@ -134,11 +134,13 @@ namespace DocToMarkdown
                     this,
                     environment));
 
+            this._parserDictionary.Add(typeof(TypeparamrefMarkdownNodeParser), new TypeparamrefMarkdownNodeParser());
+
             this._parserDictionary.Add(
                 typeof(ParamMarkdownNodeParser),
                 new ParamMarkdownNodeParser(this, environment));
 
-            this._parserDictionary.Add(typeof(ParamRefMarkdownNodeParser), new ParamRefMarkdownNodeParser());
+            this._parserDictionary.Add(typeof(ParamrefMarkdownNodeParser), new ParamrefMarkdownNodeParser());
 
             this._parserDictionary.Add(
                 typeof(ExceptionMarkdownNodeParser),

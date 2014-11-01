@@ -56,7 +56,6 @@
     <Compile Include="MarkdownNodeParser\CMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ListMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ParaMarkdownNodeParser.cs" />
-    <Compile Include="MarkdownNodeParser\ParamRefMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\PermissionMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\SeealsoMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\TypeparamMarkdownNodeParser.cs" />
@@ -65,6 +64,7 @@
     <Compile Include="Code\XElementCorrection.cs" />
     <Compile Include="Code\MarkdownType.cs" />
     <Compile Include="Code\MarkdownNodeParserPool.cs" />
+    <Compile Include="MarkdownNodeParser\ParamrefMarkdownNodeParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -46,9 +46,10 @@
     <Compile Include="XElementCorrectionTest.cs" />
     <Compile Include="MarkdownNodeParser\ListMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\ParaMarkdownParserTest.cs" />
-    <Compile Include="MarkdownNodeParser\ParamRefMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\RemarksMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\ValueMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\TypeparamrefMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ParamrefMarkdownNodeParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DocToMarkdown\DocToMarkdown.csproj">

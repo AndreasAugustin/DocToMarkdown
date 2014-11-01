@@ -1,9 +1,19 @@
 DocToMarkdown
 =============
-I was searching for something to parse my c# documentation to markdown. 
-Because the only thing I found here [DocToMarkdown](https://gist.github.com/lontivero/593fc51f1208555112e0) was not fully supporting my needs I wrote this little console application.
+With this parser you are able to parse your Visual Studio or Xamarin Studio xml outputs into markdown format.
+The idea is to get a readable API documentation for your project which can be easily used for your wiki project pages. For setting up the project edit the [App.config](https://github.com/AndreasAugustin/DocToMarkdown/blob/master/src/DocToMarkdown/App.config) file.
+    
 
-You can find examples for parsed xml files at the [DocToMarkdown wiki pages](https://github.com/AndreasAugustin/DocToMarkdown/wiki).
+### Remarks ###
+
+- Some input came from the project [DocToMarkdown](https://gist.github.com/lontivero/593fc51f1208555112e0) .
+- This project uses through DI NLog as logger. You can find some informations about NLog at GitHub https://github.com/NLog/NLog .   Informations about the NLog.config configuration file can be found at https://github.com/nlog/nlog/wiki/Configuration-file  . If you like to use another logger, just implement the ILogger and ILoggerManager interface.
+
+
+### Examples ###
+You are able to find examples for parsed xml files at the [DocToMarkdown wiki pages](https://github.com/AndreasAugustin/DocToMarkdown/wiki). I used the xml which have been created from this project.
+
+---
 
 ## Some legal stuff ##
 
@@ -26,3 +36,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+### External resources ###
+The project depends on [NLog](https://github.com/NLog/NLog) .
+Here you are able to find the [license](https://github.com/NLog/NLog/blob/master/LICENSE.txt) .

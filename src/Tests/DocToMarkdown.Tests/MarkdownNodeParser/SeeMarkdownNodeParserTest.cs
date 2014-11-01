@@ -1,5 +1,5 @@
 ﻿//  *************************************************************
-// <copyright file="TypeparamrefMarkdownNodeParserTest.cs" company="None">
+// <copyright file="SeeMarkdownNodeParserTest.cs" company="None">
 //     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
@@ -12,18 +12,20 @@ namespace DocToMarkdown.Tests
     using System;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     using NSubstitute;
     using NUnit.Framework;
 
     /// <summary>
-    /// Test for the <see cref="TypeparamrefMarkdownNodeParser"/>
+    /// Test for the <see cref="SeeMarkdownNodeParser"/> class.
     /// </summary>
     [TestFixture]
-    public class TypeparamrefMarkdownNodeParserTest
+    public class SeeMarkdownNodeParserTest
     {
         #region fields
 
-        private const String InputString = @"<typeparamref name=""T""/>";
+        private const String InputString = @"<see cref=""System.Console.WriteLine(System.String)""/>";
 
         #endregion
 
@@ -48,7 +50,10 @@ namespace DocToMarkdown.Tests
         [Category("Unit test: parser")]
         public void Init_CreateInstance_IsNotNull()
         {
-            var obj = new TypeparamrefMarkdownNodeParser();
+            var environmentStub = Substitute.For<IEnvironment>();
+            var markdownTypeStub = MarkdownType.GithubFlavoredMarkdown;
+
+            var obj = new SeeMarkdownNodeParser(environmentStub, markdownTypeStub);
 
             Assert.IsNotNull(obj);
         }
@@ -61,14 +66,20 @@ namespace DocToMarkdown.Tests
         public void Parse_ParseInputElement_EqualsExpected()
         {
             var input = this.XmlInput;
+            var environmentMock = Substitute.For<IEnvironment>();
+            environmentMock.NewLine.Returns(Environment.NewLine);
 
-            var parser = new TypeparamrefMarkdownNodeParser();
+            var markdownType = MarkdownType.GithubFlavoredMarkdown;
+
+            var parser = new SeeMarkdownNodeParser(environmentMock, markdownType);
 
             var result = parser.ParseToMarkdown(input);
 
-            const String Expected = "*T*";
+            var expected = String.Format(
+                               "**System.Console.WriteLine(System.String)**{0}",
+                               environmentMock.NewLine);
 
-            StringAssert.AreEqualIgnoringCase(Expected, result);
+            StringAssert.AreEqualIgnoringCase(expected, result);
         }
 
         #endregion

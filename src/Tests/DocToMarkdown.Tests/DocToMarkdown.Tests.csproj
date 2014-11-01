@@ -50,6 +50,8 @@
     <Compile Include="MarkdownNodeParser\ValueMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\TypeparamrefMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\ParamrefMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\SeeMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\SeealsoMarkdownNodeParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DocToMarkdown\DocToMarkdown.csproj">

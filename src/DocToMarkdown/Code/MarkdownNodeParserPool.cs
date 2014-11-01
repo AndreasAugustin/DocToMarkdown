@@ -1,5 +1,5 @@
 ﻿//  *************************************************************
-// <copyright file="ParseXmlToMarkdown.cs" company="None">
+// <copyright file="MarkdownNodeParserPool.cs" company="None">
 //     Copyright (c) 2014 andy. All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
@@ -19,7 +19,7 @@ namespace DocToMarkdown
     /// <summary>
     /// Parse xml to markdown.
     /// </summary>
-    internal sealed class ParseXmlToMarkdown : IParserPool
+    internal sealed class MarkdownNodeParserPool : IParserPool
     {
         #region fields
 
@@ -36,7 +36,10 @@ namespace DocToMarkdown
         /// <param name="environment">The environment.</param>
         /// <param name = "markdownType">The markdown type.</param>
         /// <param name = "loggerManager">The logger manager.</param>
-        internal ParseXmlToMarkdown(IEnvironment environment, MarkdownType markdownType, ILoggerManager loggerManager)
+        internal MarkdownNodeParserPool(
+            IEnvironment environment,
+            MarkdownType markdownType,
+            ILoggerManager loggerManager)
         {
             this.InitDictionary(environment, markdownType);
             this._logger = loggerManager.GetLogger("Parser");

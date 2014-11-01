@@ -62,9 +62,9 @@
     <Compile Include="MarkdownNodeParser\TypeparamMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\TypeparamrefMarkdownNodeParser.cs" />
     <Compile Include="MarkdownNodeParser\ValueMarkdownNodeParser.cs" />
-    <Compile Include="Code\ParseXmlToMarkdown.cs" />
     <Compile Include="Code\XElementCorrection.cs" />
     <Compile Include="Code\MarkdownType.cs" />
+    <Compile Include="Code\MarkdownNodeParserPool.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

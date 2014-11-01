@@ -30,6 +30,7 @@ namespace DocToMarkdown
         private static String _xmlSourcePath;
         private static String _markdownTargetPath;
         private static MarkdownType _markdownType;
+        private static ILoggerManager _loggerManager;
 
         #endregion
 
@@ -78,7 +79,7 @@ namespace DocToMarkdown
 
                 var node = doc.Root;
 
-                var correctedDocDictionary = new XElementCorrection().CorrectionAndNamespaceOrderXElement(node);
+                var correctedDocDictionary = new XElementCorrection(_loggerManager).CorrectionAndNamespaceOrderXElement(node);
                     
                 foreach (var nameSpace in correctedDocDictionary.Keys)
                 {
@@ -105,8 +106,8 @@ namespace DocToMarkdown
 
         private static void Init()
         {
-            var parserManager = new NLogManagerAdapter();
-            var configuration = new ConfigurationAdapter(parserManager);
+            _loggerManager = new NLogManagerAdapter();
+            var configuration = new ConfigurationAdapter(_loggerManager);
             _xmlSourcePath = configuration["xmlSource.folder.path"];
             _markdownTargetPath = configuration["markupTarget.folder.path"];
 
@@ -120,7 +121,7 @@ namespace DocToMarkdown
             }
 
             _markdownType = (MarkdownType)markdownType;
-            _parser = new ParseXmlToMarkdown(Environment, _markdownType, parserManager);
+            _parser = new ParseXmlToMarkdown(Environment, _markdownType, _loggerManager);
         }
 
         #endregion

@@ -15,15 +15,31 @@ namespace DocToMarkdown
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
 
+    using DocToMarkdown.Common;
+
     /// <summary>
     /// Correction for the cryptic member name in the xml.
     /// </summary>
-    internal class XElementCorrection
+    internal sealed class XElementCorrection
     {
         #region fields
 
         private readonly Regex _memberTypeRegex = new Regex(@"^.*?(?=:)");
         private Dictionary<String, List<XElement>> _namespaceDictionary = new Dictionary<String, List<XElement>>();
+        private ILogger _logger;
+
+        #endregion
+
+        #region ctors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DocToMarkdown.XElementCorrection"/> class.
+        /// </summary>
+        /// <param name="loggermanager">The logger manager.</param>
+        internal XElementCorrection(ILoggerManager loggermanager)
+        {
+            this._logger = loggermanager.GetLogger("XElementCorrection");
+        }
 
         #endregion
 

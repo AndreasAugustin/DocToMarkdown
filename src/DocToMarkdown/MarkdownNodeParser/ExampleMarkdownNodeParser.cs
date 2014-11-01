@@ -72,6 +72,14 @@ namespace DocToMarkdown
                 seeElement.SetValue(parsedSee);
             }
 
+            var listElements = element.Elements("list");
+            foreach (var listElement in listElements)
+            {
+                var parsedList = this._parserPool.Parse<ListMarkdownNodeParser>(listElement);
+
+                listElement.SetValue(parsedList);
+            }
+
             var name = element.Value;
 
             return String.Format(

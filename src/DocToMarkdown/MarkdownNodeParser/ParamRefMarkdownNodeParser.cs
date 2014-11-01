@@ -12,8 +12,6 @@ namespace DocToMarkdown
     using System;
     using System.Xml.Linq;
 
-    using DocToMarkdown.Common;
-
     /// <summary>
     /// Parameter reference markdown node parser.
     /// </summary>
@@ -39,12 +37,20 @@ namespace DocToMarkdown
 
         /// <summary>
         /// Parses to markdown.
+        /// The <paramref name="element"/> is the element to parse.
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
         public String ParseToMarkdown(XElement element)
         {
-            throw new NotImplementedException();
+            if (element.Name != "paramref")
+            {
+                return null;
+            }
+
+            var name = element.Attribute("name").Value;
+
+            return String.Format("*{0}*", name);
         }
 
         #endregion

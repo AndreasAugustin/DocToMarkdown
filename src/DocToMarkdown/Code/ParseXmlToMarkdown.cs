@@ -76,6 +76,7 @@ namespace DocToMarkdown
         /// <param name="element">The xml element to parse.</param>
         /// <returns>The parsed node.</returns>
         /// <typeparam name="TParser">The parser.</typeparam>
+        /// <exception cref="KeyNotFoundException">Thrown when the parser is not found.</exception>
         public String Parse<TParser>(XElement element)
             where TParser : IMarkdownNodeParser
         {
@@ -134,6 +135,8 @@ namespace DocToMarkdown
                 typeof(ParamMarkdownNodeParser),
                 new ParamMarkdownNodeParser(this, environment));
 
+            this._parserDictionary.Add(typeof(ParamRefMarkdownNodeParser), new ParamRefMarkdownNodeParser());
+
             this._parserDictionary.Add(
                 typeof(ExceptionMarkdownNodeParser),
                 new ExceptionMarkdownNodeParser(
@@ -156,7 +159,11 @@ namespace DocToMarkdown
                 typeof(RemarksMarkdownNodeParser),
                 new RemarksMarkdownNodeParser(
                     this,
-                    environment));           
+                    environment));
+
+            this._parserDictionary.Add(
+                typeof(ValueMarkdownNodeParser),
+                new ValueMarkdownNodeParser(environment));   
         }
 
         #endregion

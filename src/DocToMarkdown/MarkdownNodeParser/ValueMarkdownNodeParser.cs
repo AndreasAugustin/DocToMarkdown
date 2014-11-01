@@ -23,13 +23,20 @@ namespace DocToMarkdown
     /// </example>
     internal class ValueMarkdownNodeParser : IMarkdownNodeParser
     {
+        #region fields
+
+        private String _template;
+
+        #endregion
+
         #region ctors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocToMarkdown.ValueMarkdownNodeParser"/> class.
         /// </summary>
-        internal ValueMarkdownNodeParser()
+        internal ValueMarkdownNodeParser(IEnvironment environment)
         {
+            this.InitTemplate(environment);
         }
 
         #endregion
@@ -38,12 +45,27 @@ namespace DocToMarkdown
 
         /// <summary>
         /// Parses to markdown.
+        /// The <paramref name="element"/> is the element to parse.
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
         public String ParseToMarkdown(XElement element)
         {
-            throw new NotImplementedException();
+            if (element.Name != "value")
+            {
+                return null;
+            }
+
+            return String.Format(this._template, element.Value);
+        }
+
+        #endregion
+
+        #region helper methods
+
+        private void InitTemplate(IEnvironment environment)
+        {
+            this._template = String.Format("{0}> **Value:** {1}{0}", environment.NewLine, "{0}");
         }
 
         #endregion

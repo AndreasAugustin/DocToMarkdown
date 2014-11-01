@@ -10,6 +10,7 @@
 namespace DocToMarkdown
 {
     using System;
+    using System.Linq;
     using System.Text;
     using System.Xml.Linq;
 
@@ -45,6 +46,7 @@ namespace DocToMarkdown
 
         /// <summary>
         /// Parses to markdown.
+        /// The <paramref name="element"/> is the element to parse.
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
@@ -58,11 +60,22 @@ namespace DocToMarkdown
             var elements = element.Elements();
             var stringBuilder = new StringBuilder();
 
-            foreach (var el in elements)
+            foreach (var el in elements.Where(e => e.Name != "paramref"))
             {
                 stringBuilder.Append(this._parserPool.Parse(el));
             }
 
+            var paramRefElements = element.Elements("paramref");
+
+            foreach (var paramRefElement in paramRefElements)
+            {
+                var parsedParamRef = this._parserPool.Parse<ParamRefMarkdownNodeParser>(paramRefElement);
+                if (parsedParamRef != null)
+                {
+                    paramRefElement.SetValue(parsedParamRef);
+                }
+            }
+                
             return String.Format(
                 this._template,
                 element.Value,

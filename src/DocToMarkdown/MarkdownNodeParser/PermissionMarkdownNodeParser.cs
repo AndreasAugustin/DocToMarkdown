@@ -39,9 +39,11 @@ namespace DocToMarkdown
 
         /// <summary>
         /// Parses to markdown.
+        /// The <paramref name="element"/> is the element to parse.
         /// </summary>
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
+        /// <exception cref="NotImplementedException">Thrown when trying to run this method.</exception>
         public String ParseToMarkdown(XElement element)
         {
             throw new NotImplementedException();

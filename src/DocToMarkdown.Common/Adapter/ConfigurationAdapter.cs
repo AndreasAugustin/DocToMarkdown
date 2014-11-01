@@ -43,6 +43,8 @@ namespace DocToMarkdown.Common
         /// </summary>
         /// <param name="key">The key in the <see href="App.config"/>App.config file.</param>
         /// <returns>The configuration entry.</returns>
+        /// <exception cref="ConfigurationErrorsException">Thrown when the configuration value 
+        /// for the given key is null or empty.</exception>
         public String this[String key]
         {
             get

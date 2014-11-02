@@ -64,6 +64,20 @@ namespace DocToMarkdown.Common
         /// <param name="message">The message.</param>
         void Fatal(String message);
 
+        /// <summary>
+        /// Log the specified loglevel and message.
+        /// </summary>
+        /// <param name="loglevel">Loglevel.</param>
+        /// <param name="message">Message.</param>
+        void Log(LogLevel loglevel, String message);
+
+        /// <summary>
+        /// Determines whether this instance is enabled the specified loglevel.
+        /// </summary>
+        /// <returns><c>true</c> if this instance is enabled the specified loglevel; otherwise, <c>false</c>.</returns>
+        /// <param name="loglevel">Loglevel.</param>
+        Boolean IsEnabled(LogLevel loglevel);
+
         #endregion
     }
 }

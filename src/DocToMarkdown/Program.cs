@@ -96,6 +96,8 @@ namespace DocToMarkdown
                 }
             }
                 
+            _loggerManager.ShutDown();
+
             Console.WriteLine("End");
             Console.ReadLine();
         }
@@ -107,12 +109,35 @@ namespace DocToMarkdown
         private static void Init()
         {
             _loggerManager = new NLogManagerAdapter();
+
             var configuration = new ConfigurationAdapter(_loggerManager);
+
+            SetLoggerManager(configuration);
+
+            SetMarkdownType(configuration);
+
             _xmlSourcePath = configuration["xmlSource.folder.path"];
             _markdownTargetPath = configuration["markupTarget.folder.path"];
 
+            _parser = new MarkdownNodeParserPool(Environment, _markdownType, _loggerManager);
+        }
+
+        private static void SetLoggerManager(IConfiguration configuration)
+        {
+            var globalThresholdString = configuration["logger.global.threshold"];
+            Int32 globalThreshold;
+            if (!Int32.TryParse(globalThresholdString, out globalThreshold))
+            {
+                throw new InvalidCastException("The cast for the global threshold did not work");
+            }
+
+            _loggerManager.GlobalThreshold = (LogLevel)globalThreshold;
+        }
+
+        private static void SetMarkdownType(IConfiguration configuration)
+        {
             var markdownTypeString = configuration["markdownType"];
-           
+
             Int32 markdownType;
 
             if (!Int32.TryParse(markdownTypeString, out markdownType))
@@ -121,7 +146,6 @@ namespace DocToMarkdown
             }
 
             _markdownType = (MarkdownType)markdownType;
-            _parser = new MarkdownNodeParserPool(Environment, _markdownType, _loggerManager);
         }
 
         #endregion

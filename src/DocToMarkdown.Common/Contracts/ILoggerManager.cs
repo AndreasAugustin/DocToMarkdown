@@ -14,8 +14,19 @@ namespace DocToMarkdown.Common
     /// <summary>
     /// Interface for the logger manager
     /// </summary>
-    public interface ILoggerManager
+    public interface ILoggerManager : IDisposable
     {
+        #region properties
+
+        /// <summary>
+        /// Gets or sets the global threshold.
+        /// Loglevels below this threshold are not logged.
+        /// </summary>
+        /// <value>The global threshold.</value>
+        LogLevel GlobalThreshold { get; set; }
+
+        #endregion
+
         #region methods
 
         /// <summary>
@@ -24,6 +35,28 @@ namespace DocToMarkdown.Common
         /// <returns>The logger.</returns>
         /// <param name="loggerName">The logger name.</param>
         ILogger GetLogger(String loggerName);
+
+        /// <summary>
+        /// Disables the logging.
+        /// </summary>
+        /// <returns>The logging.</returns>
+        IDisposable DisableLogging();
+
+        /// <summary>
+        /// Enables the logging.
+        /// </summary>
+        void EnableLogging();
+
+        /// <summary>
+        /// Determines whether this instance is logging enabled.
+        /// </summary>
+        /// <returns><c>true</c> if this instance is logging enabled; otherwise, <c>false</c>.</returns>
+        Boolean IsLoggingEnabled();
+
+        /// <summary>
+        /// Dispose all targets and shut down.
+        /// </summary>
+        void ShutDown();
 
         #endregion
     }

@@ -16,12 +16,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DocToMarkdown.Common.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -40,11 +40,15 @@
     <Compile Include="Contracts\IEnvironment.cs" />
     <Compile Include="Adapter\ConfigurationAdapter.cs" />
     <Compile Include="Adapter\EnvironmentAdapter.cs" />
+    <Compile Include="Code\LogLevel.cs" />
+    <Compile Include="Extensions\LogLevelConverterExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Contracts\" />
     <Folder Include="Adapter\" />
+    <Folder Include="Code\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

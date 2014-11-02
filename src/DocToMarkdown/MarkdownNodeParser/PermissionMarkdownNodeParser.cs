@@ -23,14 +23,21 @@ namespace DocToMarkdown
     /// </example>
     internal class PermissionMarkdownNodeParser : IMarkdownNodeParser
     {
+        #region fields
+
+        private String _template;
+
+        #endregion
+
         #region ctors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocToMarkdown.PermissionMarkdownNodeParser"/> class.
         /// </summary>
-        internal PermissionMarkdownNodeParser()
+        /// <param name="environment">The environment.</param>
+        internal PermissionMarkdownNodeParser(IEnvironment environment)
         {
-            // Nothing to do
+            this.InitTemplate(environment);
         }
 
         #endregion
@@ -44,9 +51,34 @@ namespace DocToMarkdown
         /// <returns>The parsed markdown.</returns>
         /// <param name="element">The element.</param>
         /// <exception cref="NotImplementedException">Thrown when trying to run this method.</exception>
+        /// <permission cref="System.Security.PermissionSet">Everyone can access this method within this assembly.</permission>
         public String ParseToMarkdown(XElement element)
         {
-            throw new NotImplementedException();
+            if (element.Name != "permission")
+            {
+                return null;
+            }
+
+            var cref = element.Attribute("cref").Value;
+            var value = element.Value;
+
+            return String.Format(
+                _template,
+                cref, value);
+        }
+
+        #endregion
+
+        #region helper methods
+
+        private void InitTemplate(IEnvironment environment)
+        {
+            if (!String.IsNullOrEmpty(this._template))
+            {
+                return;
+            }
+
+            this._template = String.Format("{2}**Permision:**>*{0}*: {1}{2}", "{0}", "{1}", environment.NewLine);
         }
 
         #endregion

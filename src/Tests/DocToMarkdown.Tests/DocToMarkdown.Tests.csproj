@@ -52,6 +52,7 @@
     <Compile Include="MarkdownNodeParser\ParamrefMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\SeeMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\SeealsoMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\PermissionMarkdownNodeParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DocToMarkdown\DocToMarkdown.csproj">

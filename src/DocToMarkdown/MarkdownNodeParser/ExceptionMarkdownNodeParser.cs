@@ -37,10 +37,11 @@ namespace DocToMarkdown
         /// </summary>
         /// <param name="parserPool">The parser pool.</param>
         /// <param name="environment">The environment.</param>
-        public ExceptionMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
+        /// <param name="markdownType">Teh markdown type.</param>
+        public ExceptionMarkdownNodeParser(IParserPool parserPool, IEnvironment environment, MarkdownType markdownType)
         {
             this._parserPool = parserPool;
-            this.InitTemplate(environment);
+            this.InitTemplate(environment, markdownType);
         }
 
         #endregion
@@ -75,14 +76,16 @@ namespace DocToMarkdown
 
         #region helper methods
 
-        private void InitTemplate(IEnvironment environment)
+        private void InitTemplate(IEnvironment environment, MarkdownType markdownType)
         {
             if (!String.IsNullOrEmpty(template))
             {
                 return;
             }
 
-            template = String.Format("> **Exception:** [{0}](#{0}):{2}> {1}{2}{2}", "{0}", "{1}", environment.NewLine);
+            template = markdownType == MarkdownType.GithubFlavoredMarkdown ?
+                String.Format(">**Exception:** *{0}*:{2}> {1}{2}{2}", "{0}", "{1}", environment.NewLine)
+                : String.Format(">**Exception:** [{0}](#{0}):{2}> {1}{2}{2}", "{0}", "{1}", environment.NewLine);
         }
 
         #endregion

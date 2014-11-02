@@ -132,6 +132,11 @@ namespace DocToMarkdown
                     environment));
 
             this._parserDictionary.Add(
+                typeof(PermissionMarkdownNodeParser),
+                new PermissionMarkdownNodeParser(
+                    environment));
+
+            this._parserDictionary.Add(
                 typeof(SeeMarkdownNodeParser),
                 new SeeMarkdownNodeParser(environment, markdownType));
 
@@ -163,7 +168,7 @@ namespace DocToMarkdown
                 typeof(ExceptionMarkdownNodeParser),
                 new ExceptionMarkdownNodeParser(
                     this,
-                    environment));
+                    environment, markdownType));
            
             this._parserDictionary.Add(
                 typeof(CodeMarkdownNodeParser),

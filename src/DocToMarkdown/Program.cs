@@ -96,6 +96,8 @@ namespace DocToMarkdown
                 }
             }
                 
+            _loggerManager.ShutDown();
+
             Console.WriteLine("End");
             Console.ReadLine();
         }

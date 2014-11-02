@@ -10,6 +10,8 @@
 namespace DocToMarkdown.Common.Tests
 {
     using System;
+    using System.Collections.Generic;
+
     using DocToMarkdown.Common;
 
     using NUnit.Framework;
@@ -20,6 +22,26 @@ namespace DocToMarkdown.Common.Tests
     [TestFixture]
     public class NLogManagerAdapterTest
     {
+        #region properties
+
+        private IEnumerable<TestCaseData> TestDataSource
+        {
+            get
+            {
+                yield return new TestCaseData(LogLevel.Debug);
+                yield return new TestCaseData(LogLevel.Error);
+                yield return new TestCaseData(LogLevel.Fatal);
+                yield return new TestCaseData(LogLevel.Info);
+                yield return new TestCaseData(LogLevel.Off);
+                yield return new TestCaseData(LogLevel.Trace);
+                yield return new TestCaseData(LogLevel.Warn);
+            }
+        }
+
+        #endregion
+
+        #region methods
+
         /// <summary>
         /// Tests the class creation.
         /// </summary>
@@ -30,6 +52,8 @@ namespace DocToMarkdown.Common.Tests
             var logManager = new NLogManagerAdapter();
 
             Assert.IsNotNull(logManager);
+
+            logManager.ShutDown();
         }
 
         /// <summary>
@@ -47,6 +71,32 @@ namespace DocToMarkdown.Common.Tests
 
             const String ExpectedName = "Test";
             Assert.AreEqual(ExpectedName, result.Name);
+
+            logManager.ShutDown();
         }
+
+        /// <summary>
+        /// Tests the global threshold property.
+        /// </summary>
+        /// <param name="loglevel">The log level.</param>
+        [Test]
+        [Category("Unit test: Logger manager")]
+        [TestCaseSource("TestDataSource")]
+        public void GlobalThreshold_SetGlobalThreshold_ValueEqualsExpected(LogLevel loglevel)
+        {
+            var input = loglevel;
+            var logManager = new NLogManagerAdapter();
+
+            logManager.GlobalThreshold = input;
+            var result = logManager.GlobalThreshold;
+
+            var expected = loglevel;
+
+            Assert.AreEqual(expected, result);
+
+            logManager.ShutDown();
+        }
+
+        #endregion
     }
 }

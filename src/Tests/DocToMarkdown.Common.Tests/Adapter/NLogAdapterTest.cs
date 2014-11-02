@@ -7,7 +7,7 @@
 // <email>andy.augustin@t-online.de</email>
 // *************************************************************
 
-namespace DocToMarkdown.Tests
+namespace DocToMarkdown.Common.Tests
 {
     using System;
     using System.IO;
@@ -77,6 +77,7 @@ namespace DocToMarkdown.Tests
             }
             finally
             {
+                this.LoggerManagerMock.ShutDown();
                 Directory.Delete(logDirectoryPath, true);
             }
         }

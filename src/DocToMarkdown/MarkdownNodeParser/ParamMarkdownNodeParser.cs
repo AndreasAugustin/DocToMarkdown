@@ -94,7 +94,7 @@ namespace DocToMarkdown
             }
                 
             this._template = String.Format(
-                "> **Parameter** {0}: {1} {2}",
+                "{2}> **Parameter** *{0}*: {1} {2}",
                 "{0}",
                 "{1}",
                 environment.NewLine);

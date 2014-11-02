@@ -16,6 +16,17 @@ namespace DocToMarkdown.Common
     /// </summary>
     public interface ILoggerManager : IDisposable
     {
+        #region properties
+
+        /// <summary>
+        /// Gets or sets the global threshold.
+        /// Loglevels below this threshold are not logged.
+        /// </summary>
+        /// <value>The global threshold.</value>
+        LogLevel GlobalThreshold { get; set; }
+
+        #endregion
+
         #region methods
 
         /// <summary>

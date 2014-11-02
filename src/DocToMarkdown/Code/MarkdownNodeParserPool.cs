@@ -41,8 +41,8 @@ namespace DocToMarkdown
             MarkdownType markdownType,
             ILoggerManager loggerManager)
         {
-            this.InitDictionary(environment, markdownType);
             this._logger = loggerManager.GetLogger("Parser");
+            this.InitDictionary(environment, markdownType);
         }
 
         #endregion
@@ -56,6 +56,8 @@ namespace DocToMarkdown
         /// <returns>The parsed node.</returns>
         public String Parse(XNode node)
         {
+            this._logger.Debug("---- Started to parse in parser pool.");
+
             var element = node as XElement;
 
             if (element == null)
@@ -70,6 +72,8 @@ namespace DocToMarkdown
                 strBuilder.Append(parser.ParseToMarkdown(element));
             }
 
+            this._logger.Debug("---- Finished parsing in parser pool.");
+
             return strBuilder.ToString();
         }
 
@@ -83,12 +87,18 @@ namespace DocToMarkdown
         public String Parse<TParser>(XElement element)
             where TParser : IMarkdownNodeParser
         {
+            this._logger.Debug(String.Format("---- Started parsing for Parser {0}.", typeof(TParser).ToString()));
+
             if (!this._parserDictionary.ContainsKey(typeof(TParser)))
             {
                 throw new KeyNotFoundException("Parser not found");
             }
 
-            return this._parserDictionary[typeof(TParser)].ParseToMarkdown(element);
+            var parsed = this._parserDictionary[typeof(TParser)].ParseToMarkdown(element);
+
+            this._logger.Debug(String.Format("---- Finished parsing for Parser {0}.", typeof(TParser).ToString()));
+
+            return parsed;
         }
 
         #endregion
@@ -97,6 +107,8 @@ namespace DocToMarkdown
 
         private void InitDictionary(IEnvironment environment, MarkdownType markdownType)
         {
+            this._logger.Debug("---- Started initialising of parser dictionary.");
+
             this._parserDictionary = new Dictionary<Type, IMarkdownNodeParser>();
 
             this._parserDictionary.Add(typeof(DocMarkdownNodeParser), new DocMarkdownNodeParser(this, environment));
@@ -173,7 +185,9 @@ namespace DocToMarkdown
 
             this._parserDictionary.Add(
                 typeof(ValueMarkdownNodeParser),
-                new ValueMarkdownNodeParser(environment));   
+                new ValueMarkdownNodeParser(environment));
+
+            this._logger.Debug("---- Finished initialising of parser dictionary.");
         }
 
         #endregion

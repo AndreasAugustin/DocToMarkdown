@@ -52,16 +52,22 @@ namespace DocToMarkdown
         /// <param name="element">The element.</param>
         internal Dictionary<String, XElement> CorrectionAndNamespaceOrderXElement(XElement element)
         {
+            this._logger.Debug("---- Started XElement correction.");
+
             var members = element.Descendants("member");
 
+            this._logger.Debug("-- Started member correction.");
             foreach (var member in members)
             {
                 this.MemberCorrection(member);
             }
+            this._logger.Debug("-- Finished member correction.");
 
             var assemblyElement = element.Element("assembly");
 
             var dict = new Dictionary<String, XElement>();
+
+            this._logger.Debug("-- Started namespace ordering.");
 
             foreach (var nameSpace in this._namespaceDictionary.Keys)
             {
@@ -73,6 +79,9 @@ namespace DocToMarkdown
 
                 dict.Add(nameSpace, docElement);
             }
+            this._logger.Debug("-- Finished member correction.");
+
+            this._logger.Debug("---- Finished XElement correction.");
 
             return dict;
         }

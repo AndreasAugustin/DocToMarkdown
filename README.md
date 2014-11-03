@@ -6,7 +6,7 @@ The idea is to get a readable API documentation for your project which can be ea
 
 ### Remarks ###
 
-- Some input came from the project [DocToMarkdown](https://gist.github.com/lontivero/593fc51f1208555112e0) .
+- Some input came from this [project](https://gist.github.com/lontivero/593fc51f1208555112e0) .
 - This project uses NLog as logger. You can find some informations about NLog at GitHub https://github.com/NLog/NLog .   Informations about the NLog.config configuration file can be found at https://github.com/nlog/nlog/wiki/Configuration-file  . If you like to use another logger, just implement the ILogger and ILoggerManager interface and edit the Programm.cs. The rest will be done through dependency injection.
 
 

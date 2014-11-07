@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MarkdownNodeParser\" />
+    <Folder Include="Code\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MarkdownNodeParser\SummaryMarkdownNodeParserTest.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="MarkdownNodeParser\ParamMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\ReturnsMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\TypeparamMarkdownNodeParserTest.cs" />
+    <Compile Include="Code\MarkdownNodeParserPoolTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DocToMarkdown\DocToMarkdown.csproj">

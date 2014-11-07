@@ -31,7 +31,7 @@ namespace DocToMarkdown.Common
 
         /// <summary>
         /// Gets or sets the global threshold.
-        /// Loglevels below this threshold are not logged.
+        /// Log levels below this threshold are not logged.
         /// </summary>
         /// <value>The global threshold.</value>
         public LogLevel GlobalThreshold
@@ -40,6 +40,7 @@ namespace DocToMarkdown.Common
             {
                 return LogManager.GlobalThreshold.ConvertFromLogLevel();
             }
+
             set
             {
                 LogManager.GlobalThreshold = value.ConvertToNLogLogLevel();

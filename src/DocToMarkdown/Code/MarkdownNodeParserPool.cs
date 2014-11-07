@@ -173,7 +173,8 @@ namespace DocToMarkdown
                 typeof(ExceptionMarkdownNodeParser),
                 new ExceptionMarkdownNodeParser(
                     this,
-                    environment, markdownType));
+                    environment,
+                    markdownType));
            
             this._parserDictionary.Add(
                 typeof(CodeMarkdownNodeParser),

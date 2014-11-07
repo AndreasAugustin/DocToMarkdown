@@ -10,8 +10,6 @@
 namespace DocToMarkdown.Tests
 {
     using System;
-
-    using System;
     using System.Xml.Linq;
 
     using DocToMarkdown.Common;
@@ -80,7 +78,8 @@ namespace DocToMarkdown.Tests
 
             var expected = String.Format(
                                "{0}--- {0}## Assembly: DocToMarkdown ##{0}{0}{1}{0}{0}",         
-                               environmentMock.NewLine, String.Empty);
+                               environmentMock.NewLine,
+                               String.Empty);
 
             StringAssert.AreEqualIgnoringCase(expected, result);
         }

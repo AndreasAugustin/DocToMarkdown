@@ -76,7 +76,8 @@ namespace DocToMarkdown.Tests
 
             var expected = String.Format(
                                @"{1}Code: class TestClass{{static int Main() {{return GetZero();}}}}{0}{0}",
-                               environmentMock.NewLine, "\t");
+                               environmentMock.NewLine,
+                               "\t");
 
             StringAssert.AreEqualIgnoringCase(expected, result);
         }

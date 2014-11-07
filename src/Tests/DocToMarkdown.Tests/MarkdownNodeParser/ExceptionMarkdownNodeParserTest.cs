@@ -51,6 +51,7 @@ namespace DocToMarkdown.Tests
                         "System.Exception",
                         "Thrown when...",
                         Environment.NewLine));
+
                 yield return new TestCaseData(
                     MarkdownType.GithubFlavoredMarkdown,
                     String.Format(
@@ -68,6 +69,7 @@ namespace DocToMarkdown.Tests
         /// <summary>
         /// Test for creating a new object.
         /// </summary>
+        /// <param name="markdownType">The markdown type.</param>
         [Test]
         [Category("Unit test: parser")]
         [TestCase(MarkdownType.GithubFlavoredMarkdown)]
@@ -85,6 +87,8 @@ namespace DocToMarkdown.Tests
         /// <summary>
         /// Parses the pars input element result equals expected.
         /// </summary>
+        /// <param name="markdownType">The markdown type.</param>
+        /// <param name="expected">The expected result.</param>
         [Test]
         [Category("Unit test: parser")]
         [TestCaseSource("TestDataSource")]

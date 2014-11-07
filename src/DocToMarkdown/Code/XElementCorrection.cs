@@ -61,6 +61,7 @@ namespace DocToMarkdown
             {
                 this.MemberCorrection(member);
             }
+
             this._logger.Debug("-- Finished member correction.");
 
             var assemblyElement = element.Element("assembly");
@@ -79,6 +80,7 @@ namespace DocToMarkdown
 
                 dict.Add(nameSpace, docElement);
             }
+
             this._logger.Debug("-- Finished member correction.");
 
             this._logger.Debug("---- Finished XElement correction.");

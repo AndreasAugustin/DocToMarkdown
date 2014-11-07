@@ -83,7 +83,7 @@ namespace DocToMarkdown
             }
           
             return String.Format(
-                _template,
+                this._template,
                 element.Value.Trim());
         }
 
@@ -93,12 +93,7 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            if (!String.IsNullOrEmpty(_template))
-            {
-                return;
-            }
-
-            _template = String.Format("> {0}{1}", "{0}", environment.NewLine);
+            this._template = String.Format("> {0}{1}", "{0}", environment.NewLine);
         }
 
         #endregion

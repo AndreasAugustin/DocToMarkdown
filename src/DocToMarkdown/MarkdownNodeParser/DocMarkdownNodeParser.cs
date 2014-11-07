@@ -65,9 +65,9 @@ namespace DocToMarkdown
                
             if (assemblyElement == null)
             {
-                const String errorMessage = "assembly element not found";
-                this._logger.Error(errorMessage);
-                throw new KeyNotFoundException(errorMessage);
+                const String ErrorMessage = "assembly element not found";
+                this._logger.Error(ErrorMessage);
+                throw new KeyNotFoundException(ErrorMessage);
             }
 
             var assemblyName = assemblyElement.Element("name").Value;
@@ -75,9 +75,9 @@ namespace DocToMarkdown
 
             if (membersElement == null)
             {
-                const String errorMessage = "members element not found";
-                this._logger.Error(errorMessage);
-                throw new KeyNotFoundException(errorMessage);
+                const String ErrorMessage = "members element not found";
+                this._logger.Error(ErrorMessage);
+                throw new KeyNotFoundException(ErrorMessage);
             }
 
             var members = membersElement.Elements("member");

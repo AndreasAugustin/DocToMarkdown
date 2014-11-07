@@ -107,28 +107,20 @@ namespace DocToMarkdown.Common
         }
 
         /// <summary>
-        /// Log the specified loglevel and message.
+        /// Log the specified log level and message.
         /// </summary>
-        /// <param name="loglevel">Loglevel.</param>
-        /// <param name="message">Message.</param>
-        /// <exception cref="KeyNotFoundException">
-        /// Thrown when the Dictionary does not 
-        /// contain the <paramref name="loglevel"/> as key.
-        /// </exception>
+        /// <param name="loglevel">The log level.</param>
+        /// <param name="message">The message.</param>
         public void Log(LogLevel loglevel, String message)
         {
             this._logger.Log(loglevel.ConvertToNLogLogLevel(), message);
         }
 
         /// <summary>
-        /// Determines whether this instance is enabled the specified loglevel.
+        /// Determines whether this instance is enabled the specified log level.
         /// </summary>
-        /// <returns><c>true</c> if this instance is enabled the specified loglevel; otherwise, <c>false</c>.</returns>
-        /// <param name="loglevel">Loglevel.</param>
-        /// <exception cref="KeyNotFoundException">
-        /// Thrown when the Dictionary does not 
-        /// contain the <paramref name="loglevel"/> as key.
-        /// </exception>
+        /// <returns><c>true</c> if this instance is enabled the specified log level; otherwise, <c>false</c>.</returns>
+        /// <param name="loglevel">The log level.</param>
         public Boolean IsEnabled(LogLevel loglevel)
         {
             return this._logger.IsEnabled(loglevel.ConvertToNLogLogLevel());

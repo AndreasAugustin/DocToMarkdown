@@ -63,8 +63,9 @@ namespace DocToMarkdown
             var value = element.Value;
 
             return String.Format(
-                _template,
-                cref, value);
+                this._template,
+                cref,
+                value);
         }
 
         #endregion

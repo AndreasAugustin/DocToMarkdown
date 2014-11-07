@@ -10,7 +10,6 @@
 namespace DocToMarkdown.Common
 {
     using System;
-    using System.Collections.Generic;
 
     using NLog;
 

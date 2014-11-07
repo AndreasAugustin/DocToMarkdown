@@ -51,8 +51,9 @@ namespace DocToMarkdown.Tests
         public void Init_CreateObject_IsNotNull()
         {
             var parserPoolStub = Substitute.For<IParserPool>();
+            var environmentStub = Substitute.For<IEnvironment>();
 
-            var obj = new ParaMarkdownNodeParser(parserPoolStub);
+            var obj = new CMarkdownNodeParser(parserPoolStub, environmentStub);
 
             Assert.IsNotNull(obj);
         }

@@ -25,7 +25,7 @@ namespace DocToMarkdown
     {
         #region fields
 
-        private static String _template;
+        private String _template;
         private IParserPool _parserPool;
 
         #endregion

@@ -25,7 +25,7 @@ namespace DocToMarkdown
     {
         #region fields
 
-        private static String template;
+        private String template;
         private IParserPool _parserPool;
 
         #endregion
@@ -60,8 +60,7 @@ namespace DocToMarkdown
             {
                 return null;
             }
-
-            // TODO add anchors
+                
             var reference = element.Attribute("cref");
 
             var elements = element.Elements();
@@ -78,11 +77,6 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment, MarkdownType markdownType)
         {
-            if (!String.IsNullOrEmpty(template))
-            {
-                return;
-            }
-
             template = markdownType == MarkdownType.GithubFlavoredMarkdown ?
                 String.Format(">**Exception:** *{0}*:{2}> {1}{2}{2}", "{0}", "{1}", environment.NewLine)
                 : String.Format(">**Exception:** [{0}](#{0}):{2}> {1}{2}{2}", "{0}", "{1}", environment.NewLine);

@@ -23,6 +23,8 @@ namespace DocToMarkdown.Common
 
         private Dictionary<String, ILogger> _loggerPool = new Dictionary<String, ILogger>();
 
+        private Boolean _alreadyDisposed = false;
+
         #endregion
 
         #region properties
@@ -109,11 +111,9 @@ namespace DocToMarkdown.Common
         /// the <see cref="DocToMarkdown.Common.NLogManagerAdapter"/> was occupying.</remarks>
         public void Dispose()
         {
-            var disposable = LogManager.DisableLogging();
-            if (disposable != null)
-            {
-                disposable.Dispose();
-            }
+            this.Dispose(true);
+
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -123,6 +123,29 @@ namespace DocToMarkdown.Common
         public override String ToString()
         {
             return String.Format("[NLogManagerAdapter]");
+        }
+
+        #endregion
+
+        #region helper methods
+
+        private void Dispose(Boolean isDisposing)
+        {
+            if (this._alreadyDisposed)
+            {
+                return;
+            }
+
+            if (isDisposing)
+            {
+                var disposable = LogManager.DisableLogging();
+                if (disposable != null)
+                {
+                    disposable.Dispose();
+                }
+            }
+
+            this._alreadyDisposed = true;
         }
 
         #endregion

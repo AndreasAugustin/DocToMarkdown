@@ -78,7 +78,7 @@ namespace DocToMarkdown.Tests
         [Test]
         [Category("Unit test: parser")]
         [TestCaseSource("TestDataSource")]
-        public void Parse_ParseInputElement_ResultEqualsExpected(Int32 markdownType)
+        public void Parse_Parse_ThrowsKeyNotFoundException(Int32 markdownType)
         {
             var input = this.XmlInput;
             var loggerManagerStub = Substitute.For<ILoggerManager>();

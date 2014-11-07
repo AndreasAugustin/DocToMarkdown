@@ -66,6 +66,13 @@ namespace DocToMarkdown
 
             var assemblyElement = element.Element("assembly");
 
+            if (assemblyElement == null)
+            {
+                const String Message = "assembly element not found";
+
+                this._logger.Info(Message);
+            }
+
             var dict = new Dictionary<String, XElement>();
 
             this._logger.Debug("-- Started namespace ordering.");

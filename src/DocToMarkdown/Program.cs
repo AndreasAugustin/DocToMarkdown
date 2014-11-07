@@ -111,52 +111,72 @@ namespace DocToMarkdown
             }
 
             Console.WriteLine("End");
+
+            Console.WriteLine("----------- Please press return to proceed -----------");
             Console.ReadLine();
         }
 
         private static void Init()
         {
+            Console.WriteLine("Starting init application");
             _loggerManager = new NLogManagerAdapter();
 
-            var configuration = new ConfigurationAdapter(_loggerManager);
+            Console.WriteLine("Setting configuration");
+            var configuration = new ConfigurationAdapter(_loggerManager, AppDomain.CurrentDomain.BaseDirectory);
 
             SetLoggerManager(configuration);
 
             SetMarkdownType(configuration);
 
+            Console.WriteLine("Setting up source paths");
             _xmlSourcePath = configuration["xmlSource.folder.path"];
+            Console.WriteLine("Xml source path: {0}", _xmlSourcePath);
+
             _markdownTargetPath = configuration["markupTarget.folder.path"];
+            Console.WriteLine("Markdown target path: {0}", _markdownTargetPath);
+
+            Console.WriteLine("Source paths setting finished");
 
             _parser = new MarkdownNodeParserPool(Environment, _markdownType, _loggerManager);
         }
 
         private static void SetLoggerManager(IConfiguration configuration)
         {
+            Console.WriteLine("Setting logger manager");
+
             var globalThresholdString = configuration["logger.global.threshold"];
+            Console.WriteLine("Global threshold from configuration: {0}", globalThresholdString);
+
             Int32 globalThreshold;
             if (!Int32.TryParse(globalThresholdString, out globalThreshold))
             {
                 throw new InvalidCastException("The cast for the global threshold did not work");
             }
 
-            var logLevel = globalThreshold;
+            Console.WriteLine("Global threshold: {0}", globalThreshold);
 
-            if (logLevel > 7 || logLevel < 0)
+            if (globalThreshold > 7 || globalThreshold < 0)
             {
                 const String Message = "Logger configuration is not set correctly";
                 Log(Message, LogLevel.Fatal);
                 throw new ApplicationException(Message);
             }
 
-            if (logLevel != 7)
+            if (globalThreshold != 7)
             {
-                _loggerManager.GlobalThreshold = (LogLevel)logLevel;
+                _loggerManager.GlobalThreshold = (LogLevel)globalThreshold;
             }
+
+            Console.WriteLine("Logger manager setup finished");
         }
 
         private static void SetMarkdownType(IConfiguration configuration)
         {
+            Console.WriteLine("Setting up markdown type");
+
             var markdownTypeString = configuration["markdownType"];
+
+            Console.WriteLine("MarkdownTypeString: {0}", markdownTypeString);
 
             Int32 markdownType;
 
@@ -165,7 +185,10 @@ namespace DocToMarkdown
                 throw new InvalidCastException("The cast for the markdown type did not work");
             }
 
+            Console.WriteLine("MarkdownType: {0}", markdownType);
+
             _markdownType = (MarkdownType)markdownType;
+            Console.WriteLine("Markdowntype setup finished");
         }
 
         private static void Log(String message, LogLevel logLevel)

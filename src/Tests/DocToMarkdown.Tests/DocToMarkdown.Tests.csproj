@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MarkdownNodeParser\SummaryMarkdownNodeParserTest.cs" />
-    <Compile Include="XElementCorrectionTest.cs" />
     <Compile Include="MarkdownNodeParser\ListMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\ParaMarkdownParserTest.cs" />
     <Compile Include="MarkdownNodeParser\RemarksMarkdownNodeParserTest.cs" />
@@ -64,6 +63,7 @@
     <Compile Include="MarkdownNodeParser\ReturnsMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\TypeparamMarkdownNodeParserTest.cs" />
     <Compile Include="Code\MarkdownNodeParserPoolTest.cs" />
+    <Compile Include="Code\XElementCorrectionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DocToMarkdown\DocToMarkdown.csproj">

@@ -111,7 +111,12 @@ namespace DocToMarkdown
 
             this._parserDictionary = new Dictionary<Type, IMarkdownNodeParser>();
 
-            this._parserDictionary.Add(typeof(DocMarkdownNodeParser), new DocMarkdownNodeParser(this, environment));
+            this._parserDictionary.Add(
+                typeof(DocMarkdownNodeParser),
+                new DocMarkdownNodeParser(
+                    this,
+                    environment,
+                    this._logger));
 
             this._parserDictionary.Add(
                 typeof(MemberMarkdownNodeParser),

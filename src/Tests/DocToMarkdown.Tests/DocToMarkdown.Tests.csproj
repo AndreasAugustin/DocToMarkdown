@@ -56,6 +56,12 @@
     <Compile Include="MarkdownNodeParser\CMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\CodeMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\DocMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ExampleMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ExceptionMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\MemberMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ParamMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ReturnsMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\TypeparamMarkdownNodeParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DocToMarkdown\DocToMarkdown.csproj">

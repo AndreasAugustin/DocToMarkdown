@@ -18,7 +18,7 @@ namespace DocToMarkdown.Tests
     using NUnit.Framework;
 
     /// <summary>
-    /// Test for the <see cref="CodeMarkdownNodeParser"/> class.
+    /// Test for the <see cref="ParamMarkdownNodeParser"/> class.
     /// </summary>
     [TestFixture]
     public class ParamMarkdownNodeParserTest

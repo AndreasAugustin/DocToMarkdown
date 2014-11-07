@@ -19,7 +19,7 @@ namespace DocToMarkdown.Tests
     using NUnit.Framework;
 
     /// <summary>
-    /// Test for the <see cref="ExampleMarkdownNodeParser"/> class.
+    /// Test for the <see cref="ExceptionMarkdownNodeParser"/> class.
     /// </summary>
     [TestFixture]
     public class ExceptionMarkdownNodeParserTest

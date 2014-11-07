@@ -10,7 +10,6 @@
 namespace DocToMarkdown.Tests
 {
     using System;
-    using System.Collections.Generic;
     using System.Xml.Linq;
 
     using DocToMarkdown.Common;
@@ -19,7 +18,7 @@ namespace DocToMarkdown.Tests
     using NUnit.Framework;
 
     /// <summary>
-    /// Test for the <see cref="ExampleMarkdownNodeParser"/> class.
+    /// Test for the <see cref="MemberMarkdownNodeParser"/> class.
     /// </summary>
     [TestFixture]
     public class MemberMarkdownNodeParserTest

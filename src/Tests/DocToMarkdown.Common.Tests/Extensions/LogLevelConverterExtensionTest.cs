@@ -55,8 +55,8 @@ namespace DocToMarkdown.Common.Tests
         /// <summary>
         /// Converts from NLog.LogLevel to <see cref="LogLevel"/>. The converted result should equal the expected.
         /// </summary>
-        /// <param name="input">The input.</param>
         /// <param name="expected">The expected.</param>
+        /// <param name="input">The input.</param>
         [Test]
         [Category("Unit test: nlog")]
         [TestCaseSource("TestDataSource")]

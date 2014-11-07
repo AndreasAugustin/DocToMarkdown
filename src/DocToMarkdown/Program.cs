@@ -96,15 +96,23 @@ namespace DocToMarkdown
                 }
             }
                 
-            _loggerManager.ShutDown();
-
-            Console.WriteLine("End");
-            Console.ReadLine();
+            ShutDown();
         }
 
         #endregion
 
         #region helper methods
+
+        private static void ShutDown()
+        {
+            if (_loggerManager != null)
+            {
+                _loggerManager.ShutDown();
+            }
+
+            Console.WriteLine("End");
+            Console.ReadLine();
+        }
 
         private static void Init()
         {
@@ -131,7 +139,19 @@ namespace DocToMarkdown
                 throw new InvalidCastException("The cast for the global threshold did not work");
             }
 
-            _loggerManager.GlobalThreshold = (LogLevel)globalThreshold;
+            var logLevel = globalThreshold;
+
+            if (logLevel > 7 || logLevel < 0)
+            {
+                const String Message = "Logger configuration is not set correctly";
+                Log(Message, LogLevel.Fatal);
+                throw new ApplicationException(Message);
+            }
+
+            if (logLevel != 7)
+            {
+                _loggerManager.GlobalThreshold = (LogLevel)logLevel;
+            }
         }
 
         private static void SetMarkdownType(IConfiguration configuration)
@@ -146,6 +166,14 @@ namespace DocToMarkdown
             }
 
             _markdownType = (MarkdownType)markdownType;
+        }
+
+        private static void Log(String message, LogLevel logLevel)
+        {
+            if (_loggerManager != null)
+            {
+                _loggerManager.GetLogger("Programm").Log(logLevel, message);
+            }           
         }
 
         #endregion

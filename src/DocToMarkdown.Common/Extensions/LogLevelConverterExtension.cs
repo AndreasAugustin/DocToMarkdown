@@ -1,5 +1,5 @@
 ﻿//  *************************************************************
-// <copyright file="LogLevelToNLogLogLevelExtension.cs" company="None">
+// <copyright file="LogLevelConverterExtension.cs" company="None">
 //     Copyright (c) 2014 andy.  All rights reserved.
 // </copyright>
 // <license>MIT Licence</license>
@@ -26,7 +26,7 @@ namespace DocToMarkdown.Common
         #region ctors
 
         /// <summary>
-        /// Initializes the <see cref="DocToMarkdown.Common.LogLevelToNLogLogLevelExtension"/> class.
+        /// Initializes static members of the <see cref="LogLevelConverterExtension"/> class.
         /// </summary>
         static LogLevelConverterExtension()
         {
@@ -41,7 +41,7 @@ namespace DocToMarkdown.Common
         /// Converts the <see cref="LogLevel"/>to the NLog.LogLevel.
         /// </summary>
         /// <returns>The NLog.LogLevel.</returns>
-        /// <param name="loglevel">Loglevel.</param>
+        /// <param name="loglevel">The log level.</param>
         public static NLog.LogLevel ConvertToNLogLogLevel(this LogLevel loglevel)
         {
             CheckLogLevelMappingDictForKey(loglevel);
@@ -53,7 +53,7 @@ namespace DocToMarkdown.Common
         /// Converts from NLog.LogLevel to <see cref="LogLevel"/>.
         /// </summary>
         /// <returns>The from log level.</returns>
-        /// <param name="nloglevel">Nloglevel.</param>
+        /// <param name="nloglevel">The NLog.LogLevel.</param>
         public static LogLevel ConvertFromLogLevel(this NLog.LogLevel nloglevel)
         {
             CheckLogLevelMappingDictForValue(nloglevel);

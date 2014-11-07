@@ -25,6 +25,7 @@ namespace DocToMarkdown
 
         private String _template;
         private IParserPool _parserPool;
+        private ILogger _logger;
 
         #endregion
 
@@ -35,8 +36,10 @@ namespace DocToMarkdown
         /// </summary>
         /// <param name="parserPool">The parser pool.</param>
         /// <param name="environment">The environment.</param>
-        public DocMarkdownNodeParser(IParserPool parserPool, IEnvironment environment)
+        /// <param name = "logger">The logger.</param>
+        public DocMarkdownNodeParser(IParserPool parserPool, IEnvironment environment, ILogger logger)
         {
+            this._logger = logger;
             this._parserPool = parserPool;
             this.InitTemplate(environment);
         }
@@ -58,8 +61,26 @@ namespace DocToMarkdown
                 return String.Empty;
             }
 
-            var assemblyName = element.Element("assembly").Element("name").Value;
-            var members = element.Element("members").Elements("member");
+            var assemblyElement = element.Element("assembly");
+               
+            if (assemblyElement == null)
+            {
+                const String ErrorMessage = "assembly element not found";
+                this._logger.Error(ErrorMessage);
+                throw new KeyNotFoundException(ErrorMessage);
+            }
+
+            var assemblyName = assemblyElement.Element("name").Value;
+            var membersElement = element.Element("members");
+
+            if (membersElement == null)
+            {
+                const String ErrorMessage = "members element not found";
+                this._logger.Error(ErrorMessage);
+                throw new KeyNotFoundException(ErrorMessage);
+            }
+
+            var members = membersElement.Elements("member");
 
             var stringBuilder = new StringBuilder();
 

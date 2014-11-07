@@ -61,9 +61,17 @@ namespace DocToMarkdown
             {
                 this.MemberCorrection(member);
             }
+
             this._logger.Debug("-- Finished member correction.");
 
             var assemblyElement = element.Element("assembly");
+
+            if (assemblyElement == null)
+            {
+                const String Message = "assembly element not found";
+
+                this._logger.Info(Message);
+            }
 
             var dict = new Dictionary<String, XElement>();
 
@@ -79,6 +87,7 @@ namespace DocToMarkdown
 
                 dict.Add(nameSpace, docElement);
             }
+
             this._logger.Debug("-- Finished member correction.");
 
             this._logger.Debug("---- Finished XElement correction.");

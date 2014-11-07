@@ -40,10 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MarkdownNodeParser\" />
+    <Folder Include="Code\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MarkdownNodeParser\SummaryMarkdownNodeParserTest.cs" />
-    <Compile Include="XElementCorrectionTest.cs" />
     <Compile Include="MarkdownNodeParser\ListMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\ParaMarkdownParserTest.cs" />
     <Compile Include="MarkdownNodeParser\RemarksMarkdownNodeParserTest.cs" />
@@ -53,6 +53,17 @@
     <Compile Include="MarkdownNodeParser\SeeMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\SeealsoMarkdownNodeParserTest.cs" />
     <Compile Include="MarkdownNodeParser\PermissionMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\CMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\CodeMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\DocMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ExampleMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ExceptionMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\MemberMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ParamMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\ReturnsMarkdownNodeParserTest.cs" />
+    <Compile Include="MarkdownNodeParser\TypeparamMarkdownNodeParserTest.cs" />
+    <Compile Include="Code\MarkdownNodeParserPoolTest.cs" />
+    <Compile Include="Code\XElementCorrectionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DocToMarkdown\DocToMarkdown.csproj">

@@ -10,7 +10,8 @@ The idea is to get a readable API documentation for your project which can be ea
 
 ### Start project ###
 - Edit the **App.config** file
-- If you use the library out of the build folder, just start the **DocToMarkdown.exe** in your console.  
+- If you use the library out of the build folder, just start the **DocToMarkdown.exe** in your console.
+- If you use the source. Make sure that the **NLog.config** file property *copy* is set to *copy always*
 
 ---
 ### Remarks ###
@@ -27,6 +28,7 @@ You are able to find examples for parsed xml files at the [DocToMarkdown wiki pa
 - This project uses **NUnit** *(2.6.3 License: http://www.nunit.org/nuget/license.html)* as a testing framework. You are able to find some informations about NUnit at http://www.nunit.org
 - As a mocking framework it uses **NSubstitute** *(1.7.2.0 BSD-Licence: http://opensource.org/licenses/bsd-license.php)*. You are able to find some informations about NSubstitute at https://nsubstitute.github.io
 - I tested the output of this project with documentation files created with **Visual Studio** (2012 and 2013) and **Xamarin Studio** (5.5.3).
+- Make sure that the **NLog.config** file property *copy* is set to *copy always*
 
 ---
 ### Change log ###

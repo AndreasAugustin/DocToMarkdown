@@ -62,8 +62,10 @@ namespace DocToMarkdown.Common.Tests
         }
 
         /// <summary>
-        /// Calls an index and checks if the result equals teh expected value.
+        /// Calls an index and checks if the result equals the expected value.
         /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="expectedValue">The expected value.</param>
         [Test]
         [Category("Unit test: configuration")]
         [TestCase("markdownType", "0")]
@@ -72,13 +74,12 @@ namespace DocToMarkdown.Common.Tests
         {
             var loggerManagerStub = Substitute.For<ILoggerManager>();
             var configuration = new ConfigurationAdapter(loggerManagerStub, String.Empty);
-            configuration.ConfigDocument = ConfigurationDocument;
+            configuration.ConfigDocument = this.ConfigurationDocument;
 
             var result = configuration[key];
             Assert.AreEqual(expectedValue, result);
         }
 
         #endregion
-
     }
 }

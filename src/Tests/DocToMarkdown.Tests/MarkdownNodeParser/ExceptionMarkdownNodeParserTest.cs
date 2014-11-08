@@ -44,21 +44,25 @@ namespace DocToMarkdown.Tests
         {
             get
             {
+                var markdownTypeExpected = String.Format(
+                                               ">**Exception:** [{0}](#{0}):{2}> {1}{2}{2}",
+                                               "System.Exception",
+                                               "Thrown when...",
+                                               Environment.NewLine);
+
+                var gitHubFlavoredMArkdownExpected = String.Format(
+                                                         ">**Exception:** *{0}*:{2}> {1}{2}{2}",
+                                                         "System.Exception",
+                                                         "Thrown when...",
+                                                         Environment.NewLine);
+
                 yield return new TestCaseData(
                     MarkdownType.Markdown,
-                    String.Format(
-                        ">**Exception:** [{0}](#{0}):{2}> {1}{2}{2}",
-                        "System.Exception",
-                        "Thrown when...",
-                        Environment.NewLine));
+                    markdownTypeExpected);
 
                 yield return new TestCaseData(
                     MarkdownType.GithubFlavoredMarkdown,
-                    String.Format(
-                        ">**Exception:** *{0}*:{2}> {1}{2}{2}",
-                        "System.Exception",
-                        "Thrown when...",
-                        Environment.NewLine));
+                    gitHubFlavoredMArkdownExpected);
             }
         }
 

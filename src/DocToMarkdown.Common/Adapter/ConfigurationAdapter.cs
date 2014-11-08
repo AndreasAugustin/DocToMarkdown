@@ -21,8 +21,8 @@ namespace DocToMarkdown.Common
     {
         #region fields
 
+        private const String ConfigFileName = "App.config";
         private String _baseDirectory;
-        private const String configFileName = "App.config";
         private ILogger _logger;
         private XDocument _configDocument;
         private XElement _configurationElement;
@@ -36,7 +36,7 @@ namespace DocToMarkdown.Common
         /// Initializes a new instance of the <see cref="DocToMarkdown.Common.ConfigurationAdapter"/> class.
         /// </summary>
         /// <param name="loggerManager">Logger manager.</param>
-        /// <param name = "baseDirectory"></param>
+        /// <param name = "baseDirectory">The base directory for the App.config file.</param>
         public ConfigurationAdapter(ILoggerManager loggerManager, String baseDirectory)
         {
             this._logger = loggerManager.GetLogger("Configuration");
@@ -56,14 +56,14 @@ namespace DocToMarkdown.Common
         {
             get
             {
-                return _configDocument ?? (this._configDocument = XDocument.Load(Path.Combine(
+                return this._configDocument ?? (this._configDocument = XDocument.Load(Path.Combine(
                         this._baseDirectory,
-                        configFileName)));
+                        ConfigFileName)));
             }
 
             set
             {
-                _configDocument = value;
+                this._configDocument = value;
             }
         }
 
@@ -147,7 +147,6 @@ namespace DocToMarkdown.Common
 
                 throw new ApplicationException(Message);
             }
-
         }
 
         #endregion

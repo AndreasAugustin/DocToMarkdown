@@ -1,5 +1,5 @@
 ﻿language: csharp
-solution: ./DocToMarkdown.sln
+solution: solution-DocToMarkdown.sln
 install:
   - nuget restore DocToMarkdown.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner

@@ -1,7 +1,4 @@
 ﻿language: csharp
-mono:
-  - latest
-  - 4.3.2
 solution: DocToMarkdown.sln
 install:
   - nuget restore DocToMarkdown.sln

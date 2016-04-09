@@ -9,6 +9,7 @@
 
 namespace DocToMarkdown
 {
+
     using System;
     using System.Text;
     using System.Xml.Linq;
@@ -56,16 +57,14 @@ namespace DocToMarkdown
         /// <param name="element">The element.</param>
         public String ParseToMarkdown(XElement element)
         {
-            if (element.Name != "example")
+            if(element.Name != "example")
             {
                 return null;
             }
-                
-            var stringBuilder = new StringBuilder();
 
             var seeElements = element.Elements("see");
 
-            foreach (var seeElement in seeElements)
+            foreach(var seeElement in seeElements)
             {
                 var parsedSee = this._parserPool.Parse<SeeMarkdownNodeParser>(seeElement);
 
@@ -73,7 +72,7 @@ namespace DocToMarkdown
             }
 
             var listElements = element.Elements("list");
-            foreach (var listElement in listElements)
+            foreach(var listElement in listElements)
             {
                 var parsedList = this._parserPool.Parse<ListMarkdownNodeParser>(listElement);
 

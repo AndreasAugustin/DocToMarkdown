@@ -9,6 +9,7 @@
 
 namespace DocToMarkdown
 {
+
     using System;
     using System.Xml.Linq;
 
@@ -55,20 +56,18 @@ namespace DocToMarkdown
         /// <param name="element">The element.</param>
         public String ParseToMarkdown(XElement element)
         {
-            if (element.Name != "param")
+            if(element.Name != "param")
             {
                 return null;
             }
-                
-            var elements = element.Elements();
 
             var seeElements = element.Elements("see");
 
-            foreach (var seeElement in seeElements)
+            foreach(var seeElement in seeElements)
             {
                 var parsedSee = this._parserPool.Parse<SeeMarkdownNodeParser>(seeElement);
 
-                if (parsedSee != null)
+                if(parsedSee != null)
                 {
                     seeElement.SetValue(parsedSee);
                 }
@@ -88,7 +87,7 @@ namespace DocToMarkdown
 
         private void InitTemplate(IEnvironment environment)
         {
-            if (!String.IsNullOrEmpty(this._template))
+            if(!String.IsNullOrEmpty(this._template))
             {
                 return;
             }

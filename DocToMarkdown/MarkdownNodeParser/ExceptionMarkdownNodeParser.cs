@@ -9,6 +9,7 @@
 
 namespace DocToMarkdown
 {
+
     using System;
     using System.Xml.Linq;
 
@@ -56,14 +57,12 @@ namespace DocToMarkdown
         /// <param name="element">The element.</param>
         public String ParseToMarkdown(XElement element)
         {
-            if (element.Name != "exception")
+            if(element.Name != "exception")
             {
                 return null;
             }
                 
             var reference = element.Attribute("cref");
-
-            var elements = element.Elements();
                        
             return String.Format(
                 this._template,

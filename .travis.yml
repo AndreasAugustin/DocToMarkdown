@@ -11,4 +11,5 @@ install:
 
 script:
   - xbuild /p:Configuration=Release DocToMarkDown.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./src/DocToMarkdown.Tests/bin/Release/MyProject.Tests.dll
+  - mono ./testrunner/NUnint.Runners.2.6.4/tools/nunit-console.exe ./Tests/DocToMarkdown.Common.Tests/bin/Release/DocToMarkdown.Common.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Tests/DocToMarkdown.Tests/bin/Release/DocToMarkdown.Tests.dll

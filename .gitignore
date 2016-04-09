@@ -1,10 +1,8 @@
 bin/
 obj/
+packages/
 
-/src/DocToMarkdown/bin
-/src/DocToMarkdown/obj
-/src/packages
-/src/*.userprefs
+*.userprefs
 
 .idea/
 *.iml

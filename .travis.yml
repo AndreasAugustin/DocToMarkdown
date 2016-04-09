@@ -3,12 +3,12 @@ mono:
   - latest
   - 4.3.2
 
-solution: ./src/DocToMarkdown.sln
+solution: DocToMarkdown.sln
 
 install:
-  - nuget restore ./src/DocToMarkdown.sln
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory ./src/testrunner
+  - nuget restore DocToMarkdown.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 
 script:
-  - xbuild /p:Configuration=Release ./src/DocToMarkDown.sln
-  - mono ./src/testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./src/DocToMarkdown.Tests/bin/Release/MyProject.Tests.dll
+  - xbuild /p:Configuration=Release DocToMarkDown.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./src/DocToMarkdown.Tests/bin/Release/MyProject.Tests.dll

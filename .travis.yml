@@ -1,9 +1,13 @@
 ﻿language: csharp
-solution: solution-DocToMarkdown.sln
+
+solution: DocToMarkdown.sln
+
 install:
   - nuget restore DocToMarkdown.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+
 script:
   - xbuild /p:Configuration=Release DocToMarkDown.sln
   - mono ./testrunner/NUnint.Runners.2.6.4/tools/nunit-console.exe ./Tests/DocToMarkdown.Common.Tests/bin/Release/DocToMarkdown.Common.Tests.dll
   - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Tests/DocToMarkdown.Tests/bin/Release/DocToMarkdown.Tests.dll
+

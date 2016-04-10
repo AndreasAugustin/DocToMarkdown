@@ -1,3 +1,5 @@
+[![Gitter](https://badges.gitter.im/AndreasAugustin/DocToMarkdown.svg)](https://gitter.im/AndreasAugustin/DocToMarkdown?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 [![Linux build Status](https://travis-ci.org/AndreasAugustin/DocToMarkdown.svg?branch=master)](https://travis-ci.org/AndreasAugustin/DocToMarkdown)
 
 [![Windows status](https://ci.appveyor.com/api/projects/status/8xi2i2h5twfj051w?svg=true)](https://ci.appveyor.com/project/AndreasAugustin/doctomarkdown)

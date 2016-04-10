@@ -37,7 +37,7 @@ notifications:
   - provider: Email
     to:
     - andy.augustin@t-online.de
-    on_build_succes: false
+    on_build_success: false
     on_build_failure: true
     on_build_status_changed: true
 

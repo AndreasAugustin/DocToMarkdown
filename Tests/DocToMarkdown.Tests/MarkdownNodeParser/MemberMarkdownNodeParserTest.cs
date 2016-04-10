@@ -9,6 +9,7 @@
 
 namespace DocToMarkdown.Tests
 {
+
     using System;
     using System.Xml.Linq;
 
@@ -52,7 +53,6 @@ namespace DocToMarkdown.Tests
         /// </summary>
         [Test]
         [Category("Unit test: parser")]
-        [TestCase(MarkdownType.GithubFlavoredMarkdown)]
         public void Init_CreateObject_IsNotNull()
         {
             var parserPoolStub = Substitute.For<IParserPool>();
@@ -61,32 +61,6 @@ namespace DocToMarkdown.Tests
             var obj = new MemberMarkdownNodeParser(parserPoolStub, environmentStub);
 
             Assert.IsNotNull(obj);
-        }
-
-        /// <summary>
-        /// Parses the pars input element result equals expected.
-        /// </summary>
-        [Test]
-        [Category("Unit test: parser")]
-        [Ignore]
-        public void Parse_ParseInputElement_ResultEqualsExpected()
-        {
-            var input = this.XmlInput;
-            var parserPoolStub = Substitute.For<IParserPool>();
-            var environmentMock = Substitute.For<IEnvironment>();
-            environmentMock.NewLine.Returns(Environment.NewLine);
-
-            var parser = new MemberMarkdownNodeParser(parserPoolStub, environmentMock);
-
-            var result = parser.ParseToMarkdown(input);
-
-            var expected = String.Format(
-                               "---{2}### Type: {0}{2}{2}{1}{2}{2}",
-                               "DocToMarkdown.Program",
-                               "{1}",
-                               environmentMock.NewLine);
-
-            StringAssert.AreEqualIgnoringCase(expected, result);
         }
 
         #endregion

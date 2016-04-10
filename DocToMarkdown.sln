@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown.Common.Tests", "Tests\DocToMarkdown.Common.Tests\DocToMarkdown.Common.Tests.csproj", "{0E98C973-1BF4-4B56-9E36-FCBABDCC74CD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown.Tests", "Tests\DocToMarkdown.Tests\DocToMarkdown.Tests.csproj", "{C2C188B2-81B0-4727-97F5-DAAF23F2FE8C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown.Common", "DocToMarkdown.Common\DocToMarkdown.Common.csproj", "{2E2B0383-18DA-4C0B-A3FF-F8D5E7FAB39D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown", "DocToMarkdown\DocToMarkdown.csproj", "{CDB2AB44-0AA1-4A8A-8BBB-A7625C355C6B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A40C010C-18EA-4211-853F-91C467230351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown.Common.Tests", "Tests\DocToMarkdown.Common.Tests\DocToMarkdown.Common.Tests.csproj", "{0E98C973-1BF4-4B56-9E36-FCBABDCC74CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocToMarkdown.Tests", "Tests\DocToMarkdown.Tests\DocToMarkdown.Tests.csproj", "{C2C188B2-81B0-4727-97F5-DAAF23F2FE8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

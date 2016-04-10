@@ -1,9 +1,13 @@
+[![Linux build Status](https://travis-ci.org/AndreasAugustin/DocToMarkdown.svg?branch=master)](https://travis-ci.org/AndreasAugustin/DocToMarkdown)
+
+[![Windows status](https://ci.appveyor.com/api/projects/status/8xi2i2h5twfj051w?svg=true)](https://ci.appveyor.com/project/AndreasAugustin/doctomarkdown)
+
 DocToMarkdown
 =============
 With this parser you are able to parse your Visual Studio or Xamarin Studio xml outputs into markdown format.
 The idea is to get a readable API documentation for your project which can be easily used for your wiki project pages. For setting up the project edit the [App.config](https://github.com/AndreasAugustin/DocToMarkdown/blob/master/src/DocToMarkdown/App.config) file.
- 
---- 
+
+---
 ### Requirements ###
 - Target framework **.Net/Mono 4.5**
 - This project uses **NLog** as logger. You are able to find some informations about NLog at GitHub https://github.com/NLog/NLog . Informations about the NLog.config configuration file can be found at https://github.com/nlog/nlog/wiki/Configuration-file . If you like to use another logger, just implement the ILogger and ILoggerManager interface and edit the Programm.cs. The rest will be done through dependency injection.

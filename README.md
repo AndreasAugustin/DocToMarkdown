@@ -6,6 +6,8 @@
 
 DocToMarkdown
 =============
+
+[![Join the chat at https://gitter.im/AndreasAugustin/DocToMarkdown](https://badges.gitter.im/AndreasAugustin/DocToMarkdown.svg)](https://gitter.im/AndreasAugustin/DocToMarkdown?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 With this parser you are able to parse your Visual Studio or Xamarin Studio xml outputs into markdown format.
 The idea is to get a readable API documentation for your project which can be easily used for your wiki project pages. For setting up the project edit the [App.config](https://github.com/AndreasAugustin/DocToMarkdown/blob/master/src/DocToMarkdown/App.config) file.
 

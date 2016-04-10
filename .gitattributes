@@ -1,2 +1,2 @@
-.travis.yml text eol=crlf
+*.yml eol=crlf
 

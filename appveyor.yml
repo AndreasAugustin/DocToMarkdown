@@ -33,10 +33,10 @@ build:
 before_build:
   - nuget restore
 
-nofifications:
+notifications:
   - provider: Email
     to:
-        - andy.augustin@t-online.de
+    - andy.augustin@t-online.de
     on_build_succes: false
     on_build_failure: true
     on_build_status_changed: true

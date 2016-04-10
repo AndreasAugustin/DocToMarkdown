@@ -1,11 +1,16 @@
 ﻿language: csharp
+solution: DocToMarkdown.sln
 
-install:
+before_install:
+  - sudo apt-get install nunit-console
+
+before_script:
   - nuget restore DocToMarkdown.sln
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+
+after_script:
+  - nunit-console Tests/DocToMarkdown.Common.Tests/bin/Debug/DocToMarkdown.Common.Tests.dll
+  - nunit-console Tests/DocToMarkdown.Tests/bin/Debug/DocToMarkdown.Tests.dll
 
 script:
-  - xbuild /p:Configuration=Release DocToMarkDown.sln
-  - mono ./testrunner/NUnint.Runners.2.6.4/tools/nunit-console.exe ./Tests/DocToMarkdown.Common.Tests/bin/Release/DocToMarkdown.Common.Tests.dll
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Tests/DocToMarkdown.Tests/bin/Release/DocToMarkdown.Tests.dll
+  - xbuild /p:Configuration=Debug DocToMarkdown.sln
 

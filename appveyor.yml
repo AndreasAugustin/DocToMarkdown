@@ -1,0 +1,46 @@
+version: 1.0.{build}
+
+branches:
+  only:
+    - master
+    - development
+
+  except:
+    - gh-pages
+
+skip_tags: true
+
+os: Visual Studio 2015
+
+init:
+  - git config --global core.autocrlf input
+
+clone_folder: c:\projects\DocToMarkdown
+
+shallow_clone: true
+
+clone_depth: 5
+
+platform: Any CPU
+
+configuration:
+  - Debug
+  - Release
+
+build:
+  project: DocToMarkdown.sln
+
+before_build:
+  - nuget restore
+
+nofifications:
+  - provider: Email
+    to:
+        - andy.augustin@t-online.de
+    on_build_succes: false
+    on_build_failure: true
+    on_build_status_changed: true
+
+
+
+
